@@ -9,6 +9,8 @@ var magic := 10
 var sprite
 var collider
 
+#Test Comment
+
 func _ready() -> void:
 	sprite = $AnimatedSprite2D
 	collider = $CollisionShape2D
