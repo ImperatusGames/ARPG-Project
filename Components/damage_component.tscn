@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cctv45y1tg46f"]
+
+[ext_resource type="Script" uid="uid://c54l45v7ivwla" path="res://Components/damage_component.gd" id="1_ipmha"]
+
+[node name="DamageComponent" type="Node2D"]
+script = ExtResource("1_ipmha")

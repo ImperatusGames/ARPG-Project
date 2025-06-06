@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmsjil27cypuj"]
+
+[ext_resource type="Script" uid="uid://bq7wpwywoqhou" path="res://Enemies/zombie.gd" id="1_7ss6f"]
+[ext_resource type="Texture2D" uid="uid://c6xv8b8acgao0" path="res://icon.svg" id="2_3p8yn"]
+[ext_resource type="PackedScene" uid="uid://dvbpr075re2i7" path="res://Components/health_component.tscn" id="3_13ig7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_13ig7"]
+radius = 61.2046
+
+[node name="Zombie" type="CharacterBody2D"]
+script = ExtResource("1_7ss6f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3p8yn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_13ig7")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_13ig7")]
