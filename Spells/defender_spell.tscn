@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bisksj668mnne"]
+
+[ext_resource type="Script" uid="uid://cqh4ivrjmvsr1" path="res://Spells/defender_spell.gd" id="1_85vao"]
+
+[node name="Defender Spell" type="Node2D"]
+script = ExtResource("1_85vao")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 15.0
