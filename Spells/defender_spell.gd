@@ -4,15 +4,16 @@ class_name DefenderSpell
 var timer
 
 func _ready() -> void:
-	timer = %Timer
+	timer = $Timer
 	timer.timeout.connect(timer_expired)
 
 func spell_cast():
 	var active : bool = is_active()
 	if active == true:
-		pass
+		timer.start()
 	else:
 		defense_boost()
+		timer.start()
 
 func is_active():
 	if timer.is_stopped() == true:

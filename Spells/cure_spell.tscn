@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://veny71hspg3j"]
+
+[ext_resource type="Script" uid="uid://8ppgv5sxiibi" path="res://Spells/cure_spell.gd" id="1_4akqx"]
+
+[node name="Cure Spell" type="Node2D"]
+script = ExtResource("1_4akqx")

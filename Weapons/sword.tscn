@@ -1,0 +1,91 @@
+[gd_scene load_steps=14 format=3 uid="uid://b3iikh7lmiegi"]
+
+[ext_resource type="Texture2D" uid="uid://dpr1iwjmrixuq" path="res://Assets/Master Sword.png" id="1_iekfp"]
+[ext_resource type="Script" uid="uid://ba7gdpkxsmjr4" path="res://Weapons/sword.gd" id="2_p5cha"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5cha"]
+atlas = ExtResource("1_iekfp")
+region = Rect2(0, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djh6v"]
+atlas = ExtResource("1_iekfp")
+region = Rect2(16, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qa7nt"]
+atlas = ExtResource("1_iekfp")
+region = Rect2(32, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2qhd"]
+atlas = ExtResource("1_iekfp")
+region = Rect2(48, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukohs"]
+atlas = ExtResource("1_iekfp")
+region = Rect2(64, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kp75"]
+atlas = ExtResource("1_iekfp")
+region = Rect2(80, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fh5h"]
+atlas = ExtResource("1_iekfp")
+region = Rect2(96, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0npgy"]
+atlas = ExtResource("1_iekfp")
+region = Rect2(112, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8s5k"]
+atlas = ExtResource("1_iekfp")
+region = Rect2(128, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5aa06"]
+atlas = ExtResource("1_iekfp")
+region = Rect2(144, 0, 16, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6x0j6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5cha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djh6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qa7nt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w2qhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukohs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kp75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fh5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0npgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8s5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5aa06")
+}],
+"loop": false,
+"name": &"swing",
+"speed": 18.0
+}]
+
+[node name="Sword" type="AnimatedSprite2D"]
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_6x0j6")
+animation = &"swing"
+frame = 9
+frame_progress = 1.0
+script = ExtResource("2_p5cha")

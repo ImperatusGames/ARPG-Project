@@ -36,11 +36,12 @@ func _process(_delta: float) -> void:
 		
 	if Input.is_action_just_pressed("attack"):
 		print("Attack button pressed!")
+		sword_attack()
 
 	if Input.is_action_just_pressed("special"):
 		print("Special button pressed!")
 		#heal()
-		#fireball(last_direction)
+		fireball(last_direction)
 		#defender()
 
 	if Input.is_action_just_pressed("menu"):
@@ -55,6 +56,12 @@ func fireball(player_direction: String):
 	new_fireball.global_rotation = global_rotation
 	new_fireball.player_direction = player_direction
 	add_sibling(new_fireball)
+
+func sword_attack():
+	const SWORD = preload("res://Weapons/sword.tscn")
+	var new_sword = SWORD.instantiate()
+	new_sword.global_position.x += 60
+	add_child(new_sword)
 
 #func heal():
 	#if health < max_health:
