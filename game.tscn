@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4dvkrat82wgt"]
+[gd_scene load_steps=3 format=3 uid="uid://d4dvkrat82wgt"]
 
 [ext_resource type="PackedScene" uid="uid://dr2ent0anvlpr" path="res://Player/hero.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://dmsjil27cypuj" path="res://Enemies/zombie.tscn" id="2_e2o6t"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Hero" parent="." instance=ExtResource("1_80nbo")]
 position = Vector2(231, 189)
+
+[node name="Zombie" parent="." instance=ExtResource("2_e2o6t")]
+position = Vector2(615, 189)

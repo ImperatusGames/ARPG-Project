@@ -1,13 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmsjil27cypuj"]
+[gd_scene load_steps=7 format=3 uid="uid://dmsjil27cypuj"]
 
 [ext_resource type="Script" uid="uid://bq7wpwywoqhou" path="res://Enemies/zombie.gd" id="1_7ss6f"]
 [ext_resource type="Texture2D" uid="uid://c6xv8b8acgao0" path="res://icon.svg" id="2_3p8yn"]
 [ext_resource type="PackedScene" uid="uid://dvbpr075re2i7" path="res://Components/health_component.tscn" id="3_13ig7"]
+[ext_resource type="PackedScene" uid="uid://cu1ac4u1eij3r" path="res://Components/hurt_box_component.tscn" id="4_d3phm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_13ig7"]
 radius = 61.2046
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1mmdd"]
+radius = 63.0
+
 [node name="Zombie" type="CharacterBody2D"]
+z_index = -1
+collision_layer = 16
+collision_mask = 24
 script = ExtResource("1_7ss6f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -17,3 +24,11 @@ texture = ExtResource("2_3p8yn")
 shape = SubResource("CircleShape2D_13ig7")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_13ig7")]
+
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_d3phm")]
+collision_layer = 16
+collision_mask = 25
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+shape = SubResource("CircleShape2D_1mmdd")

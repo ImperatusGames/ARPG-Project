@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3iikh7lmiegi"]
+[gd_scene load_steps=15 format=3 uid="uid://b3iikh7lmiegi"]
 
 [ext_resource type="Texture2D" uid="uid://dpr1iwjmrixuq" path="res://Assets/Master Sword.png" id="1_iekfp"]
 [ext_resource type="Script" uid="uid://ba7gdpkxsmjr4" path="res://Weapons/sword.gd" id="2_p5cha"]
@@ -78,8 +78,11 @@ animations = [{
 }],
 "loop": false,
 "name": &"swing",
-"speed": 18.0
+"speed": 27.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5cha"]
+size = Vector2(8, 18)
 
 [node name="Sword" type="AnimatedSprite2D"]
 texture_filter = 1
@@ -89,3 +92,9 @@ animation = &"swing"
 frame = 9
 frame_progress = 1.0
 script = ExtResource("2_p5cha")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_p5cha")

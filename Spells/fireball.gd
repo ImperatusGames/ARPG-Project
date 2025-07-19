@@ -34,5 +34,8 @@ func _physics_process(delta: float) -> void:
 	if travelled_distance > RANGE:
 		queue_free()
 
-func exploded():
+func exploded(area):
+	if area is HurtBoxComponent:
+		print("Hurt Box detected!")
+
 	queue_free()

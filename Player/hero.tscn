@@ -1,8 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://dr2ent0anvlpr"]
+[gd_scene load_steps=25 format=3 uid="uid://dr2ent0anvlpr"]
 
 [ext_resource type="Script" uid="uid://cloou2v6s6b3r" path="res://Player/hero.gd" id="1_lwtpo"]
 [ext_resource type="Texture2D" uid="uid://dk5lk5uu5jrit" path="res://Assets/Prototype_Character.png" id="2_lwtpo"]
 [ext_resource type="PackedScene" uid="uid://dvbpr075re2i7" path="res://Components/health_component.tscn" id="3_1ivvi"]
+[ext_resource type="PackedScene" uid="uid://cojl5y5l5d5il" path="res://Components/stats_component.tscn" id="4_uju65"]
+[ext_resource type="PackedScene" uid="uid://cctv45y1tg46f" path="res://Components/damage_component.tscn" id="5_6cmvd"]
+[ext_resource type="PackedScene" uid="uid://cu1ac4u1eij3r" path="res://Components/hurt_box_component.tscn" id="6_x1lg7"]
+[ext_resource type="PackedScene" uid="uid://bgsa7n8uh42s4" path="res://Components/velocity_component.tscn" id="7_fv1lb"]
+[ext_resource type="PackedScene" uid="uid://i2xhgmpq85jb" path="res://Components/status_manager.tscn" id="8_6cmvd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwtpo"]
 atlas = ExtResource("2_lwtpo")
@@ -144,3 +149,23 @@ shape = SubResource("CapsuleShape2D_lwtpo")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_1ivvi")]
 max_health = 10
+
+[node name="StatsComponent" parent="." instance=ExtResource("4_uju65")]
+
+[node name="DamageComponent" parent="." instance=ExtResource("5_6cmvd")]
+
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_x1lg7")]
+collision_layer = 0
+collision_mask = 0
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+light_mask = 0
+visibility_layer = 0
+position = Vector2(0, 17)
+shape = SubResource("CapsuleShape2D_lwtpo")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("7_fv1lb")]
+BASE_SPEED = 300.0
+
+[node name="StatusManager" parent="." instance=ExtResource("8_6cmvd")]
