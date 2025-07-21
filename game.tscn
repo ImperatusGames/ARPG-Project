@@ -1,7 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4dvkrat82wgt"]
+[gd_scene load_steps=7 format=3 uid="uid://d4dvkrat82wgt"]
 
 [ext_resource type="PackedScene" uid="uid://dr2ent0anvlpr" path="res://Player/hero.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://dmsjil27cypuj" path="res://Enemies/zombie.tscn" id="2_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://bdlqnffswnsjm" path="res://Assets/poisonbubbles1.png" id="3_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://bvbq5vsganodo" path="res://Assets/poisonbubbles2.png" id="4_7jktm"]
+[ext_resource type="Script" uid="uid://dvv00sodurbmp" path="res://status_poisoned.gd" id="5_7jktm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e2o6t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_fc0e3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7jktm")
+}],
+"loop": true,
+"name": &"overhead",
+"speed": 2.0
+}]
 
 [node name="Game" type="Node2D"]
 
@@ -10,3 +27,11 @@ position = Vector2(231, 189)
 
 [node name="Zombie" parent="." instance=ExtResource("2_e2o6t")]
 position = Vector2(615, 189)
+
+[node name="Status_Poisoned" type="AnimatedSprite2D" parent="."]
+position = Vector2(228, 120)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_e2o6t")
+animation = &"overhead"
+frame_progress = 0.501494
+script = ExtResource("5_7jktm")
