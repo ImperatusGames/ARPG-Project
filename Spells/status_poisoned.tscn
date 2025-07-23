@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4bpo6s8q2i0r"]
+
+[ext_resource type="Texture2D" uid="uid://bdlqnffswnsjm" path="res://Assets/poisonbubbles1.png" id="1_o3vdf"]
+[ext_resource type="Texture2D" uid="uid://bvbq5vsganodo" path="res://Assets/poisonbubbles2.png" id="2_61lih"]
+[ext_resource type="Script" uid="uid://dvv00sodurbmp" path="res://Spells/status_poisoned.gd" id="3_u4dr5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e2o6t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_o3vdf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_61lih")
+}],
+"loop": true,
+"name": &"overhead",
+"speed": 3.0
+}]
+
+[node name="Status_Poisoned" type="AnimatedSprite2D"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_e2o6t")
+animation = &"overhead"
+frame_progress = 0.501494
+script = ExtResource("3_u4dr5")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true

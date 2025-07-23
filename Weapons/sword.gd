@@ -6,7 +6,7 @@ func _ready() -> void:
 	animation_finished.connect(hide_sword)
 	$Area2D.area_entered.connect(check_enemies)
 	play("swing")
-	collider = $Area2D
+	#collider = $Area2D
 
 func _process(_delta: float) -> void:
 	pass

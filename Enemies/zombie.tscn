@@ -27,7 +27,7 @@ shape = SubResource("CircleShape2D_13ig7")
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_d3phm")]
 collision_layer = 16
-collision_mask = 25
+collision_mask = 24
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
