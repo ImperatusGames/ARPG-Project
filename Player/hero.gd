@@ -88,17 +88,19 @@ func fireball(player_direction: String):
 	new_fireball.global_position = global_position
 	new_fireball.global_rotation = global_rotation
 	new_fireball.player_direction = player_direction
-	if player_direction == "up":
-		new_fireball.global_position.y -= 50
-	elif player_direction == "down":
-		new_fireball.global_position.y += 80
-	elif player_direction == "left":
-		new_fireball.global_position.x -= 60
-	elif player_direction == "right":
-		new_fireball.global_position.x += 60
-	new_fireball.collision_mask = 5
-	new_fireball.collision_mask = 4
-	new_fireball.collision_layer = 4
+	
+	#if player_direction == "up":
+		#new_fireball.global_position.y -= 50
+	#elif player_direction == "down":
+		#new_fireball.global_position.y += 80
+	#elif player_direction == "left":
+		#new_fireball.global_position.x -= 60
+	#elif player_direction == "right":
+		#new_fireball.global_position.x += 60
+	
+	#new_fireball.collision_mask = 5
+	new_fireball.set_collision_mask_value(4, true)
+	new_fireball.set_collision_layer_value(4, true)
 	add_child(new_fireball)
 
 func sword_attack(last_dir: String):

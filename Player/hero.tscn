@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dr2ent0anvlpr"]
+[gd_scene load_steps=26 format=3 uid="uid://dr2ent0anvlpr"]
 
 [ext_resource type="Script" uid="uid://cloou2v6s6b3r" path="res://Player/hero.gd" id="1_lwtpo"]
 [ext_resource type="Texture2D" uid="uid://dk5lk5uu5jrit" path="res://Assets/Prototype_Character.png" id="2_lwtpo"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cu1ac4u1eij3r" path="res://Components/hurt_box_component.tscn" id="6_x1lg7"]
 [ext_resource type="PackedScene" uid="uid://bgsa7n8uh42s4" path="res://Components/velocity_component.tscn" id="7_fv1lb"]
 [ext_resource type="PackedScene" uid="uid://i2xhgmpq85jb" path="res://Components/status_manager.tscn" id="8_6cmvd"]
+[ext_resource type="PackedScene" uid="uid://bckljxo0w00eb" path="res://Components/hit_box_component.tscn" id="9_x1lg7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lwtpo"]
 atlas = ExtResource("2_lwtpo")
@@ -155,6 +156,8 @@ max_health = 10
 [node name="DamageComponent" parent="." instance=ExtResource("5_6cmvd")]
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_x1lg7")]
+collision_layer = 1
+collision_mask = 1
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
@@ -167,3 +170,5 @@ shape = SubResource("CapsuleShape2D_lwtpo")
 BASE_SPEED = 300.0
 
 [node name="StatusManager" parent="." instance=ExtResource("8_6cmvd")]
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("9_x1lg7")]

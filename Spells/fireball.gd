@@ -40,5 +40,7 @@ func _physics_process(delta: float) -> void:
 func exploded(area):
 	if area is HurtBoxComponent:
 		print("Hurt Box detected!")
-
+	
 	queue_free()
+
+	

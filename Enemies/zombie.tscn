@@ -9,12 +9,12 @@
 radius = 61.2046
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1mmdd"]
-radius = 63.0
+radius = 61.0328
 
 [node name="Zombie" type="CharacterBody2D"]
 z_index = -1
-collision_layer = 16
-collision_mask = 24
+collision_layer = 24
+collision_mask = 9
 script = ExtResource("1_7ss6f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -26,8 +26,8 @@ shape = SubResource("CircleShape2D_13ig7")
 [node name="HealthComponent" parent="." instance=ExtResource("3_13ig7")]
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_d3phm")]
-collision_layer = 16
-collision_mask = 24
+collision_layer = 25
+collision_mask = 9
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
