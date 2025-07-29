@@ -99,7 +99,7 @@ func fireball(player_direction: String):
 		#new_fireball.global_position.x += 60
 	
 	#new_fireball.collision_mask = 5
-	new_fireball.set_collision_mask_value(4, true)
+	new_fireball.set_collision_mask_value(5, true)
 	new_fireball.set_collision_layer_value(4, true)
 	add_child(new_fireball)
 

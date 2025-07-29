@@ -19,13 +19,14 @@ func _ready() -> void:
 	#TO DO.  THIS IS A HARDCODED 10 SECOND TIMER. SHOULD BE 0 AND SET ELSEWHERE
 	poison_timer = 10
 	is_poisoned = false
-	#hide()
-
-func _process(_delta: float) -> void:
 	self.global_position = get_parent().global_position
 	#TO DO.  THIS IS A HARDCODED INT AND SHOULD BE SCALED
 	self.position.y -= 80
+	#hide()
 
+func _process(_delta: float) -> void:
+	pass
+	
 #Takes input: character. The target that is poisoned.
 #Takes input: time. The amount of time the poison will last.
 #Creates a poison bubbles effect above the character object
