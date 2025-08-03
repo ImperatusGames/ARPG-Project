@@ -1,6 +1,8 @@
 class_name Player extends Entity
 
-var sprite
+@onready var sprite_player = $AnimationPlayer
+@onready var sprite = $Sprite2D
+@onready var state_machine = $AnimationTree["parameters/playback"]
 var collider
 var last_direction : String
 var is_attacking : bool
@@ -16,7 +18,6 @@ var can_cast : bool
 #Turn last_direction into an enum for Up/Down/Left/Right for spell purposes
 
 func _ready() -> void:
-	sprite = $AnimatedSprite2D
 	collider = $CollisionShape2D
 	is_attacking = false
 	is_casting = false
@@ -34,22 +35,22 @@ func _process(_delta: float) -> void:
 		move_and_slide()
 		
 		if direction.x > 0:
-			sprite.play("walk_right")
+			state_machine.travel("walk_right")
 			last_direction = "right"
 			sprite.flip_h = false
 		elif direction.x < 0:
-			sprite.play("walk_right")
+			state_machine.travel("walk_right")
 			last_direction = "left"
 			sprite.flip_h = true
 		elif direction.y > 0:
-			sprite.play("walk_down")
+			state_machine.travel("walk_down")
 			last_direction = "down"
 		elif direction.y < 0:
-			sprite.play("walk_up")
+			state_machine.travel("walk_up")
 			last_direction = "up"
 		else:
-			sprite.play("idle")
-		
+			state_machine.travel("idle")
+
 		
 	if Input.is_action_just_pressed("attack") && can_attack == true:
 		#print("Attack button pressed!")
