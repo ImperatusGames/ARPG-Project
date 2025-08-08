@@ -15,6 +15,10 @@ run/main_scene="uid://d4dvkrat82wgt"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+attack="*res://Scripts/attack.gd"
+
 [input]
 
 ui_select={
