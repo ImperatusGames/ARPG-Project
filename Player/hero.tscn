@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://dr2ent0anvlpr"]
+[gd_scene load_steps=33 format=3 uid="uid://dr2ent0anvlpr"]
 
 [ext_resource type="Script" uid="uid://cloou2v6s6b3r" path="res://Player/hero.gd" id="1_lwtpo"]
 [ext_resource type="Texture2D" uid="uid://dk5lk5uu5jrit" path="res://Assets/Prototype_Character.png" id="2_lwtpo"]
@@ -231,67 +231,6 @@ _data = {
 &"walk_up": SubResource("Animation_xcwra")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x1lg7"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fv1lb"]
-animation = &"walk_down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8v4xk"]
-animation = &"walk_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7hatw"]
-animation = &"walk_right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fil08"]
-animation = &"walk_up"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t6k6s"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xcwra"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w6ck0"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oufu5"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pr33g"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k1w2f"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1yygv"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ewvlb"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kn4j2"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j3nuq"]
-states/Start/position = Vector2(327, 100)
-states/idle/node = SubResource("AnimationNodeAnimation_x1lg7")
-states/idle/position = Vector2(500, 100)
-states/walk_down/node = SubResource("AnimationNodeAnimation_fv1lb")
-states/walk_down/position = Vector2(420, 183)
-states/walk_left/node = SubResource("AnimationNodeAnimation_8v4xk")
-states/walk_left/position = Vector2(618, 8)
-states/walk_right/node = SubResource("AnimationNodeAnimation_7hatw")
-states/walk_right/position = Vector2(618, 183)
-states/walk_up/node = SubResource("AnimationNodeAnimation_fil08")
-states/walk_up/position = Vector2(420, 8)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_t6k6s"), "idle", "walk_up", SubResource("AnimationNodeStateMachineTransition_xcwra"), "walk_up", "idle", SubResource("AnimationNodeStateMachineTransition_w6ck0"), "idle", "walk_left", SubResource("AnimationNodeStateMachineTransition_oufu5"), "walk_left", "idle", SubResource("AnimationNodeStateMachineTransition_pr33g"), "idle", "walk_right", SubResource("AnimationNodeStateMachineTransition_k1w2f"), "walk_right", "idle", SubResource("AnimationNodeStateMachineTransition_1yygv"), "idle", "walk_down", SubResource("AnimationNodeStateMachineTransition_ewvlb"), "walk_down", "idle", SubResource("AnimationNodeStateMachineTransition_kn4j2")]
-graph_offset = Vector2(-6, -22)
-
 [node name="Hero" type="CharacterBody2D"]
 collision_mask = 144
 script = ExtResource("1_lwtpo")
@@ -335,7 +274,7 @@ position = Vector2(0, 17)
 shape = SubResource("CapsuleShape2D_lwtpo")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("7_fv1lb")]
-BASE_SPEED = 300.0
+BASE_SPEED = 250.0
 
 [node name="StatusManager" parent="." instance=ExtResource("8_6cmvd")]
 
@@ -345,7 +284,3 @@ BASE_SPEED = 300.0
 libraries = {
 &"": SubResource("AnimationLibrary_1yygv")
 }
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_j3nuq")
-anim_player = NodePath("../AnimationPlayer")
