@@ -11,6 +11,10 @@ var can_move : bool
 var can_attack : bool
 var can_cast : bool
 
+enum States {IDLE, WALKING, RUNNING, ATTACKING, CASTING}
+
+var state: States = States.IDLE
+
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 
