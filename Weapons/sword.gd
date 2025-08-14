@@ -18,3 +18,7 @@ func hide_sword():
 func check_enemies(area):
 	if area is HurtBoxComponent:
 		print("Hurt Box detected!")
+		var hurtBox: HurtBoxComponent = area
+		attack.attack_damage = 5 #TODO: Need to modify to be based on the caster's Strength stat
+		#TODO Part 2: Create formula for spell damage
+		hurtBox.damage(attack)

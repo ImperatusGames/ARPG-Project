@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://xwtp4upjrw7v"]
 
-[ext_resource type="PackedScene" uid="uid://dr2ent0anvlpr" path="res://Player/hero.tscn" id="1_f2dqk"]
+[ext_resource type="PackedScene" uid="uid://dr2ent0anvlpr" path="res://Player/player.tscn" id="1_f2dqk"]
 [ext_resource type="PackedScene" uid="uid://c4bpo6s8q2i0r" path="res://Spells/status_poisoned.tscn" id="2_mxovy"]
 [ext_resource type="PackedScene" uid="uid://dmsjil27cypuj" path="res://Enemies/zombie.tscn" id="3_bj60g"]
 [ext_resource type="PackedScene" uid="uid://b4gmwtv4rwbeq" path="res://Enemies/rob_zombie.tscn" id="4_mxovy"]

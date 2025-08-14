@@ -1,1 +1,2 @@
-extends Node2D
+extends Spell
+class_name Cure_Spell

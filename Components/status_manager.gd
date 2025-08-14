@@ -1,8 +1,8 @@
 extends Node2D
 class_name StatusManager
 
-@export var can_be_frozen : bool
-@export var can_be_stunned : bool
-@export var can_be_knocked_back : bool
-@export var can_be_slowed : bool
-@export var can_be_poisoned : bool
+@export var frozen_immune : bool
+@export var stunned_immune : bool
+@export var knocked_back_immune : bool
+@export var slowed_immune : bool
+@export var poisoned_immune : bool

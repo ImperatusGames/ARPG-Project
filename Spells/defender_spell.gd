@@ -1,5 +1,5 @@
-extends Node2D
-class_name DefenderSpell
+extends Spell
+class_name Defender_Spell
 
 var timer
 

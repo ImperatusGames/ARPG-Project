@@ -1,13 +1,13 @@
-extends Area2D
-class_name Fireball
+extends Spell
+class_name Fireball_Spell
 
 var travelled_distance := 0.0
-var collider
 var player_direction : String
+var collider
 var direction
 
 func _ready() -> void:
-	area_entered.connect(exploded)
+	area_entered.connect(impact)
 	collider = %CollisionShape2D
 	print("Fireball Collision layer: ", collision_layer)
 	print("Fireball Collision mask: ", collision_mask)
@@ -37,10 +37,11 @@ func _physics_process(delta: float) -> void:
 		print("Fireball out of bounds!")
 		queue_free()
 
-func exploded(area):
+func impact(area):
 	if area is HurtBoxComponent:
 		var hurtBox: HurtBoxComponent = area
-		##attack.attack_damage = 5 #need dmg somewhere
+		attack.attack_damage = 5 #TODO: Need to modify to be based on the caster's Magic Power stat
+		#TODO Part 2: Create formula for spell damage
 		hurtBox.damage(attack)
 	
 	queue_free()

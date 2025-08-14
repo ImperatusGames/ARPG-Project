@@ -12,8 +12,8 @@ func _ready():
 	emit_signal("health_changed", current_health)
 	
 func damage(attack: Attack):
-	print("Health current:", current_health)
 	current_health -= attack.attack_damage
+	print("Health current: ", current_health)
 	emit_signal("health_changed", current_health)
 	
 	if current_health <= 0:

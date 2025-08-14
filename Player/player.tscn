@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=3 uid="uid://dr2ent0anvlpr"]
 
-[ext_resource type="Script" uid="uid://cloou2v6s6b3r" path="res://Player/hero.gd" id="1_lwtpo"]
+[ext_resource type="Script" uid="uid://cloou2v6s6b3r" path="res://Player/player.gd" id="1_lwtpo"]
 [ext_resource type="Texture2D" uid="uid://dk5lk5uu5jrit" path="res://Assets/Prototype_Character.png" id="2_lwtpo"]
 [ext_resource type="PackedScene" uid="uid://dvbpr075re2i7" path="res://Components/health_component.tscn" id="3_1ivvi"]
 [ext_resource type="PackedScene" uid="uid://cojl5y5l5d5il" path="res://Components/stats_component.tscn" id="4_uju65"]
@@ -258,6 +258,12 @@ shape = SubResource("CapsuleShape2D_lwtpo")
 max_health = 10
 
 [node name="StatsComponent" parent="." instance=ExtResource("4_uju65")]
+base_defense = 5
+base_strength = 5
+base_magic = 5
+base_magic_def = 5
+base_crit_rate = 5.0
+max_mp = 10
 
 [node name="DamageComponent" parent="." instance=ExtResource("5_6cmvd")]
 

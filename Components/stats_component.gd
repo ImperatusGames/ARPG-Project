@@ -16,8 +16,8 @@ class_name StatsComponent
 @export var base_magic_dodge_rate : float
 @export var current_magic_dodge_rate : float
 
-@export var current_mp : int
 @export var max_mp : int
+@export var current_mp : int
 
 #####
 # Defense = ((base_def + equipment def) +/* positive_modifiers) -// negative_modifiers)
