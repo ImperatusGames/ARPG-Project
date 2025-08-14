@@ -12,6 +12,7 @@ func _ready():
 	emit_signal("health_changed", current_health)
 	
 func damage(attack: Attack):
+	print("Health current:", current_health)
 	current_health -= attack.attack_damage
 	emit_signal("health_changed", current_health)
 	

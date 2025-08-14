@@ -10,4 +10,5 @@ func _ready() -> void:
 
 func damage(attack: Attack):
 	if health_component:
+		print("Attack Hit for: ", attack.attack_damage)
 		health_component.damage(attack)
