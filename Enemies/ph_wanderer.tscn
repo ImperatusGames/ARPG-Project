@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwalvlb0qn8ll"]
+
+[ext_resource type="Script" uid="uid://bxn1bnqj1vyg4" path="res://Enemies/ph_wanderer.gd" id="1_uwtlr"]
+[ext_resource type="Texture2D" uid="uid://c6xv8b8acgao0" path="res://icon.svg" id="2_4vmp6"]
+[ext_resource type="Script" uid="uid://bpy1dv6s7e1jl" path="res://Components/health_component.gd" id="2_uwtlr"]
+[ext_resource type="Script" uid="uid://d0j4us0xeud10" path="res://Components/velocity_component.gd" id="4_ikuxl"]
+[ext_resource type="Script" uid="uid://dftmybkeosab2" path="res://Components/hurt_box_component.gd" id="5_vwoug"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4vmp6"]
+radius = 60.0083
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gs0rq"]
+radius = 63.0317
+
+[node name="ph_wanderer" type="CharacterBody2D"]
+script = ExtResource("1_uwtlr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4vmp6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4vmp6")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("2_uwtlr")
+max_health = 1
+metadata/_custom_type_script = "uid://bpy1dv6s7e1jl"
+
+[node name="VelocityComponent" type="Node2D" parent="."]
+script = ExtResource("4_ikuxl")
+BASE_SPEED = 100.0
+current_speed = 100.0
+metadata/_custom_type_script = "uid://d0j4us0xeud10"
+
+[node name="Timer_Patrol" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
+[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+collision_layer = 25
+collision_mask = 9
+script = ExtResource("5_vwoug")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://dftmybkeosab2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+shape = SubResource("CircleShape2D_gs0rq")
+
+[connection signal="timeout" from="Timer_Patrol" to="." method="_on_timer_patrol_timeout"]
