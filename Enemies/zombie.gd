@@ -1,7 +1,7 @@
 extends Entity
 class_name Zombie
 
-var health := 1
+#var health := 1
 
 func _ready() -> void:
 	var hurtbox = $HurtBoxComponent

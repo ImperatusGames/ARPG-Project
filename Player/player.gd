@@ -17,6 +17,7 @@ var state: States = States.IDLE
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var velocity_component: VelocityComponent = $VelocityComponent
+@onready var stats_component: StatsComponent = $StatsComponent
 
 #Turn last_direction into an enum for Up/Down/Left/Right for spell purposes
 
@@ -75,11 +76,13 @@ func fireball(player_direction: String):
 	new_fireball.set_collision_mask_value(5, true)
 	new_fireball.set_collision_layer_value(4, true)
 	add_child(new_fireball)
-
+	await new_fireball.has_finished
+	
 func sword_attack(last_dir: String):
 	var direction = last_dir
 	const SWORD = preload("res://Weapons/sword.tscn")
 	var new_sword = SWORD.instantiate()
+	new_sword.damage = stats_component.current_strength
 	if direction == "right":
 		new_sword.global_position.x += 60
 	elif direction == "left":
@@ -92,6 +95,7 @@ func sword_attack(last_dir: String):
 		new_sword.global_position.y += 75
 		new_sword.rotation_degrees = 90
 	add_child(new_sword)
+	await new_sword.animation_finished
 
 func _input(event):
 	#var direction = Input.get_vector("move_down", "move_left", "move_right", "move_up")
@@ -104,25 +108,27 @@ func _input(event):
 	#elif event.is_action_pressed("move_right"):
 		#pass
 	if event.is_action_pressed("attack"):
-		is_attacking = true
-		can_move = false
-		can_cast = false
-		can_attack = false
-		await sword_attack(last_direction)
-		is_attacking = false
-		can_move = true
-		can_cast = true
-		can_attack = true
+		if can_attack == true: 
+			is_attacking = true
+			can_move = false
+			can_cast = false
+			can_attack = false
+			await sword_attack(last_direction)
+			is_attacking = false
+			can_move = true
+			can_cast = true
+			can_attack = true
 	elif event.is_action_pressed("special"):
-		is_casting = true
-		can_move = false
-		can_attack = false
-		can_cast = false
-		await fireball(last_direction)
-		is_casting = false
-		can_move = true
-		can_attack = true
-		can_cast = true
+		if can_cast == true: 
+			is_casting = true
+			can_move = false
+			can_attack = false
+			can_cast = false
+			await fireball(last_direction)
+			is_casting = false
+			can_move = true
+			can_attack = true
+			can_cast = true
 	elif event.is_action_pressed("menu"):
 		print("Menu button pressed!")
 		

@@ -1,6 +1,8 @@
 extends Spell
 class_name Fireball_Spell
 
+signal has_finished
+
 var travelled_distance := 0.0
 var player_direction : String
 var collider
@@ -8,6 +10,7 @@ var direction
 
 func _ready() -> void:
 	area_entered.connect(impact)
+	has_finished.connect(finished)
 	collider = %CollisionShape2D
 	print("Fireball Collision layer: ", collision_layer)
 	print("Fireball Collision mask: ", collision_mask)
@@ -35,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	
 	if travelled_distance > RANGE:
 		print("Fireball out of bounds!")
-		queue_free()
+		has_finished.emit()
 
 func impact(area):
 	if area is HurtBoxComponent:
@@ -44,6 +47,7 @@ func impact(area):
 		#TODO Part 2: Create formula for spell damage
 		hurtBox.damage(attack)
 	
-	queue_free()
+	has_finished.emit()
 
-	
+func finished():
+	queue_free()

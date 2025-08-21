@@ -8,7 +8,7 @@ extends Entity
 class_name ph_wanderer
 
 #not all block variables included
-var health := 1
+#var health := 1
 var can_move := true
 var dir_num := 0
 var direction = Vector2(-1,0) #should be random & possibly set elsewhere

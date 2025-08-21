@@ -23,7 +23,7 @@ shape = SubResource("CircleShape2D_4vmp6")
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("2_uwtlr")
-max_health = 1
+max_health = 5
 metadata/_custom_type_script = "uid://bpy1dv6s7e1jl"
 
 [node name="VelocityComponent" type="Node2D" parent="."]

@@ -1,6 +1,7 @@
 extends AnimatedSprite2D
 
 var collider
+var damage: int
 
 func _ready() -> void:
 	animation_finished.connect(hide_sword)
