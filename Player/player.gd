@@ -63,6 +63,7 @@ func fireball(player_direction: String):
 	new_fireball.global_position = global_position
 	new_fireball.global_rotation = global_rotation
 	new_fireball.player_direction = player_direction
+	new_fireball.magical_power = stats_component.current_magic
 	
 	#if player_direction == "up":
 		#new_fireball.global_position.y -= 50
@@ -75,6 +76,7 @@ func fireball(player_direction: String):
 	
 	new_fireball.set_collision_mask_value(5, true)
 	new_fireball.set_collision_layer_value(4, true)
+	print("Fireball MPow", new_fireball.magical_power)
 	add_child(new_fireball)
 	await new_fireball.has_finished
 	
@@ -82,7 +84,7 @@ func sword_attack(last_dir: String):
 	var direction = last_dir
 	const SWORD = preload("res://Weapons/sword.tscn")
 	var new_sword = SWORD.instantiate()
-	new_sword.damage = stats_component.current_strength
+	new_sword.physical_power = stats_component.current_strength
 	if direction == "right":
 		new_sword.global_position.x += 60
 	elif direction == "left":

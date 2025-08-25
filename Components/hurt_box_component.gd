@@ -15,6 +15,15 @@ func damage(attack: Attack):
 		health_component.damage(attack)
 
 func new_damage(attack: Attack):
+	print("Attack type: ", attack.attack_type)
 	if stats_component:
-		var calculated_damage = attack.attack_damage - stats_component.current_defense
-		health_component.damage(calculated_damage)
+		if attack.attack_type == 0:
+			var calculated_damage = attack.physical_power - stats_component.current_defense
+			health_component.new_damage(calculated_damage)
+			print(attack.physical_power)
+		elif attack.attack_type == 1:
+			var calculated_damage = attack.magical_power - stats_component.current_magic_def
+			health_component.new_damage(calculated_damage)
+			print(attack.magical_power)
+		else:
+			print("No type trigger")

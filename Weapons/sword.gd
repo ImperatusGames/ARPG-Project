@@ -2,6 +2,7 @@ extends AnimatedSprite2D
 
 var collider
 var damage: int
+var physical_power: int
 
 func _ready() -> void:
 	animation_finished.connect(hide_sword)
@@ -20,6 +21,7 @@ func check_enemies(area):
 	if area is HurtBoxComponent:
 		print("Hurt Box detected!")
 		var hurtBox: HurtBoxComponent = area
-		attack.attack_damage = 5 #TODO: Need to modify to be based on the caster's Strength stat
+		attack.attack_type = 0
+		attack.physical_power = physical_power #TODO: Need to modify to be based on the caster's Strength stat
 		#TODO Part 2: Create formula for spell damage
-		hurtBox.damage(attack)
+		hurtBox.new_damage(attack)

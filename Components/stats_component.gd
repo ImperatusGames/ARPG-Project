@@ -19,6 +19,13 @@ class_name StatsComponent
 @export var max_mp : int
 @export var current_mp : int
 
+func _ready() -> void:
+	current_defense = base_defense
+	current_strength = base_strength
+	current_magic = base_magic
+	current_magic_def = base_magic_def
+	current_mp = max_mp
+
 #####
 # Defense = ((base_def + equipment def) +/* positive_modifiers) -// negative_modifiers)
 #####

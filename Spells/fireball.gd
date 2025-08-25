@@ -4,6 +4,8 @@ class_name Fireball_Spell
 signal has_finished
 
 var travelled_distance := 0.0
+var damage : int
+var magical_power : int
 var player_direction : String
 var collider
 var direction
@@ -43,9 +45,10 @@ func _physics_process(delta: float) -> void:
 func impact(area):
 	if area is HurtBoxComponent:
 		var hurtBox: HurtBoxComponent = area
-		attack.attack_damage = 5 #TODO: Need to modify to be based on the caster's Magic Power stat
+		attack.attack_type = 1
+		attack.magical_power = magical_power #TODO: Need to modify to be based on the caster's Magic Power stat
 		#TODO Part 2: Create formula for spell damage
-		hurtBox.damage(attack)
+		hurtBox.new_damage(attack)
 	
 	has_finished.emit()
 
