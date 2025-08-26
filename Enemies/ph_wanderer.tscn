@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwalvlb0qn8ll"]
+[gd_scene load_steps=9 format=3 uid="uid://cwalvlb0qn8ll"]
 
 [ext_resource type="Script" uid="uid://bxn1bnqj1vyg4" path="res://Enemies/ph_wanderer.gd" id="1_uwtlr"]
 [ext_resource type="Texture2D" uid="uid://c6xv8b8acgao0" path="res://icon.svg" id="2_4vmp6"]
@@ -12,7 +12,11 @@ radius = 60.0083
 [sub_resource type="CircleShape2D" id="CircleShape2D_gs0rq"]
 radius = 63.0317
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vwoug"]
+radius = 134.06
+
 [node name="ph_wanderer" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_uwtlr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -28,8 +32,8 @@ metadata/_custom_type_script = "uid://bpy1dv6s7e1jl"
 
 [node name="VelocityComponent" type="Node2D" parent="."]
 script = ExtResource("4_ikuxl")
-BASE_SPEED = 100.0
-current_speed = 100.0
+BASE_SPEED = 50.0
+current_speed = 50.0
 metadata/_custom_type_script = "uid://d0j4us0xeud10"
 
 [node name="Timer_Patrol" type="Timer" parent="."]
@@ -45,5 +49,9 @@ metadata/_custom_type_script = "uid://dftmybkeosab2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 shape = SubResource("CircleShape2D_gs0rq")
+
+[node name="AggroRadius" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vwoug")
+disabled = true
 
 [connection signal="timeout" from="Timer_Patrol" to="." method="_on_timer_patrol_timeout"]
