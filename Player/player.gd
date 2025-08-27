@@ -10,6 +10,7 @@ var is_moving : bool
 var can_move : bool
 var can_attack : bool
 var can_cast : bool
+var is_running : bool
 
 enum States {IDLE, WALKING, RUNNING, ATTACKING, CASTING}
 
@@ -30,6 +31,7 @@ func _ready() -> void:
 	can_attack = true
 	can_cast = true
 	last_direction = "right"
+	is_running = false
 	
 func _physics_process(_delta: float) -> void:
 	if can_move == true:
@@ -133,7 +135,13 @@ func _input(event):
 			can_cast = true
 	elif event.is_action_pressed("menu"):
 		print("Menu button pressed!")
-		
+	elif event.is_action_pressed("run_toggle"):
+		if is_running == true:
+			velocity_component.set_walk_speed()
+			is_running = false
+		else:
+			velocity_component.set_run_speed()
+			is_running = true
 	
 #func heal():
 	#if health < max_health:

@@ -33,3 +33,11 @@ func restore_speed():
 
 func calculate_speed():
 	current_speed = BASE_SPEED * (1.0 + speed_mod)
+
+func set_run_speed():
+	speed_mod = 1.0
+	calculate_speed()
+
+func set_walk_speed():
+	speed_mod = 0.0
+	calculate_speed()
