@@ -26,8 +26,8 @@ func timer_expired():
 
 func defense_boost():
 	pass
-	#Connect to player to increase defense for duration
+	#Connect to caster to increase defense for duration
 
 func defense_restore():
 	pass
-	#Connect to player to restore defense to base after duration
+	#Connect to caster to restore defense to base after duration
