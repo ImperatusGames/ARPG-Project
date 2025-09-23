@@ -1,36 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://cwalvlb0qn8ll"]
+[gd_scene load_steps=12 format=3 uid="uid://cwalvlb0qn8ll"]
 
 [ext_resource type="Script" uid="uid://bxn1bnqj1vyg4" path="res://Enemies/ph_wanderer.gd" id="1_uwtlr"]
 [ext_resource type="Texture2D" uid="uid://c6xv8b8acgao0" path="res://icon.svg" id="2_4vmp6"]
 [ext_resource type="Script" uid="uid://bpy1dv6s7e1jl" path="res://Components/health_component.gd" id="2_uwtlr"]
-[ext_resource type="Texture2D" uid="uid://bdlqnffswnsjm" path="res://Assets/poisonbubbles1.png" id="3_8x18g"]
 [ext_resource type="Script" uid="uid://d0j4us0xeud10" path="res://Components/velocity_component.gd" id="4_ikuxl"]
 [ext_resource type="Script" uid="uid://dftmybkeosab2" path="res://Components/hurt_box_component.gd" id="5_vwoug"]
 [ext_resource type="Script" uid="uid://cnis4rerd12t4" path="res://States/state_machine.gd" id="6_5nylp"]
 [ext_resource type="Script" uid="uid://dlrm5xsxli2f" path="res://States/ph_wanderer_patrol.gd" id="7_n72wm"]
 [ext_resource type="Script" uid="uid://yhq3og4ii6vy" path="res://States/ph_wanderer_aggro.gd" id="8_5nylp"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_5nylp"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_4vmp6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_8x18g")
-}],
-"loop": true,
-"name": &"aggro_anim",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_4vmp6")
-}],
-"loop": true,
-"name": &"patrol_anim",
-"speed": 5.0
-}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4vmp6"]
 radius = 60.0083
@@ -48,13 +25,7 @@ collision_mask = 9
 script = ExtResource("1_uwtlr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_4vmp6")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_5nylp")
-animation = &"aggro_anim"
-frame_progress = 0.479019
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4vmp6")
@@ -91,9 +62,18 @@ starting_state = NodePath("Patrol")
 [node name="Patrol" type="Node" parent="State_Machine" node_paths=PackedStringArray("aggro_state")]
 script = ExtResource("7_n72wm")
 aggro_state = NodePath("../Aggro")
-animation_name = "patrol_anim"
+test_move_speed = null
+
+[node name="Timer_Patrol" type="Timer" parent="State_Machine/Patrol"]
+wait_time = 2.5
 
 [node name="Aggro" type="Node" parent="State_Machine" node_paths=PackedStringArray("patrol_state")]
 script = ExtResource("8_5nylp")
 patrol_state = NodePath("../Patrol")
-animation_name = "aggro_anim"
+test_move_speed = null
+
+[node name="Timer_Aggro" type="Timer" parent="State_Machine/Aggro"]
+wait_time = 5.0
+
+[connection signal="timeout" from="State_Machine/Patrol/Timer_Patrol" to="State_Machine/Patrol" method="_on_timer_patrol_timeout"]
+[connection signal="timeout" from="State_Machine/Aggro/Timer_Aggro" to="State_Machine/Aggro" method="_on_timer_aggro_timeout"]

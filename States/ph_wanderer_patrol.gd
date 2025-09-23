@@ -8,16 +8,16 @@ extends State
 var aggro_state: State
 
 var dummycounter = 0  #temp variable for checking states
+var pick_direction_timer = Timer.new()
 
 func enter() -> void:
 	super()
 	
-	#debug block
-	print("in patrol state")
+	#temp variable until logic is better developed
 	dummycounter = 0
 	
-	$Timer_Patrol.start() #start the timer to pick a direction
-	_on_timer_patrol_timeout() #call to get an initial random direction
+	_pick_direction_timer() #create a timer
+	move_in_direction() #call to get an initial random direction
 
 func process_frame(delta: float) -> State:
 	#if player is in aggro radius, then return aggro_state
@@ -31,13 +31,13 @@ func process_physics(delta: float) -> State:
 	return null
 
 func exit() -> void:
-	$Timer_Patrol.stop()
+	#$Timer_Patrol.stop()
+	pick_direction_timer.stop()
 	parent.direction.x = 0
 	parent.direction.y = 0
 
-#when called or the timer runs out,
-#pick a cardinal direction to move in.
-func _on_timer_patrol_timeout() -> void:
+#when called pick a cardinal direction to move in.
+func move_in_direction() -> void:
 	dummycounter += 1 #temp debug variable
 	
 	var next_move = randi() % 4
@@ -57,3 +57,9 @@ func _on_timer_patrol_timeout() -> void:
 		_:
 			parent.direction.x = 0
 			parent.direction.y = 0
+
+func _pick_direction_timer():
+	add_child(pick_direction_timer) #are we constantly creating timers without destroying them?
+	pick_direction_timer.wait_time = 2.5 #should this be an export variable or defined at the top of the file?
+	pick_direction_timer.start()
+	pick_direction_timer.timeout.connect(move_in_direction)

@@ -12,23 +12,25 @@ var can_move := true
 var direction = Vector2(0,0)
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 
-##new state machine here
+#required references to child objects
 @onready
 var state_machine = $State_Machine
+@onready
+var animations = $AnimatedSprite2D
 
 
 func _ready() -> void:
 	var hurtbox = $HurtBoxComponent
 	$HealthComponent.health_empty.connect(_on_health_empty)
 	
-	state_machine.init(self) #start the state machine in its default state
+	state_machine.init(self, animations) #start the state machine in its default state which is set on the State_Machine node.
 
 func _physics_process(_delta: float) -> void:
 	if can_move == true:
-		state_machine.process_physics(_delta)  #the state machine will call its own process_physics based on what state it is in.
+		state_machine.process_physics(_delta)  #state machine will call its own process_physics based on what state it is in.
 
 func _process(delta: float) -> void:
-	state_machine.process_frame(delta)  #the state machince will call its own logic based on what state it is in.
+	state_machine.process_frame(delta)  #state machince will call its own logic based on what state it is in.
 
 func _on_health_empty():
 	print ("wanderer defeated")

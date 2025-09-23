@@ -6,20 +6,17 @@
 class_name State
 extends Node
 
-# Some variables to engage with.  to be edited...
+@export
+var test_move_speed: float = 300 #this is an example and can be removed
 @export
 var animation_name: String
-@export
-var test_move_speed: float = 300
 
-# Hold a reference to the parent so that it can be controlled by the state
+# Hold a reference to the parent and Animations so that it can be controlled by the state
 var parent: CharacterBody2D
+var animations: AnimatedSprite2D
 
-#to be edited.  this assumes every state will want an animation
-#could also be implemented on the child instead.
 func enter() -> void:
-	#parent.animations.play(animation_name)
-	pass
+	animations.play(animation_name)
 
 func exit() -> void:
 	pass
