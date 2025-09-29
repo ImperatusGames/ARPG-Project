@@ -10,5 +10,6 @@ func _ready() -> void:
 	$HealthComponent.health_empty.connect(_on_health_empty)
 
 func _on_health_empty():
-	#print("Dead unit")
+	print("Dead unit")
+	$DropComponent.trigger_drop()
 	call_deferred("queue_free")

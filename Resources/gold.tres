@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://60fkxrw618y6"]
+
+[ext_resource type="Script" uid="uid://bdmiwf3a4x1j4" path="res://Resources/item.gd" id="1_204is"]
+[ext_resource type="Texture2D" uid="uid://la475quub158" path="res://Assets/coin_single.png" id="1_e4w6t"]
+
+[resource]
+script = ExtResource("1_204is")
+name = "gold"
+description = "Gold Piece"
+icon = ExtResource("1_e4w6t")
+value = 1
+type = "Misc"
+max_stack = 1
+metadata/_custom_type_script = "uid://bdmiwf3a4x1j4"

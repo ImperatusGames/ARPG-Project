@@ -16,5 +16,5 @@ position = Vector2(-3, -69)
 [node name="Zombie" parent="." instance=ExtResource("3_bj60g")]
 position = Vector2(615, 189)
 
-[node name="RobZombie" parent="." instance=ExtResource("4_mxovy")]
-position = Vector2(615, 377)
+[node name="Rob_Zombie" parent="." instance=ExtResource("4_mxovy")]
+position = Vector2(619, 348)
