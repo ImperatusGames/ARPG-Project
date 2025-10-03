@@ -19,19 +19,18 @@ func enter() -> void:
 	_pick_direction_timer() #create a timer
 	move_in_direction() #call to get an initial random direction
 
-func process_frame(delta: float) -> State:
+func process_frame(_delta: float) -> State:
 	#if player is in aggro radius, then return aggro_state
 	if (dummycounter > 3):
 		return aggro_state
 	return null
 
-func process_physics(delta: float) -> State:
+func process_physics(_delta: float) -> State:
 	parent.velocity = parent.direction * parent.velocity_component.current_speed
 	parent.move_and_slide()
 	return null
 
 func exit() -> void:
-	#$Timer_Patrol.stop()
 	pick_direction_timer.stop()
 	parent.direction.x = 0
 	parent.direction.y = 0
@@ -59,7 +58,9 @@ func move_in_direction() -> void:
 			parent.direction.y = 0
 
 func _pick_direction_timer():
-	add_child(pick_direction_timer) #are we constantly creating timers without destroying them?
+	if (!pick_direction_timer.get_parent()): #if we don't have the parent set, add timer as a child and connect the timeout function
+		add_child(pick_direction_timer)
+		pick_direction_timer.timeout.connect(move_in_direction)
+
 	pick_direction_timer.wait_time = 2.5 #should this be an export variable or defined at the top of the file?
 	pick_direction_timer.start()
-	pick_direction_timer.timeout.connect(move_in_direction)

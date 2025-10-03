@@ -16,14 +16,14 @@ func enter() -> void:
 	
 	set_aggrostate_timer()
 
-func process_frame(delta: float) -> State:
+func process_frame(_delta: float) -> State:
 	#if timer ends and player not in aggro radius, then return patrol_state
 	#otherwise update parent.direction
 	if (checktime == true):
-		return patrol_state	
+		return patrol_state
 	return null
 
-func process_physics(delta: float) -> State:
+func process_physics(_delta: float) -> State:
 	parent.velocity = parent.direction * parent.velocity_component.current_speed
 	parent.move_and_slide()
 	return null
@@ -34,11 +34,13 @@ func exit() -> void:
 func _on_newtimer_timeout() -> void:
 	checktime = true
 
-#initilize the bool 'checktime' to false.
-#initilize a timer.
+#initilize a timer and the bool of checktime to false
 func set_aggrostate_timer():
+	if (!newtimer.get_parent()): #if we don't have the parent set, add timer as a child and connect the timeout function
+		add_child(newtimer)
+		newtimer.timeout.connect(_on_newtimer_timeout)
+	
 	checktime = false
-	add_child(newtimer) #are we constantly creating timers without destroying them?
+	
 	newtimer.wait_time = 5.0 #should this be an export variable or defined at the top of the file?
 	newtimer.start()
-	newtimer.timeout.connect(_on_newtimer_timeout) #maybe can be done with a lambda instead of function call
