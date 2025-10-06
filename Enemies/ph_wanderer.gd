@@ -10,6 +10,7 @@ class_name ph_wanderer
 #not all block variables included
 var can_move := true
 var direction = Vector2(0,0)
+
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 
 #required references to child objects
@@ -22,7 +23,7 @@ var animations = $AnimatedSprite2D
 func _ready() -> void:
 	var hurtbox = $HurtBoxComponent
 	$HealthComponent.health_empty.connect(_on_health_empty)
-	
+
 	state_machine.init(self, animations) #start the state machine in its default state which is set on the State_Machine node.
 
 func _physics_process(_delta: float) -> void:

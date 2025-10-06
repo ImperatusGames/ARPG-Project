@@ -4,8 +4,8 @@
 ############################
 extends State
 
-@export
-var aggro_state: State
+@export var aggro_state: State
+@export var standing_state: State
 
 var dummycounter = 0  #temp variable for checking states
 var pick_direction_timer = Timer.new()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cwalvlb0qn8ll"]
+[gd_scene load_steps=15 format=3 uid="uid://cwalvlb0qn8ll"]
 
 [ext_resource type="Script" uid="uid://bxn1bnqj1vyg4" path="res://Enemies/ph_wanderer.gd" id="1_uwtlr"]
 [ext_resource type="Texture2D" uid="uid://c6xv8b8acgao0" path="res://icon.svg" id="2_4vmp6"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cnis4rerd12t4" path="res://States/state_machine.gd" id="6_5nylp"]
 [ext_resource type="Script" uid="uid://dlrm5xsxli2f" path="res://States/ph_wanderer_patrol.gd" id="7_n72wm"]
 [ext_resource type="Script" uid="uid://yhq3og4ii6vy" path="res://States/ph_wanderer_aggro.gd" id="8_5nylp"]
+[ext_resource type="Script" uid="uid://cih87nyqdvl83" path="res://States/ph_wanderer_standing.gd" id="10_nqijh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5nylp"]
 animations = [{
@@ -88,12 +89,19 @@ disabled = true
 script = ExtResource("6_5nylp")
 starting_state = NodePath("Patrol")
 
-[node name="Patrol" type="Node" parent="State_Machine" node_paths=PackedStringArray("aggro_state")]
+[node name="Patrol" type="Node" parent="State_Machine" node_paths=PackedStringArray("aggro_state", "standing_state")]
 script = ExtResource("7_n72wm")
 aggro_state = NodePath("../Aggro")
+standing_state = NodePath("../Standing")
 animation_name = "patrol_anim"
 
-[node name="Aggro" type="Node" parent="State_Machine" node_paths=PackedStringArray("patrol_state")]
+[node name="Aggro" type="Node" parent="State_Machine" node_paths=PackedStringArray("patrol_state", "standing_state")]
 script = ExtResource("8_5nylp")
 patrol_state = NodePath("../Patrol")
+standing_state = NodePath("../Standing")
 animation_name = "aggro_anim"
+
+[node name="Standing" type="Node" parent="State_Machine" node_paths=PackedStringArray("patrol_state", "aggro_state")]
+script = ExtResource("10_nqijh")
+patrol_state = NodePath("../Patrol")
+aggro_state = NodePath("../Aggro")

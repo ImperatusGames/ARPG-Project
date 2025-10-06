@@ -7,9 +7,12 @@ extends State
 var checktime = false
 var newtimer = Timer.new()
 
+#is this the correct place to put this variable?
+@onready var player = get_node("/root/Game/Hero") #this only works if the Hero node is always in this path.
+var aggropath
 
-@export
-var patrol_state: State
+@export var patrol_state: State
+@export var standing_state: State
 
 func enter() -> void:
 	super()
@@ -21,10 +24,13 @@ func process_frame(_delta: float) -> State:
 	#otherwise update parent.direction
 	if (checktime == true):
 		return patrol_state
+	aggropath = player.position - get_parent().get_parent().position #perhaps could be better notation. parent is statemachine and its parent is ph_wanderer
+	parent.direction = aggropath.normalized()
 	return null
 
 func process_physics(_delta: float) -> State:
 	parent.velocity = parent.direction * parent.velocity_component.current_speed
+
 	parent.move_and_slide()
 	return null
 
