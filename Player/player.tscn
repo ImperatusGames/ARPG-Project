@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dr2ent0anvlpr"]
+[gd_scene load_steps=20 format=3 uid="uid://dr2ent0anvlpr"]
 
 [ext_resource type="Script" uid="uid://cloou2v6s6b3r" path="res://Player/player.gd" id="1_lwtpo"]
 [ext_resource type="Texture2D" uid="uid://dk5lk5uu5jrit" path="res://Assets/Prototype_Character.png" id="2_lwtpo"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://i2xhgmpq85jb" path="res://Components/status_manager.tscn" id="8_6cmvd"]
 [ext_resource type="PackedScene" uid="uid://dbxwhs23x2n72" path="res://Components/spell_manager.tscn" id="9_00tjw"]
 [ext_resource type="PackedScene" uid="uid://bckljxo0w00eb" path="res://Components/hit_box_component.tscn" id="9_x1lg7"]
+[ext_resource type="PackedScene" uid="uid://veny71hspg3j" path="res://Spells/cure_spell.tscn" id="10_apopc"]
+[ext_resource type="PackedScene" uid="uid://bt1mfwkdigxr1" path="res://Spells/fireball.tscn" id="11_5htga"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lwtpo"]
 radius = 18.0
@@ -160,4 +162,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_1yygv")
 }
 
-[node name="SpellManager" parent="." instance=ExtResource("9_00tjw")]
+[node name="SpellManager" parent="." node_paths=PackedStringArray("spell_array") instance=ExtResource("9_00tjw")]
+spell_array = [NodePath("Fireball"), NodePath("Cure Spell")]
+
+[node name="Cure Spell" parent="SpellManager" instance=ExtResource("10_apopc")]
+
+[node name="Fireball" parent="SpellManager" instance=ExtResource("11_5htga")]

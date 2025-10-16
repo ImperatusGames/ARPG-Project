@@ -27,7 +27,7 @@ func new_damage(total: int):
 	if current_health <= 0:
 		emit_signal("health_empty")
 
-func heal(heal: HealEffect):
+func restore_health(heal: HealEffect):
 	if heal.is_spell_heal == false:
 		if heal.heal_power + current_health > max_health:
 			current_health = max_health
@@ -37,6 +37,14 @@ func heal(heal: HealEffect):
 			current_health += heal.heal_power
 			print("Healed for: ", heal.heal_power)
 		emit_signal("health_changed", current_health)
-	
-	
+	else:
+		if (heal.heal_power * heal.heal_factor) > max_health:
+			current_health = max_health
+			print("Healed for: ", max_health - current_health)
+			print("Overhealed for: ", ((heal.heal_power * heal.heal_factor) - (max_health - current_health)))
+		else:
+			current_health += (heal.heal_power * heal.heal_factor)
+			print("Healed for: ", (heal.heal_power * heal.heal_factor))
+		emit_signal("health_changed", current_health)
+			
 #If a Heal comes from an item, it will not utilize spell_power or factor, which modify the base heal amount

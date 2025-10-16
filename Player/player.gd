@@ -19,6 +19,7 @@ var state: States = States.IDLE
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var stats_component: StatsComponent = $StatsComponent
+@onready var spell_manager: SpellManager = $SpellManager
 
 #Turn last_direction into an enum for Up/Down/Left/Right for spell purposes
 
@@ -58,29 +59,6 @@ func _physics_process(_delta: float) -> void:
 		move_and_slide()
 	
 	#Add state machine for state control between each action
-
-func fireball(player_direction: String):
-	const FIREBALL = preload("res://Spells/fireball.tscn")
-	var new_fireball = FIREBALL.instantiate()
-	new_fireball.global_position = global_position
-	new_fireball.global_rotation = global_rotation
-	new_fireball.player_direction = player_direction
-	new_fireball.magical_power = stats_component.current_magic
-	
-	#if player_direction == "up":
-		#new_fireball.global_position.y -= 50
-	#elif player_direction == "down":
-		#new_fireball.global_position.y += 80
-	#elif player_direction == "left":
-		#new_fireball.global_position.x -= 60
-	#elif player_direction == "right":
-		#new_fireball.global_position.x += 60
-	
-	new_fireball.set_collision_mask_value(5, true)
-	new_fireball.set_collision_layer_value(4, true)
-	print("Fireball MPow", new_fireball.magical_power)
-	add_child(new_fireball)
-	await new_fireball.has_finished
 	
 func sword_attack(last_dir: String):
 	var direction = last_dir
@@ -128,7 +106,7 @@ func _input(event):
 			can_move = false
 			can_attack = false
 			can_cast = false
-			await fireball(last_direction)
+			await spell_manager.cast_spell()
 			is_casting = false
 			can_move = true
 			can_attack = true
@@ -143,13 +121,6 @@ func _input(event):
 			velocity_component.set_run_speed()
 			is_running = true
 	
-#func heal():
-	#if health < max_health:
-		#health += 5
-		#print("Healed!")
-	#else:
-		#print("Health is at max!")
-
 #func defender():
 	#if get_tree().get_node("def_timer") == true:
 		#get_tree().get_node("def_timer").start

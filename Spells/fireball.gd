@@ -1,12 +1,10 @@
 extends Spell
 class_name Fireball_Spell
 
-signal has_finished
-
 var travelled_distance := 0.0
 var damage : int
 var magical_power : int
-var player_direction : String
+var current_direction : String
 var collider
 var direction
 
@@ -21,13 +19,13 @@ func _physics_process(delta: float) -> void:
 	const SPEED = 600
 	const RANGE = 1200
 	
-	if player_direction.to_lower() == "up":
+	if current_direction.to_lower() == "up":
 		direction = Vector2.UP.rotated(rotation)
-	elif player_direction.to_lower() == "down":
+	elif current_direction.to_lower() == "down":
 		direction = Vector2.DOWN.rotated(rotation)
-	elif player_direction.to_lower() == "right":
+	elif current_direction.to_lower() == "right":
 		direction = Vector2.RIGHT.rotated(rotation)
-	elif player_direction.to_lower() == "left":
+	elif current_direction.to_lower() == "left":
 		direction = Vector2.LEFT.rotated(rotation)
 	else:
 		direction = Vector2.RIGHT.rotated(rotation)
@@ -51,6 +49,3 @@ func impact(area):
 		hurtBox.new_damage(attack)
 	
 	has_finished.emit()
-
-func finished():
-	queue_free()

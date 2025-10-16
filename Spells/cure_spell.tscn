@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://8ppgv5sxiibi" path="res://Spells/cure_spell.gd" id="1_4akqx"]
 
-[node name="Cure Spell" type="Node2D"]
+[node name="Cure Spell" type="Area2D"]
 script = ExtResource("1_4akqx")
 mp_cost = 5
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
