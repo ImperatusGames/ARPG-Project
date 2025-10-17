@@ -14,7 +14,7 @@ var current_spell : Spell
 #Each spell has a function within the SpellManager to handle code for calculating its effects
 
 func _ready() -> void:
-	current_spell = spell_array[1]
+	current_spell = spell_array[0]
 
 func cast_spell():
 	print("Spell cast!")

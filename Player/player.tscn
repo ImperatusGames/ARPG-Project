@@ -163,8 +163,11 @@ libraries = {
 }
 
 [node name="SpellManager" parent="." node_paths=PackedStringArray("spell_array") instance=ExtResource("9_00tjw")]
+process_mode = 4
 spell_array = [NodePath("Fireball"), NodePath("Cure Spell")]
 
 [node name="Cure Spell" parent="SpellManager" instance=ExtResource("10_apopc")]
+visible = false
 
 [node name="Fireball" parent="SpellManager" instance=ExtResource("11_5htga")]
+visible = false
