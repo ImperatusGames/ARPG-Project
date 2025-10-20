@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://dij2xeaxarg2q" path="res://Components/spell_manager.gd" id="1_sre55"]
 
 [node name="SpellManager" type="Node"]
+process_mode = 4
 script = ExtResource("1_sre55")

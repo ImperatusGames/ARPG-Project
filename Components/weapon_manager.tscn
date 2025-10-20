@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dabs46ck63ft2"]
+
+[ext_resource type="Script" uid="uid://pyfue6ngv441" path="res://Components/weapon_manager.gd" id="1_a53nj"]
+
+[node name="WeaponManager" type="Node"]
+process_mode = 4
+script = ExtResource("1_a53nj")
