@@ -43,7 +43,7 @@ func restore_health(heal: HealEffect):
 			print("Healed for: ", max_health - current_health)
 			print("Overhealed for: ", ((heal.heal_power * heal.heal_factor) - (max_health - current_health)))
 		else:
-			current_health += (heal.heal_power * heal.heal_factor)
+			current_health += round(heal.heal_power * heal.heal_factor)
 			print("Healed for: ", (heal.heal_power * heal.heal_factor))
 		emit_signal("health_changed", current_health)
 			

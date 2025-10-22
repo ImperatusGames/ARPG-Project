@@ -1,12 +1,13 @@
 extends Node
 class_name SpellManager
 
-@export var spell_array : Array[Spell]
-var current_spell : Spell
-
 @onready var stats_component : StatsComponent = get_node("../StatsComponent")
 @onready var health_component : HealthComponent = get_node("../HealthComponent")
 @onready var velocity_component : VelocityComponent = get_node("../VelocityComponent")
+
+@export var spell_array : Array[Spell]
+var current_spell : Spell
+var last_direction : String
 
 #Has an array of spell objects
 #Each spell object has a flag for whether or not it is learned
@@ -19,16 +20,16 @@ func _ready() -> void:
 func cast_spell():
 	print("Spell cast!")
 	if current_spell == spell_array[0]:
-		fireball(get_parent().last_direction)
+		fireball()
 	elif current_spell == spell_array[1]:
 		heal_spell()
 
-func fireball(last_direction: String):
+func fireball():
 	const FIREBALL = preload("res://Spells/fireball.tscn")
 	var new_fireball = FIREBALL.instantiate()
 	new_fireball.global_position = get_parent().global_position
 	new_fireball.global_rotation = get_parent().global_rotation
-	new_fireball.current_direction = get_parent().last_direction
+	new_fireball.current_direction = last_direction
 	new_fireball.magical_power = stats_component.current_magic
 	
 	#if player_direction == "up":

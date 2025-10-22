@@ -38,16 +38,16 @@ func _ready() -> void:
 	current_mp = max_mp
 
 func set_defense():
-	current_defense = (base_defense * defense_bonus) * defense_penalty
+	current_defense = round((base_defense * defense_bonus) * defense_penalty)
 
 func set_strength():
-	current_strength = (base_strength * strength_bonus) * strength_penalty
+	current_strength = round((base_strength * strength_bonus) * strength_penalty)
 
 func set_magic():
-	current_magic = (base_magic * magic_bonus) * magic_penalty
+	current_magic = round((base_magic * magic_bonus) * magic_penalty)
 
 func set_magic_def():
-	current_magic_def = (base_magic_def * magic_def_bonus) * magic_def_penalty
+	current_magic_def = round((base_magic_def * magic_def_bonus) * magic_def_penalty)
 
 func set_defense_bonus_on():
 	defense_bonus = 1.5

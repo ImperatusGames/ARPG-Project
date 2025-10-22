@@ -2,6 +2,12 @@ class_name Player extends Entity
 
 @onready var sprite_player = $AnimationPlayer
 @onready var sprite = $Sprite2D
+@onready var health_component: HealthComponent = $HealthComponent
+@onready var velocity_component: VelocityComponent = $VelocityComponent
+@onready var stats_component: StatsComponent = $StatsComponent
+@onready var spell_manager: SpellManager = $SpellManager
+@onready var weapon_manager: WeaponManager = $WeaponManager
+
 var collider
 var last_direction : String
 var is_attacking : bool
@@ -15,11 +21,6 @@ var is_running : bool
 enum States {IDLE, WALKING, RUNNING, ATTACKING, CASTING}
 
 var state: States = States.IDLE
-
-@onready var health_component: HealthComponent = $HealthComponent
-@onready var velocity_component: VelocityComponent = $VelocityComponent
-@onready var stats_component: StatsComponent = $StatsComponent
-@onready var spell_manager: SpellManager = $SpellManager
 
 #Turn last_direction into an enum for Up/Down/Left/Right for spell purposes
 
@@ -60,24 +61,24 @@ func _physics_process(_delta: float) -> void:
 	
 	#Add state machine for state control between each action
 	
-func sword_attack(last_dir: String):
-	var direction = last_dir
-	const SWORD = preload("res://Weapons/sword.tscn")
-	var new_sword = SWORD.instantiate()
-	new_sword.physical_power = stats_component.current_strength
-	if direction == "right":
-		new_sword.global_position.x += 60
-	elif direction == "left":
-		new_sword.rotation_degrees = 180
-		new_sword.global_position.x -= 60
-	elif direction == "up":
-		new_sword.global_position.y -= 60
-		new_sword.rotation_degrees = -90
-	elif direction == "down":
-		new_sword.global_position.y += 75
-		new_sword.rotation_degrees = 90
-	add_child(new_sword)
-	await new_sword.animation_finished
+#func sword_attack(last_dir: String):
+	#var direction = last_dir
+	#const SWORD = preload("res://Weapons/sword.tscn")
+	#var new_sword = SWORD.instantiate()
+	#new_sword.physical_power = stats_component.current_strength
+	#if direction == "right":
+		#new_sword.global_position.x += 60
+	#elif direction == "left":
+		#new_sword.rotation_degrees = 180
+		#new_sword.global_position.x -= 60
+	#elif direction == "up":
+		#new_sword.global_position.y -= 60
+		#new_sword.rotation_degrees = -90
+	#elif direction == "down":
+		#new_sword.global_position.y += 75
+		#new_sword.rotation_degrees = 90
+	#add_child(new_sword)
+	#await new_sword.animation_finished
 
 func _input(event):
 	#var direction = Input.get_vector("move_down", "move_left", "move_right", "move_up")
@@ -95,7 +96,8 @@ func _input(event):
 			can_move = false
 			can_cast = false
 			can_attack = false
-			await sword_attack(last_direction)
+			weapon_manager.last_direction = last_direction
+			await weapon_manager.weapon_attack()
 			is_attacking = false
 			can_move = true
 			can_cast = true
@@ -106,6 +108,7 @@ func _input(event):
 			can_move = false
 			can_attack = false
 			can_cast = false
+			spell_manager.last_direction = last_direction
 			await spell_manager.cast_spell()
 			is_casting = false
 			can_move = true
