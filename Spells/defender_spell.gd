@@ -1,33 +1,35 @@
 extends Spell
 class_name Defender_Spell
 
+var stats_component : StatsComponent
+
 var timer
 
 func _ready() -> void:
 	timer = $Timer
 	timer.timeout.connect(timer_expired)
+	#spell_cast()
 
 func spell_cast():
-	var active : bool = is_active()
-	if active == true:
+	if stats_component.protect_status == true:
 		timer.start()
+		print("Defend Timer Refreshed!")
 	else:
 		defense_boost()
 		timer.start()
-
-func is_active():
-	if timer.is_stopped() == true:
-		return false
-	else:
-		return true
+		print("Defend Timer Started!")
 
 func timer_expired():
 	defense_restore()
+	print("Defend Timer Expired!")
+	call_deferred("queue_free")
 
 func defense_boost():
-	pass
-	#Connect to caster to increase defense for duration
+	stats_component.protect_status = true
+	stats_component.set_defense_bonus_on()
+	print("Defense Boosted!")
 
 func defense_restore():
-	pass
-	#Connect to caster to restore defense to base after duration
+	stats_component.protect_status = false
+	stats_component.set_defense_bonus_off()
+	print("Defense Restored!")

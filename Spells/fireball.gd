@@ -31,7 +31,6 @@ func _physics_process(delta: float) -> void:
 		direction = Vector2.RIGHT.rotated(rotation)
 	
 	#Create enum for Up/Down/Left/Right to ignore casing - will be used for other spells
-	#print(direction)
 	position += direction * SPEED * delta
 		
 	travelled_distance += SPEED * delta
@@ -44,7 +43,7 @@ func impact(area):
 	if area is HurtBoxComponent:
 		var hurtBox: HurtBoxComponent = area
 		attack.attack_type = 1
-		attack.magical_power = magical_power #TODO: Need to modify to be based on the caster's Magic Power stat
+		attack.magical_power = magical_power 
 		#TODO Part 2: Create formula for spell damage
 		hurtBox.new_damage(attack)
 	

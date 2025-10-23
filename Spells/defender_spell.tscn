@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cqh4ivrjmvsr1" path="res://Spells/defender_spell.gd" id="1_85vao"]
 
-[node name="Defender Spell" type="Node2D"]
+[node name="Defender Spell" type="Area2D"]
 script = ExtResource("1_85vao")
 mp_cost = 4
 

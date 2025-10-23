@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dr2ent0anvlpr"]
+[gd_scene load_steps=23 format=3 uid="uid://dr2ent0anvlpr"]
 
 [ext_resource type="Script" uid="uid://cloou2v6s6b3r" path="res://Player/player.gd" id="1_lwtpo"]
 [ext_resource type="Texture2D" uid="uid://dk5lk5uu5jrit" path="res://Assets/Prototype_Character.png" id="2_lwtpo"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://veny71hspg3j" path="res://Spells/cure_spell.tscn" id="10_apopc"]
 [ext_resource type="PackedScene" uid="uid://bt1mfwkdigxr1" path="res://Spells/fireball.tscn" id="11_5htga"]
 [ext_resource type="PackedScene" uid="uid://dabs46ck63ft2" path="res://Components/weapon_manager.tscn" id="12_5htga"]
+[ext_resource type="PackedScene" uid="uid://bisksj668mnne" path="res://Spells/defender_spell.tscn" id="12_gu6f8"]
 [ext_resource type="PackedScene" uid="uid://b3iikh7lmiegi" path="res://Weapons/sword.tscn" id="13_p5o4e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lwtpo"]
@@ -165,7 +166,7 @@ libraries = {
 }
 
 [node name="SpellManager" parent="." node_paths=PackedStringArray("spell_array") instance=ExtResource("9_00tjw")]
-spell_array = [NodePath("Fireball"), NodePath("Cure Spell")]
+spell_array = [NodePath("Fireball"), NodePath("Cure Spell"), NodePath("Defender Spell")]
 
 [node name="Cure Spell" parent="SpellManager" instance=ExtResource("10_apopc")]
 visible = false
@@ -173,7 +174,11 @@ visible = false
 [node name="Fireball" parent="SpellManager" instance=ExtResource("11_5htga")]
 visible = false
 
+[node name="Defender Spell" parent="SpellManager" instance=ExtResource("12_gu6f8")]
+visible = false
+
 [node name="WeaponManager" parent="." node_paths=PackedStringArray("weapon_array") instance=ExtResource("12_5htga")]
 weapon_array = [NodePath("Sword")]
 
 [node name="Sword" parent="WeaponManager" instance=ExtResource("13_p5o4e")]
+visible = false

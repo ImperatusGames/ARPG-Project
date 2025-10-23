@@ -61,35 +61,7 @@ func _physics_process(_delta: float) -> void:
 	
 	#Add state machine for state control between each action
 	
-#func sword_attack(last_dir: String):
-	#var direction = last_dir
-	#const SWORD = preload("res://Weapons/sword.tscn")
-	#var new_sword = SWORD.instantiate()
-	#new_sword.physical_power = stats_component.current_strength
-	#if direction == "right":
-		#new_sword.global_position.x += 60
-	#elif direction == "left":
-		#new_sword.rotation_degrees = 180
-		#new_sword.global_position.x -= 60
-	#elif direction == "up":
-		#new_sword.global_position.y -= 60
-		#new_sword.rotation_degrees = -90
-	#elif direction == "down":
-		#new_sword.global_position.y += 75
-		#new_sword.rotation_degrees = 90
-	#add_child(new_sword)
-	#await new_sword.animation_finished
-
 func _input(event):
-	#var direction = Input.get_vector("move_down", "move_left", "move_right", "move_up")
-	#if event.is_action_pressed("move_down"):
-		#pass
-	#elif event.is_action_pressed("move_up"):
-		#pass
-	#elif event.is_action_pressed("move_left"):
-		#pass
-	#elif event.is_action_pressed("move_right"):
-		#pass
 	if event.is_action_pressed("attack"):
 		if can_attack == true: 
 			is_attacking = true
@@ -102,7 +74,7 @@ func _input(event):
 			can_move = true
 			can_cast = true
 			can_attack = true
-	elif event.is_action_pressed("special"):
+	elif event.is_action_pressed("spell"):
 		if can_cast == true: 
 			is_casting = true
 			can_move = false
@@ -114,6 +86,8 @@ func _input(event):
 			can_move = true
 			can_attack = true
 			can_cast = true
+	elif event.is_action_pressed("item"):
+		print("Item used!")
 	elif event.is_action_pressed("menu"):
 		print("Menu button pressed!")
 	elif event.is_action_pressed("run_toggle"):
@@ -124,14 +98,3 @@ func _input(event):
 			velocity_component.set_run_speed()
 			is_running = true
 	
-#func defender():
-	#if get_tree().get_node("def_timer") == true:
-		#get_tree().get_node("def_timer").start
-	#else:
-		#current_defense = base_defense * 2
-		#print(current_defense)
-		#var def_timer = get_tree().create_timer(5.0).timeout
-	#
-	#await get_tree().get_node("def_timer").timeout
-	#current_defense = base_defense
-	#print(current_defense)

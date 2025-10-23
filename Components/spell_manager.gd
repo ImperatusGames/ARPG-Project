@@ -23,6 +23,8 @@ func cast_spell():
 		fireball()
 	elif current_spell == spell_array[1]:
 		heal_spell()
+	elif current_spell == spell_array[2]:
+		defender_spell()
 
 func fireball():
 	const FIREBALL = preload("res://Spells/fireball.tscn")
@@ -31,18 +33,10 @@ func fireball():
 	new_fireball.global_rotation = get_parent().global_rotation
 	new_fireball.current_direction = last_direction
 	new_fireball.magical_power = stats_component.current_magic
-	
-	#if player_direction == "up":
-		#new_fireball.global_position.y -= 50
-	#elif player_direction == "down":
-		#new_fireball.global_position.y += 80
-	#elif player_direction == "left":
-		#new_fireball.global_position.x -= 60
-	#elif player_direction == "right":
-		#new_fireball.global_position.x += 60
-	
 	new_fireball.set_collision_mask_value(5, true)
 	new_fireball.set_collision_layer_value(4, true)
+	#Need to adjust mask and layer based on the entity that spawns the object
+	#Player will have one set of values, Enemy will have a different set
 	print("Fireball MPow", new_fireball.magical_power)
 	add_sibling(new_fireball)
 	
@@ -51,3 +45,14 @@ func heal_spell():
 	var new_cure_spell = CURE_SPELL.instantiate()
 	new_cure_spell.magic_power = stats_component.current_magic
 	add_sibling(new_cure_spell)
+
+func defender_spell():
+	if get_parent().has_node("Defender Spell"):
+		var defender = get_parent().get_node("Defender Spell")
+		defender.spell_cast()
+	else:
+		const DEFENDER_SPELL = preload("res://Spells/defender_spell.tscn")
+		var new_defender_spell = DEFENDER_SPELL.instantiate()
+		new_defender_spell.stats_component = stats_component
+		add_sibling(new_defender_spell)
+		new_defender_spell.spell_cast()
