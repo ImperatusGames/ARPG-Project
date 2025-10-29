@@ -19,12 +19,15 @@ func _ready() -> void:
 
 func cast_spell():
 	print("Spell cast!")
-	if current_spell == spell_array[0]:
-		fireball()
-	elif current_spell == spell_array[1]:
-		heal_spell()
-	elif current_spell == spell_array[2]:
-		defender_spell()
+	if check_mp() == true:
+		if current_spell == spell_array[0]:
+			fireball()
+		elif current_spell == spell_array[1]:
+			heal_spell()
+		elif current_spell == spell_array[2]:
+			defender_spell()
+	else:
+		print("Not enough MP!")
 
 func fireball():
 	const FIREBALL = preload("res://Spells/fireball.tscn")
@@ -56,3 +59,10 @@ func defender_spell():
 		new_defender_spell.stats_component = stats_component
 		add_sibling(new_defender_spell)
 		new_defender_spell.spell_cast()
+
+func check_mp():
+	if current_spell.mp_cost < stats_component.current_mp:
+		return false
+	else:
+		return true
+		#Create error failover for lack of MP

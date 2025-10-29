@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dr2ent0anvlpr"]
+[gd_scene load_steps=24 format=3 uid="uid://dr2ent0anvlpr"]
 
 [ext_resource type="Script" uid="uid://cloou2v6s6b3r" path="res://Player/player.gd" id="1_lwtpo"]
 [ext_resource type="Texture2D" uid="uid://dk5lk5uu5jrit" path="res://Assets/Prototype_Character.png" id="2_lwtpo"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dabs46ck63ft2" path="res://Components/weapon_manager.tscn" id="12_5htga"]
 [ext_resource type="PackedScene" uid="uid://bisksj668mnne" path="res://Spells/defender_spell.tscn" id="12_gu6f8"]
 [ext_resource type="PackedScene" uid="uid://b3iikh7lmiegi" path="res://Weapons/sword.tscn" id="13_p5o4e"]
+[ext_resource type="PackedScene" uid="uid://dboaik3jgxyhy" path="res://Components/inventory_manager.tscn" id="15_dkpta"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lwtpo"]
 radius = 18.0
@@ -182,3 +183,5 @@ weapon_array = [NodePath("Sword")]
 
 [node name="Sword" parent="WeaponManager" instance=ExtResource("13_p5o4e")]
 visible = false
+
+[node name="InventoryManager" parent="." instance=ExtResource("15_dkpta")]
