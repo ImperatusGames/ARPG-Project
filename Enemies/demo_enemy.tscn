@@ -1,15 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://cwalvlb0qn8ll"]
+[gd_scene load_steps=12 format=3 uid="uid://cwalvlb0qn8ll"]
 
-[ext_resource type="Script" uid="uid://bxn1bnqj1vyg4" path="res://Enemies/ph_wanderer.gd" id="1_uwtlr"]
+[ext_resource type="Script" uid="uid://bxn1bnqj1vyg4" path="res://Enemies/demo_enemy.gd" id="1_uwtlr"]
 [ext_resource type="Texture2D" uid="uid://c6xv8b8acgao0" path="res://icon.svg" id="2_4vmp6"]
 [ext_resource type="Script" uid="uid://bpy1dv6s7e1jl" path="res://Components/health_component.gd" id="2_uwtlr"]
 [ext_resource type="Texture2D" uid="uid://bdlqnffswnsjm" path="res://Assets/poisonbubbles1.png" id="3_8x18g"]
 [ext_resource type="Script" uid="uid://d0j4us0xeud10" path="res://Components/velocity_component.gd" id="4_ikuxl"]
 [ext_resource type="Script" uid="uid://dftmybkeosab2" path="res://Components/hurt_box_component.gd" id="5_vwoug"]
-[ext_resource type="Script" uid="uid://cnis4rerd12t4" path="res://States/state_machine.gd" id="6_5nylp"]
-[ext_resource type="Script" uid="uid://dlrm5xsxli2f" path="res://States/ph_wanderer_patrol.gd" id="7_n72wm"]
-[ext_resource type="Script" uid="uid://yhq3og4ii6vy" path="res://States/ph_wanderer_aggro.gd" id="8_5nylp"]
-[ext_resource type="Script" uid="uid://cih87nyqdvl83" path="res://States/ph_wanderer_standing.gd" id="10_nqijh"]
+[ext_resource type="PackedScene" uid="uid://cgka0xce4yub0" path="res://States/state_machine.tscn" id="7_n72wm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5nylp"]
 animations = [{
@@ -42,7 +39,8 @@ radius = 63.0317
 [sub_resource type="CircleShape2D" id="CircleShape2D_vwoug"]
 radius = 134.06
 
-[node name="ph_wanderer" type="CharacterBody2D"]
+[node name="demo_enemy" type="CharacterBody2D"]
+z_index = -1
 scale = Vector2(0.5, 0.5)
 collision_layer = 24
 collision_mask = 9
@@ -55,7 +53,6 @@ texture = ExtResource("2_4vmp6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5nylp")
 animation = &"aggro_anim"
-frame_progress = 0.479019
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4vmp6")
@@ -87,23 +84,4 @@ visibility_layer = 0
 shape = SubResource("CircleShape2D_vwoug")
 disabled = true
 
-[node name="State_Machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
-script = ExtResource("6_5nylp")
-starting_state = NodePath("Patrol")
-
-[node name="Patrol" type="Node" parent="State_Machine" node_paths=PackedStringArray("aggro_state", "standing_state")]
-script = ExtResource("7_n72wm")
-aggro_state = NodePath("../Aggro")
-standing_state = NodePath("../Standing")
-animation_name = "patrol_anim"
-
-[node name="Aggro" type="Node" parent="State_Machine" node_paths=PackedStringArray("patrol_state", "standing_state")]
-script = ExtResource("8_5nylp")
-patrol_state = NodePath("../Patrol")
-standing_state = NodePath("../Standing")
-animation_name = "aggro_anim"
-
-[node name="Standing" type="Node" parent="State_Machine" node_paths=PackedStringArray("patrol_state", "aggro_state")]
-script = ExtResource("10_nqijh")
-patrol_state = NodePath("../Patrol")
-aggro_state = NodePath("../Aggro")
+[node name="State_Machine" parent="." instance=ExtResource("7_n72wm")]

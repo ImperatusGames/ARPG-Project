@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://1i45qhs08bo8"]
+
+[ext_resource type="Script" uid="uid://bs30rarcyxocr" path="res://States/State Scripts/template_standing.gd" id="1_kgcel"]
+
+[node name="Standing" type="Node"]
+script = ExtResource("1_kgcel")

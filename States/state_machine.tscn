@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgka0xce4yub0"]
+
+[ext_resource type="Script" uid="uid://cnis4rerd12t4" path="res://States/State Scripts/state_machine.gd" id="1_qyxtk"]
+[ext_resource type="Script" uid="uid://dlrm5xsxli2f" path="res://States/Demo States/ph_wanderer_patrol.gd" id="2_hlibl"]
+[ext_resource type="Script" uid="uid://yhq3og4ii6vy" path="res://States/Demo States/ph_wanderer_aggro.gd" id="3_v5hwt"]
+[ext_resource type="PackedScene" uid="uid://1i45qhs08bo8" path="res://States/standing.tscn" id="4_qyxtk"]
+
+[node name="State_Machine" type="Node" node_paths=PackedStringArray("starting_state")]
+script = ExtResource("1_qyxtk")
+starting_state = NodePath("Patrol")
+
+[node name="Patrol" type="Node" parent="." node_paths=PackedStringArray("aggro_state", "standing_state")]
+script = ExtResource("2_hlibl")
+aggro_state = NodePath("../Aggro")
+standing_state = NodePath("../Standing")
+animation_name = "patrol_anim"
+
+[node name="Aggro" type="Node" parent="." node_paths=PackedStringArray("patrol_state", "standing_state")]
+script = ExtResource("3_v5hwt")
+patrol_state = NodePath("../Patrol")
+standing_state = NodePath("../Standing")
+animation_name = "aggro_anim"
+
+[node name="Standing" parent="." node_paths=PackedStringArray("patrol_state", "aggro_state") instance=ExtResource("4_qyxtk")]
+patrol_state = NodePath("../Patrol")
+aggro_state = NodePath("../Aggro")

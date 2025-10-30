@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4dvkrat82wgt"]
+[gd_scene load_steps=7 format=3 uid="uid://d4dvkrat82wgt"]
 
 [ext_resource type="PackedScene" uid="uid://dr2ent0anvlpr" path="res://Player/player.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://dmsjil27cypuj" path="res://Enemies/zombie.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://c4bpo6s8q2i0r" path="res://Spells/status_poisoned.tscn" id="3_feb5d"]
-[ext_resource type="PackedScene" uid="uid://cwalvlb0qn8ll" path="res://Enemies/ph_wanderer.tscn" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://cwalvlb0qn8ll" path="res://Enemies/demo_enemy.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://cqvsu8xbdvmbe" path="res://UI/game_ui.tscn" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://bwqsl1ssco62p" path="res://Enemies/enemy_template.tscn" id="6_ryrav"]
 
 [node name="Game" type="Node2D"]
 
@@ -17,7 +18,10 @@ position = Vector2(-3, -69)
 [node name="Zombie" parent="." instance=ExtResource("2_e2o6t")]
 position = Vector2(615, 188)
 
-[node name="ph_wanderer" parent="." instance=ExtResource("4_fc0e3")]
+[node name="demo_enemy" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(435, 406)
 
 [node name="GameUI" parent="." instance=ExtResource("5_7jktm")]
+
+[node name="enemy_template" parent="." instance=ExtResource("6_ryrav")]
+position = Vector2(827, 436)
