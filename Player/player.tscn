@@ -116,7 +116,7 @@ _data = {
 &"walk_up": SubResource("Animation_xcwra")
 }
 
-[node name="Hero" type="CharacterBody2D"]
+[node name="Hero" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 144
 script = ExtResource("1_lwtpo")
 
@@ -133,6 +133,7 @@ shape = SubResource("CapsuleShape2D_lwtpo")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_1ivvi")]
 max_health = 10
+current_health = 9
 
 [node name="StatsComponent" parent="." instance=ExtResource("4_uju65")]
 base_defense = 5
@@ -185,3 +186,4 @@ weapon_array = [NodePath("Sword")]
 visible = false
 
 [node name="InventoryManager" parent="." instance=ExtResource("15_dkpta")]
+visible = false

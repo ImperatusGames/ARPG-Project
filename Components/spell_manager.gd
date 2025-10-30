@@ -20,6 +20,7 @@ func _ready() -> void:
 func cast_spell():
 	print("Spell cast!")
 	if check_mp() == true:
+		deduct_mp()
 		if current_spell == spell_array[0]:
 			fireball()
 		elif current_spell == spell_array[1]:
@@ -28,6 +29,8 @@ func cast_spell():
 			defender_spell()
 	else:
 		print("Not enough MP!")
+		print("Current MP: ", stats_component.current_mp)
+		print("Spell Cost: ", current_spell.mp_cost)
 
 func fireball():
 	const FIREBALL = preload("res://Spells/fireball.tscn")
@@ -40,13 +43,14 @@ func fireball():
 	new_fireball.set_collision_layer_value(4, true)
 	#Need to adjust mask and layer based on the entity that spawns the object
 	#Player will have one set of values, Enemy will have a different set
-	print("Fireball MPow", new_fireball.magical_power)
+	print("Fireball MPow: ", new_fireball.magical_power)
 	add_sibling(new_fireball)
 	
 func heal_spell():
 	const CURE_SPELL = preload("res://Spells/cure_spell.tscn")
 	var new_cure_spell = CURE_SPELL.instantiate()
 	new_cure_spell.magic_power = stats_component.current_magic
+	#print("Heal Spell Power: ", new_cure_spell.magic_power)
 	add_sibling(new_cure_spell)
 
 func defender_spell():
@@ -61,8 +65,13 @@ func defender_spell():
 		new_defender_spell.spell_cast()
 
 func check_mp():
-	if current_spell.mp_cost < stats_component.current_mp:
+	if current_spell.mp_cost > stats_component.current_mp:
 		return false
 	else:
 		return true
 		#Create error failover for lack of MP
+
+func deduct_mp():
+	stats_component.current_mp -= current_spell.mp_cost
+	stats_component.spell_cast()
+	print("Spent MP: ", current_spell.mp_cost)

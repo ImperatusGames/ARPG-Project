@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqvsu8xbdvmbe"]
+
+[ext_resource type="Script" uid="uid://bowhhj4j26nwb" path="res://UI/game_ui.gd" id="1_h0rig"]
+[ext_resource type="PackedScene" uid="uid://l4s1c30tqidj" path="res://UI/health_bar.tscn" id="1_kfjql"]
+[ext_resource type="PackedScene" uid="uid://bx7hdp61tplyj" path="res://UI/mp_bar.tscn" id="2_h0rig"]
+[ext_resource type="PackedScene" uid="uid://gokvhqda7w7k" path="res://UI/debug_damage.tscn" id="4_2oifk"]
+
+[node name="GameUI" type="CanvasLayer"]
+script = ExtResource("1_h0rig")
+
+[node name="HealthBar" parent="." instance=ExtResource("1_kfjql")]
+
+[node name="ManaBar" parent="." instance=ExtResource("2_h0rig")]
+offset_top = 30.0
+offset_bottom = -588.0
+
+[node name="DamageButton" parent="." instance=ExtResource("4_2oifk")]
+anchors_preset = 0
+offset_left = 1019.0
+offset_top = 7.0
+offset_right = 1019.0
+offset_bottom = 7.0
+grow_horizontal = 1
+grow_vertical = 1

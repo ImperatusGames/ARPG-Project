@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx7hdp61tplyj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26ptd"]
+bg_color = Color(0, 0, 0.619608, 1)
+
+[node name="ManaBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -891.0
+offset_bottom = -618.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MPBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 261.0
+offset_bottom = 30.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_26ptd")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="Text" type="Label" parent="MPBar"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 69.0
+offset_bottom = 26.0
+text = "0/0"

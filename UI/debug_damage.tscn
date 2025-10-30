@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://gokvhqda7w7k"]
+
+[node name="DamageButton" type="Control"]
+layout_mode = 3
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Damage" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+text = "Take 1 Damage"

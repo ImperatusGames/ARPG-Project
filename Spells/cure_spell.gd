@@ -18,7 +18,7 @@ func healing():
 			#Create error failover to prevent the heal from occurring
 		else:
 			Heal.is_spell_heal = true
-			Heal.spell_power = magic_power
+			Heal.heal_power = magic_power
 			Heal.heal_factor = 1.0
 			health_component.restore_health(Heal)
 			print("Heal power: ", Heal.spell_power)

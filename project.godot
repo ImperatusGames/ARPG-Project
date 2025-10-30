@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 attack="*res://Scripts/attack.gd"
 Heal="*res://Scripts/heal.gd"
 
+[global_group]
+
+Player="Player Group"
+
 [input]
 
 ui_select={

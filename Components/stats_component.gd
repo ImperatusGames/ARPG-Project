@@ -1,6 +1,8 @@
 extends Node2D
 class_name StatsComponent
 
+signal mp_changed(current_mp)
+
 @export var base_defense : int
 @export var current_defense : int
 @export var base_strength : int
@@ -37,18 +39,23 @@ func _ready() -> void:
 	current_magic = base_magic
 	current_magic_def = base_magic_def
 	current_mp = max_mp
+	emit_signal("mp_changed", current_mp)
 
 func set_defense():
 	current_defense = round((base_defense * defense_bonus) * defense_penalty)
+	print("Current Defense: ", current_defense)
 
 func set_strength():
 	current_strength = round((base_strength * strength_bonus) * strength_penalty)
+	print("Current Strength: ", current_strength)
 
 func set_magic():
 	current_magic = round((base_magic * magic_bonus) * magic_penalty)
+	print("Current Magic: ", current_magic)
 
 func set_magic_def():
 	current_magic_def = round((base_magic_def * magic_def_bonus) * magic_def_penalty)
+	print("Current Magic Defense: ", current_magic_def)
 
 func set_defense_bonus_on():
 	defense_bonus = 1.5
@@ -113,6 +120,9 @@ func set_magic_def_penalty_on():
 func set_magic_def_penalty_off():
 	magic_def_penalty = 1.0
 	set_magic_def()
+
+func spell_cast():
+	emit_signal("mp_changed", current_mp)
 #####
 # Defense = ((base_def + equipment def) +/* positive_modifiers) -// negative_modifiers)
 #####

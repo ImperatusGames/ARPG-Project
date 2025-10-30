@@ -22,7 +22,7 @@ var animations = $AnimatedSprite2D
 
 func _ready() -> void:
 	var hurtbox = $HurtBoxComponent
-	$HealthComponent.health_empty.connect(_on_health_empty)
+	$HealthComponent.health_depleted.connect(_on_health_depleted)
 
 	state_machine.init(self, animations) #start the state machine in its default state which is set on the State_Machine node.
 
@@ -33,6 +33,6 @@ func _physics_process(_delta: float) -> void:
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)  #state machince will call its own logic based on what state it is in.
 
-func _on_health_empty():
+func _on_health_depleted():
 	print ("wanderer defeated")
 	call_deferred("queue_free")
