@@ -24,6 +24,8 @@ var state: States = States.IDLE
 
 #Turn last_direction into an enum for Up/Down/Left/Right for spell purposes
 
+var nearby_chests: Array[Node] = []
+
 func _ready() -> void:
 	collider = $CollisionShape2D
 	is_attacking = false
@@ -63,7 +65,10 @@ func _physics_process(_delta: float) -> void:
 	
 func _input(event):
 	if event.is_action_pressed("attack"):
-		if can_attack == true: 
+		if can_attack == true:
+			if nearby_chests.size() > 0:
+				if open_nearby_chest():
+					return 
 			is_attacking = true
 			can_move = false
 			can_cast = false
@@ -97,4 +102,18 @@ func _input(event):
 		else:
 			velocity_component.set_run_speed()
 			is_running = true
-	
+
+func open_nearby_chest() -> bool:
+	for chest in nearby_chests:
+		if chest.open():
+			return true
+	print("No valid chest to open")
+	return false
+
+func _on_chest_body_entered(body: Node) -> void:
+	nearby_chests.append(body)  
+
+func _on_chest_body_exited(body: Node) -> void:
+	var index = nearby_chests.find(body)
+	if index != -1:
+		nearby_chests.remove_at(index)
