@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxedujdtugb07"]
+[gd_scene load_steps=5 format=3 uid="uid://cxedujdtugb07"]
 
-[ext_resource type="Script" uid="uid://dtfhclkpw6g8u" path="res://Resources/pickup.gd" id="1_8yr6c"]
+[ext_resource type="Script" uid="uid://dtfhclkpw6g8u" path="res://Resources/items/pickup.gd" id="1_8yr6c"]
+[ext_resource type="Resource" uid="uid://60fkxrw618y6" path="res://Resources/items/gold.tres" id="2_cr5m0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8yr6c"]
 
@@ -11,6 +12,7 @@ collision_layer = 0
 collision_mask = 16
 motion_mode = 1
 script = ExtResource("1_8yr6c")
+item_resource = ExtResource("2_cr5m0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8yr6c")

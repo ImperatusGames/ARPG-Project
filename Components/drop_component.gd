@@ -3,13 +3,12 @@ class_name DropComponent
 
 @export var drop_chance: float = 0.95  # 0.0 to 1.0, chance to drop
 @export var item_resource: Item  # The item to drop (your Resource)
-@export var pickup_scene: PackedScene = preload("res://Resources/pickup.tscn")  # Your pickup scene
+@export var pickup_scene: PackedScene = preload("res://Resources/items/pickup.tscn")  # Your pickup scene
+##Pickup scene defaults dropping a gold piece unless overridden by item_resource, 
+##TBD if there will be other non gold "loose" pickups
 
-#const GOLD : Item = preload("res://Resources/gold.tres")
-#not all block variables included
 var can_move := true
 var direction = Vector2(.5,.5)
-#@onready var velocity_component: VelocityComponent = $VelocityComponent
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -23,7 +22,9 @@ func trigger_drop() -> void:
 		return
 	print("DROP")
 	var pickup = pickup_scene.instantiate()
-	pickup.item_resource = item_resource #item_resource ##TODO learn why setting export as gold causes issues
+	if (item_resource):
+		print("item res")
+		pickup.item_resource = item_resource #item_resource ##TODO learn why setting export as gold causes issues
 	pickup.global_position = get_parent().global_position
 	
 	var enemy = get_parent()
