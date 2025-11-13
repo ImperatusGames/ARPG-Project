@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://yy2hn4ue0scr"]
+
+[ext_resource type="Texture2D" uid="uid://camdme8140rrm" path="res://Assets/plantwall.png" id="1_tkms5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6y5df"]
+size = Vector2(24, 72)
+
+[node name="plantwall_test" type="StaticBody2D"]
+collision_layer = 24
+collision_mask = 9
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tkms5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6y5df")
