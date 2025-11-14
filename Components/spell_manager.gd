@@ -19,18 +19,21 @@ func _ready() -> void:
 
 func cast_spell():
 	print("Spell cast!")
-	if check_mp() == true:
-		deduct_mp()
-		if current_spell == spell_array[0]:
-			fireball()
-		elif current_spell == spell_array[1]:
-			heal_spell()
-		elif current_spell == spell_array[2]:
-			defender_spell()
+	if current_spell == null:
+		print("No spell selected!")
 	else:
-		print("Not enough MP!")
-		print("Current MP: ", stats_component.current_mp)
-		print("Spell Cost: ", current_spell.mp_cost)
+		if check_mp() == true:
+			deduct_mp()
+			if current_spell == spell_array[0]:
+				fireball()
+			elif current_spell == spell_array[1]:
+				heal_spell()
+			elif current_spell == spell_array[2]:
+				defender_spell()
+		else:
+			print("Not enough MP!")
+			print("Current MP: ", stats_component.current_mp)
+			print("Spell Cost: ", current_spell.mp_cost)
 
 func fireball():
 	const FIREBALL = preload("res://Spells/fireball.tscn")

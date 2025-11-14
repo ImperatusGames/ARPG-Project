@@ -8,6 +8,7 @@ class_name Player extends Entity
 @onready var spell_manager: SpellManager = $SpellManager
 @onready var weapon_manager: WeaponManager = $WeaponManager
 
+
 var collider
 var last_direction : String
 var is_attacking : bool
@@ -94,6 +95,10 @@ func _input(event):
 	elif event.is_action_pressed("item"):
 		print("Item used!")
 	elif event.is_action_pressed("menu"):
+		const MENU_UI = preload("res://Spells/fireball.tscn")
+		var new_menu_ui = MENU_UI.instantiate()
+		add_sibling(new_menu_ui)
+		#get_tree().paused = true
 		print("Menu button pressed!")
 	elif event.is_action_pressed("run_toggle"):
 		if is_running == true:

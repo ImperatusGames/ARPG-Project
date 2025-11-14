@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5anhnfq8tqho"]
+
+[ext_resource type="Script" uid="uid://cmg0ulx2rowte" path="res://UI/spell_selector.gd" id="1_owpsr"]
+
+[node name="SpellSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_owpsr")
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 0
+offset_right = 221.0
+offset_bottom = 253.0
+theme_override_colors/guide_color = Color(0, 0, 0, 0)
+allow_search = false
+auto_width = true
+auto_height = true
+text_overrun_behavior = 0
+wraparound_items = false
+item_count = 8
+max_columns = 2
+fixed_column_width = 100
+item_0/text = "Spelll 1"
+item_0/disabled = true

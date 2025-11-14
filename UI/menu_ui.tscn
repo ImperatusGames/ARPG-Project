@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://di8v4b1ec3n1p"]
+
+[ext_resource type="Script" uid="uid://8vvwnt240ipa" path="res://UI/menu_ui.gd" id="1_gaeo4"]
+
+[node name="MenuUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gaeo4")
+
+[node name="ItemList" type="ItemList" parent="."]
+process_mode = 3
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_colors/guide_color = Color(0, 0, 0, 0)
+allow_search = false
+auto_width = true
+auto_height = true
+text_overrun_behavior = 0
+wraparound_items = false
+item_count = 4
+item_0/text = "Items"
+item_1/text = "Equipment"
+item_2/text = "Spells"
+item_3/text = "Status"

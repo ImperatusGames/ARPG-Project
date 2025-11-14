@@ -1,4 +1,5 @@
 extends CanvasLayer
+class_name GameUI
 
 @onready var health_bar: ProgressBar = $HealthBar/HPBar
 @onready var mp_bar: ProgressBar = $ManaBar/MPBar
