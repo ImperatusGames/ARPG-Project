@@ -9,6 +9,8 @@ var player = null
 func _ready():
 	# Find player and connect signals
 	#player = get_node("../Player")
+	GameManager.game_pause.connect(game_paused)
+	GameManager.game_unpause.connect(game_unpaused)
 	player = get_tree().get_first_node_in_group("Player")
 	if player:
 		##player.health.connect("health_changed", _on_player_health_changed)
@@ -38,3 +40,9 @@ func _on_player_mp_changed(new_mp):
 
 func player_damage():
 	player.health_component.new_damage(1)
+
+func game_paused():
+	hide()
+
+func game_unpaused():
+	show()

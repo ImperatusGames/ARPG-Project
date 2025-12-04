@@ -6,6 +6,7 @@
 script = ExtResource("1_4akqx")
 mp_cost = 5
 spell_name = "Cure"
+spell_description = "Restores some HP"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

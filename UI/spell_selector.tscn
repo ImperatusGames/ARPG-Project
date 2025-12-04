@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cmg0ulx2rowte" path="res://UI/spell_selector.gd" id="1_owpsr"]
 
 [node name="SpellSelector" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,9 +13,12 @@ grow_vertical = 2
 script = ExtResource("1_owpsr")
 
 [node name="ItemList" type="ItemList" parent="."]
+process_mode = 3
 layout_mode = 0
-offset_right = 221.0
-offset_bottom = 253.0
+offset_left = 43.0
+offset_top = 92.0
+offset_right = 264.0
+offset_bottom = 345.0
 theme_override_colors/guide_color = Color(0, 0, 0, 0)
 allow_search = false
 auto_width = true
@@ -24,5 +28,24 @@ wraparound_items = false
 item_count = 8
 max_columns = 2
 fixed_column_width = 100
-item_0/text = "Spelll 1"
-item_0/disabled = true
+item_0/text = "Spell 1"
+item_1/text = "Spell 2"
+item_2/text = "Spell 3"
+item_3/text = "Spell 4"
+item_3/disabled = true
+item_4/text = "Spell 5"
+item_4/disabled = true
+item_5/text = "Spell 6"
+item_5/disabled = true
+item_6/text = "Spell 7"
+item_6/disabled = true
+item_7/text = "Spell 8"
+item_7/disabled = true
+
+[node name="SpellDescription" type="Label" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 568.0
+offset_right = 1142.0
+offset_bottom = 638.0
+text = "Test"

@@ -21,7 +21,7 @@ var animations = $AnimatedSprite2D
 
 
 func _ready() -> void:
-	var hurtbox = $HurtBoxComponent
+	var _hurtbox = $HurtBoxComponent
 	$HealthComponent.health_depleted.connect(_on_health_depleted)
 
 	state_machine.init(self, animations) #start the state machine in its default state which is set on the State_Machine node.

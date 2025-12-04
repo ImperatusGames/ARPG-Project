@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://8vvwnt240ipa" path="res://UI/menu_ui.gd" id="1_gaeo4"]
 
 [node name="MenuUI" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,9 +14,12 @@ script = ExtResource("1_gaeo4")
 
 [node name="ItemList" type="ItemList" parent="."]
 process_mode = 3
+top_level = true
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1026.0
+offset_top = 63.0
+offset_right = 1123.0
+offset_bottom = 179.0
 theme_override_colors/guide_color = Color(0, 0, 0, 0)
 allow_search = false
 auto_width = true

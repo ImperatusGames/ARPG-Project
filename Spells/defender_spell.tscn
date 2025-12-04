@@ -6,6 +6,7 @@
 script = ExtResource("1_85vao")
 mp_cost = 4
 spell_name = "Defender"
+spell_description = "Temporarily increase Defense"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 15.0

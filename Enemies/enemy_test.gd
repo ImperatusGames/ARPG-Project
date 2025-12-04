@@ -16,7 +16,7 @@ var direction = Vector2(0,0)
 
 
 func _ready() -> void:
-	var hurtbox = $HurtBoxComponent
+	var _hurtbox = $HurtBoxComponent
 	$HealthComponent.health_depleted.connect(_on_health_depleted)
 
 	state_machine.init(self, animations)

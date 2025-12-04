@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://blw0s8wb6kv3c" path="res://Components/drop_component.gd" id="1_ouq7b"]
 [ext_resource type="Resource" uid="uid://brfmtrovtl8ll" path="res://Resources/items/fish.tres" id="2_ppife"]
 
+
 [node name="DropComponent" type="Node2D"]
 script = ExtResource("1_ouq7b")
 item_resource = ExtResource("2_ppife")

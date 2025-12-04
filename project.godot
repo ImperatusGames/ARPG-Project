@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+GameManager="*res://Scripts/game_manager.gd"
 attack="*res://Scripts/attack.gd"
 Heal="*res://Scripts/heal.gd"
 

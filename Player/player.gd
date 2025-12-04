@@ -94,12 +94,12 @@ func _input(event):
 			can_cast = true
 	elif event.is_action_pressed("item"):
 		print("Item used!")
-	elif event.is_action_pressed("menu"):
-		const MENU_UI = preload("res://Spells/fireball.tscn")
-		var new_menu_ui = MENU_UI.instantiate()
-		add_sibling(new_menu_ui)
-		#get_tree().paused = true
-		print("Menu button pressed!")
+	#elif event.is_action_pressed("menu"):
+		#const MENU_UI = preload("res://Spells/fireball.tscn")
+		#var new_menu_ui = MENU_UI.instantiate()
+		#add_sibling(new_menu_ui)
+		##get_tree().paused = true
+		#print("Menu button pressed!")
 	elif event.is_action_pressed("run_toggle"):
 		if is_running == true:
 			velocity_component.set_walk_speed()

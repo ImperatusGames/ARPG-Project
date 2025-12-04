@@ -13,6 +13,7 @@ collision_mask = 0
 script = ExtResource("1_0oshh")
 mp_cost = 3
 spell_name = "Fireball"
+spell_description = "Shoot a fireball!"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

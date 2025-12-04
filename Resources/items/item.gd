@@ -18,5 +18,5 @@ func _init(p_name: String = "", p_description: String = "", p_icon: Texture2D = 
 	max_stack = p_max_stack
 
 # Virtual method for subclass overriding
-func use(player: Node) -> void:
+func use(_player: Node) -> void:
 	print("Using base item: ", name)

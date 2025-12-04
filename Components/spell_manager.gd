@@ -78,3 +78,6 @@ func deduct_mp():
 	stats_component.current_mp -= current_spell.mp_cost
 	stats_component.spell_cast()
 	print("Spent MP: ", current_spell.mp_cost)
+
+func set_spell(index):
+	current_spell = spell_array[index]
