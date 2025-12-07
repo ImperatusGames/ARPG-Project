@@ -43,9 +43,8 @@ item_7/text = "Spell 8"
 item_7/disabled = true
 
 [node name="SpellDescription" type="Label" parent="."]
-layout_mode = 0
-offset_left = 11.0
-offset_top = 568.0
-offset_right = 1142.0
-offset_bottom = 638.0
-text = "Test"
+layout_mode = 2
+offset_left = 10.0
+offset_top = 572.0
+offset_right = 1141.0
+offset_bottom = 642.0

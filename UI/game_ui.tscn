@@ -22,3 +22,15 @@ offset_right = 1019.0
 offset_bottom = 7.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="CurrentWeapon" type="Label" parent="."]
+offset_left = 266.0
+offset_top = 3.0
+offset_right = 406.0
+offset_bottom = 33.0
+
+[node name="CurrentSpell" type="Label" parent="."]
+offset_left = 266.0
+offset_top = 39.0
+offset_right = 406.0
+offset_bottom = 69.0

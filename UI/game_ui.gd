@@ -4,6 +4,8 @@ class_name GameUI
 @onready var health_bar: ProgressBar = $HealthBar/HPBar
 @onready var mp_bar: ProgressBar = $ManaBar/MPBar
 @onready var damage: Button = $DamageButton/Damage
+@onready var current_weapon = $CurrentWeapon
+@onready var current_spell = $CurrentSpell
 var player = null
 
 func _ready():
