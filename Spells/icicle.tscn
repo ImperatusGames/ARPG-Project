@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfb0k8efnqali"]
+
+[ext_resource type="Script" uid="uid://dyftlbk1vrng5" path="res://Spells/icicle.gd" id="1_p12py"]
+[ext_resource type="Texture2D" uid="uid://c6xv8b8acgao0" path="res://icon.svg" id="2_nqxfj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s36yc"]
+radius = 31.257
+
+[node name="Icicle" type="Area2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_p12py")
+mp_cost = 3
+spell_name = "Icicle"
+spell_description = "Shoot an icicle to freeze enemies"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_nqxfj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+light_mask = 0
+visibility_layer = 0
+shape = SubResource("CircleShape2D_s36yc")

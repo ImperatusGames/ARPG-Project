@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://wqdca067j6nd"]
+
+[ext_resource type="Script" uid="uid://d0q5d8fi40uix" path="res://Spells/explosion_spell.gd" id="1_rc7i4"]
+[ext_resource type="Texture2D" uid="uid://c6xv8b8acgao0" path="res://icon.svg" id="2_ul2eo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3b2q8"]
+radius = 62.0322
+
+[node name="Explosion" type="Area2D"]
+top_level = true
+script = ExtResource("1_rc7i4")
+mp_cost = 5
+spell_name = "Explosion"
+spell_description = "Destroys objects and walls in an area around the caster"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ul2eo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+shape = SubResource("CircleShape2D_3b2q8")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true

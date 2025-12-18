@@ -1,7 +1,7 @@
 extends Node
 class_name Attack
 
-enum Statuses {FREEZE, KNOCKBACK, POISON, SLOW, STUN}
+enum Statuses {FREEZE, KNOCKBACK, POISON, SLOW, STUN, SILENCE}
 enum Attack_Types {PHYSICAL, MAGICAL}
 
 var attack_damage: int

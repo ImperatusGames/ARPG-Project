@@ -11,6 +11,8 @@ func _ready():
 	spell_list.set_item_text(0, player.spell_manager.spell_array[0].spell_name)
 	spell_list.set_item_text(1, player.spell_manager.spell_array[1].spell_name)
 	spell_list.set_item_text(2, player.spell_manager.spell_array[2].spell_name)
+	spell_list.set_item_text(3, player.spell_manager.spell_array[3].spell_name)
+	spell_list.set_item_text(4, player.spell_manager.spell_array[4].spell_name)
 	spell_list.item_activated.connect(new_current_spell)
 	spell_list.item_selected.connect(update_spell_description)
 

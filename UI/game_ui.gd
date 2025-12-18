@@ -19,6 +19,7 @@ func _ready():
 		player.health_component.connect("health_changed", _on_player_health_changed)
 		player.health_component.connect("health_depleted", _on_player_health_depleted)
 		player.stats_component.connect("mp_changed", _on_player_mp_changed)
+		player.spell_manager.connect("spell_changed", _on_player_spell_changed)
 		#player.connect("xp_changed", _on_player_xp_changed)
 		#xp_bar.value = player.player_xp
 		#xp_bar.max_value = player.xp_to_level
@@ -26,6 +27,7 @@ func _ready():
 		health_bar.value = player.health_component.current_health
 		mp_bar.max_value = player.stats_component.max_mp
 		mp_bar.value = player.stats_component.current_mp
+		current_spell.text = player.spell_manager.current_spell.spell_name
 	else:
 		print("No Player found")
 	damage.button_down.connect(player_damage)
@@ -39,6 +41,9 @@ func _on_player_health_depleted():
 
 func _on_player_mp_changed(new_mp):
 	mp_bar.value = new_mp
+
+func _on_player_spell_changed(new_spell):
+	current_spell.text = new_spell.name
 
 func player_damage():
 	player.health_component.new_damage(1)

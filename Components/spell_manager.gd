@@ -5,6 +5,8 @@ class_name SpellManager
 @onready var health_component : HealthComponent = get_node("../HealthComponent")
 @onready var velocity_component : VelocityComponent = get_node("../VelocityComponent")
 
+signal spell_changed(current_spell)
+
 @export var spell_array : Array[Spell]
 var current_spell : Spell
 var last_direction : String
@@ -24,12 +26,17 @@ func cast_spell():
 	else:
 		if check_mp() == true:
 			deduct_mp()
-			if current_spell == spell_array[0]:
-				fireball()
-			elif current_spell == spell_array[1]:
-				heal_spell()
-			elif current_spell == spell_array[2]:
-				defender_spell()
+			match current_spell.spell_name:
+				"Fireball":
+					fireball()
+				"Cure":
+					heal_spell()
+				"Defender":
+					defender_spell()
+				"Icicle":
+					icicle()
+				"Explosion":
+					explosion_spell()
 		else:
 			print("Not enough MP!")
 			print("Current MP: ", stats_component.current_mp)
@@ -48,7 +55,34 @@ func fireball():
 	#Player will have one set of values, Enemy will have a different set
 	print("Fireball MPow: ", new_fireball.magical_power)
 	add_sibling(new_fireball)
-	
+
+func icicle():
+	const ICICLE = preload("res://Spells/icicle.tscn")
+	var new_icicle = ICICLE.instantiate()
+	new_icicle.global_position = get_parent().global_position
+	new_icicle.global_rotation = get_parent().global_rotation
+	new_icicle.current_direction = last_direction
+	new_icicle.magical_power = stats_component.current_magic
+	new_icicle.set_collision_mask_value(5, true)
+	new_icicle.set_collision_layer_value(4, true)
+	#Need to adjust mask and layer based on the entity that spawns the object
+	#Player will have one set of values, Enemy will have a different set
+	print("Icicle MPow: ", new_icicle.magical_power)
+	add_sibling(new_icicle)
+
+func explosion_spell():
+	const EXPLOSION = preload("res://Spells/explosion_spell.tscn")
+	var new_explosion = EXPLOSION.instantiate()
+	new_explosion.global_position = get_parent().global_position
+	new_explosion.global_rotation = get_parent().global_rotation
+	new_explosion.magical_power = stats_component.current_magic
+	new_explosion.set_collision_mask_value(5, true)
+	new_explosion.set_collision_layer_value(4, true)
+	#Need to adjust mask and layer based on the entity that spawns the object
+	#Player will have one set of values, Enemy will have a different set
+	print("Explsion MPow: ", new_explosion.magical_power)
+	add_sibling(new_explosion)
+
 func heal_spell():
 	const CURE_SPELL = preload("res://Spells/cure_spell.tscn")
 	var new_cure_spell = CURE_SPELL.instantiate()
@@ -81,3 +115,4 @@ func deduct_mp():
 
 func set_spell(index):
 	current_spell = spell_array[index]
+	spell_changed.emit(current_spell)
