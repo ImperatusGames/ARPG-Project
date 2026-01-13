@@ -10,6 +10,7 @@ signal spell_changed(current_spell)
 @export var spell_array : Array[Spell]
 var current_spell : Spell
 var last_direction : String
+var augment_state : bool
 
 #Has an array of spell objects
 #Each spell object has a flag for whether or not it is learned
@@ -26,6 +27,7 @@ func cast_spell():
 	else:
 		if check_mp() == true:
 			deduct_mp()
+			current_spell.aug_state = augment_state
 			match current_spell.spell_name:
 				"Fireball":
 					fireball()

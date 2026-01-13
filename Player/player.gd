@@ -18,6 +18,7 @@ var can_move : bool
 var can_attack : bool
 var can_cast : bool
 var is_running : bool
+var player_augment_state := false
 
 enum States {IDLE, WALKING, RUNNING, ATTACKING, CASTING}
 
@@ -87,6 +88,7 @@ func _input(event):
 			can_attack = false
 			can_cast = false
 			spell_manager.last_direction = last_direction
+			spell_manager.augment_state = player_augment_state
 			await spell_manager.cast_spell()
 			is_casting = false
 			can_move = true
@@ -94,12 +96,13 @@ func _input(event):
 			can_cast = true
 	elif event.is_action_pressed("item"):
 		print("Item used!")
-	#elif event.is_action_pressed("menu"):
-		#const MENU_UI = preload("res://Spells/fireball.tscn")
-		#var new_menu_ui = MENU_UI.instantiate()
-		#add_sibling(new_menu_ui)
-		##get_tree().paused = true
-		#print("Menu button pressed!")
+	elif event.is_action_pressed("augment"):
+		if player_augment_state == true:
+			player_augment_state = false
+			print("Augment State went from True to: ", player_augment_state)
+		else:
+			player_augment_state = true
+			print("Augment State went from False to: ", player_augment_state)
 	elif event.is_action_pressed("run_toggle"):
 		if is_running == true:
 			velocity_component.set_walk_speed()
