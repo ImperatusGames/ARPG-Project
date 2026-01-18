@@ -18,6 +18,14 @@ func select_menu_item(index):
 	description_text.text = ""
 	if menu_items.get_item_text(index) == "Items":
 		print("Items selected!")
+		#TODO: move to a inventory UI - printing inventory from menu selection
+		#START TEST
+		var player = get_tree().get_first_node_in_group("Player")
+		print(player.inventory_manager.get_all_items())
+		#if(player.inventory_manager.has_item(player.inventory_manager.get_item_at_slot(1).item)):
+		player.inventory_manager.remove_item(player.inventory_manager.get_item_at_slot(0).item,4)
+		print(player.inventory_manager.get_all_items())
+		#END TEST
 	elif menu_items.get_item_text(index) == "Equipment":
 		print("Equipment selected!")
 	elif menu_items.get_item_text(index) == "Spells":

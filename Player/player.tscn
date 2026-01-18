@@ -201,3 +201,4 @@ weapon_name = "Axe"
 
 [node name="InventoryManager" parent="." instance=ExtResource("15_dkpta")]
 visible = false
+max_slots = 3

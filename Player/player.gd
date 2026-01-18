@@ -7,7 +7,7 @@ class_name Player extends Entity
 @onready var stats_component: StatsComponent = $StatsComponent
 @onready var spell_manager: SpellManager = $SpellManager
 @onready var weapon_manager: WeaponManager = $WeaponManager
-
+@onready var inventory_manager: InventoryManager = $InventoryManager
 
 var collider
 var last_direction : String
@@ -38,6 +38,9 @@ func _ready() -> void:
 	can_cast = true
 	last_direction = "right"
 	is_running = false
+	if inventory_manager:
+		inventory_manager.item_added.connect(_on_item_added)
+		inventory_manager.item_removed.connect(_on_item_removed)
 	
 func _physics_process(_delta: float) -> void:
 	if can_move == true:
@@ -125,3 +128,16 @@ func _on_chest_body_exited(body: Node) -> void:
 	var index = nearby_chests.find(body)
 	if index != -1:
 		nearby_chests.remove_at(index)
+
+func add_item_to_inventory(item: Item, quantity: int = 1) -> bool:
+	if inventory_manager:
+		return inventory_manager.add_item(item, quantity)
+	else:
+		print("Error: InventoryManager not found!")
+		return false
+
+func _on_item_added(item: Item, quantity: int) -> void:
+	print("Added to inventory: ", item.name, " x", quantity)
+
+func _on_item_removed(item: Item, quantity: int) -> void:
+	print("Removed from inventory: ", item.name, " x", quantity)

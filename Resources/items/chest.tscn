@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dl5psaqewyj7"]
+[gd_scene load_steps=12 format=3 uid="uid://dl5psaqewyj7"]
 
 [ext_resource type="Script" uid="uid://y1kh8ke4lo3q" path="res://Resources/items/chest.gd" id="1_hrmkm"]
 [ext_resource type="Texture2D" uid="uid://bofc2j22b4snk" path="res://Assets/$chests.png" id="1_ojdlp"]
 [ext_resource type="Texture2D" uid="uid://dcjrxy1qc8yrj" path="res://Assets/Rogue_Adventure_Item_Icons02_2.png" id="2_fh3s1"]
+[ext_resource type="Resource" uid="uid://brfmtrovtl8ll" path="res://Resources/items/fish.tres" id="2_vlrm1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hrmkm"]
 atlas = ExtResource("2_fh3s1")
@@ -129,6 +130,8 @@ size = Vector2(80, 62)
 
 [node name="Chest" type="Node2D"]
 script = ExtResource("1_hrmkm")
+item_data = ExtResource("2_vlrm1")
+quantity = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -11)

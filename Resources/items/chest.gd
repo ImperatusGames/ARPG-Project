@@ -25,8 +25,23 @@ func _on_body_exited(body: Node2D) -> void:
 
 func open() -> bool:
 	if is_open:
+		print("Chest already opened")
 		return false
-	is_open = true
-	animation_player.play("open") 
+	
+	if item_data == null:
+		print("Chest is empty")
+		return false
+	
+	#Try to add item to player inventory
+	#use self?
+	var player = get_tree().get_first_node_in_group("Player")
+	if player.add_item_to_inventory(item_data, quantity):
+		is_open = true
+		animation_player.play("open") 
+		print("Chest opened! Received: ", item_data.name, " x", quantity)
+		return true
+	else:
+		print("Inventory full! Cannot open chest.")
+		return false
 	# Add item to inventory here with signal/anim finished?
 	return true
