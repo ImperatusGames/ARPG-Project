@@ -7,6 +7,7 @@ signal has_finished
 @export var is_known := false
 @export var spell_name : String
 @export var spell_description : String
+@export var icon: Texture2D = null
 var aug_state : bool
 
 func _ready() -> void:

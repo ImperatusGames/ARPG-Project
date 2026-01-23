@@ -17,10 +17,23 @@ func healing():
 			pass
 			#Create error failover to prevent the heal from occurring
 		else:
-			Heal.is_spell_heal = true
-			Heal.heal_power = magic_power
-			Heal.heal_factor = 1.0
-			health_component.restore_health(Heal)
-			print("Heal power: ", Heal.spell_power)
-			print("Current health: ", health_component.current_health)
-			print("Max health: ", health_component.max_health)
+			if aug_state == true:
+				Heal.is_spell_heal = true
+				Heal.heal_power = magic_power
+				Heal.heal_factor = 0.5
+				health_component.restore_health(Heal)
+				#TODO: Add code to create a Regen Status on target
+				#TODO: Create Regen Status Effect
+				print("Heal power: ", Heal.spell_power)
+				print("Current health: ", health_component.current_health)
+				print("Max health: ", health_component.max_health)
+				print("Augment State: ", aug_state)
+			else:
+				Heal.is_spell_heal = true
+				Heal.heal_power = magic_power
+				Heal.heal_factor = 1.0
+				health_component.restore_health(Heal)
+				print("Heal power: ", Heal.spell_power)
+				print("Current health: ", health_component.current_health)
+				print("Max health: ", health_component.max_health)
+				print("Augment State: ", aug_state)

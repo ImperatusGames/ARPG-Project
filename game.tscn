@@ -24,6 +24,7 @@ position = Vector2(615, 188)
 
 [node name="demo_enemy" parent="." instance=ExtResource("4_fc0e3")]
 position = Vector2(435, 406)
+collision_layer = 280
 
 [node name="GameUI" parent="." instance=ExtResource("5_7jktm")]
 
@@ -34,16 +35,16 @@ position = Vector2(925, 547)
 position = Vector2(813, 323)
 
 [node name="Chest" parent="." instance=ExtResource("8_j5wjh")]
-position = Vector2(180, 324)
+position = Vector2(156, 312)
 
 [node name="Chest2" parent="." instance=ExtResource("8_j5wjh")]
-position = Vector2(252, 324)
+position = Vector2(285, 312)
 
 [node name="Chest3" parent="." instance=ExtResource("8_j5wjh")]
-position = Vector2(180, 379)
+position = Vector2(157, 431)
 
 [node name="Chest4" parent="." instance=ExtResource("8_j5wjh")]
-position = Vector2(252, 379)
+position = Vector2(287, 432)
 
 [node name="plantwall_test" parent="." instance=ExtResource("9_vef74")]
 position = Vector2(590, 387)

@@ -24,10 +24,11 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="CurrentWeapon" type="Label" parent="."]
-offset_left = 266.0
-offset_top = 3.0
-offset_right = 406.0
-offset_bottom = 33.0
+offset_left = 415.0
+offset_top = 39.0
+offset_right = 555.0
+offset_bottom = 69.0
+text = "Weapon"
 
 [node name="CurrentSpell" type="Label" parent="."]
 offset_left = 266.0
@@ -35,3 +36,10 @@ offset_top = 39.0
 offset_right = 406.0
 offset_bottom = 69.0
 text = "Spell"
+
+[node name="CurrentSpellIcon" type="TextureRect" parent="."]
+offset_left = 268.0
+offset_top = 5.0
+offset_right = 300.0
+offset_bottom = 37.0
+expand_mode = 3

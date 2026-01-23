@@ -44,4 +44,4 @@ func open() -> bool:
 		print("Inventory full! Cannot open chest.")
 		return false
 	# Add item to inventory here with signal/anim finished?
-	return true
+	#return true

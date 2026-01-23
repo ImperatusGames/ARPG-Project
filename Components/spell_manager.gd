@@ -26,19 +26,27 @@ func cast_spell():
 		print("No spell selected!")
 	else:
 		if check_mp() == true:
-			deduct_mp()
+			var is_castable := true
 			current_spell.aug_state = augment_state
+			print("Spell Manager Augment State: ", augment_state)
 			match current_spell.spell_name:
 				"Fireball":
 					fireball()
 				"Cure":
-					heal_spell()
+					if health_component.current_health == health_component.max_health:
+						print("Caster is at max HP!")
+						is_castable = false
+					else:
+						heal_spell()
 				"Defender":
 					defender_spell()
 				"Icicle":
 					icicle()
 				"Explosion":
 					explosion_spell()
+			if is_castable == true:
+				deduct_mp()
+			
 		else:
 			print("Not enough MP!")
 			print("Current MP: ", stats_component.current_mp)
@@ -49,6 +57,7 @@ func fireball():
 	var new_fireball = FIREBALL.instantiate()
 	new_fireball.global_position = get_parent().global_position
 	new_fireball.global_rotation = get_parent().global_rotation
+	new_fireball.aug_state = augment_state
 	new_fireball.current_direction = last_direction
 	new_fireball.magical_power = stats_component.current_magic
 	new_fireball.set_collision_mask_value(5, true)
@@ -63,6 +72,7 @@ func icicle():
 	var new_icicle = ICICLE.instantiate()
 	new_icicle.global_position = get_parent().global_position
 	new_icicle.global_rotation = get_parent().global_rotation
+	new_icicle.aug_state = augment_state
 	new_icicle.current_direction = last_direction
 	new_icicle.magical_power = stats_component.current_magic
 	new_icicle.set_collision_mask_value(5, true)
@@ -77,6 +87,7 @@ func explosion_spell():
 	var new_explosion = EXPLOSION.instantiate()
 	new_explosion.global_position = get_parent().global_position
 	new_explosion.global_rotation = get_parent().global_rotation
+	new_explosion.aug_state = augment_state
 	new_explosion.magical_power = stats_component.current_magic
 	new_explosion.set_collision_mask_value(5, true)
 	new_explosion.set_collision_layer_value(4, true)
@@ -88,6 +99,7 @@ func explosion_spell():
 func heal_spell():
 	const CURE_SPELL = preload("res://Spells/cure_spell.tscn")
 	var new_cure_spell = CURE_SPELL.instantiate()
+	new_cure_spell.aug_state = augment_state
 	new_cure_spell.magic_power = stats_component.current_magic
 	#print("Heal Spell Power: ", new_cure_spell.magic_power)
 	add_sibling(new_cure_spell)
@@ -99,6 +111,7 @@ func defender_spell():
 	else:
 		const DEFENDER_SPELL = preload("res://Spells/defender_spell.tscn")
 		var new_defender_spell = DEFENDER_SPELL.instantiate()
+		new_defender_spell.aug_state = augment_state
 		new_defender_spell.stats_component = stats_component
 		add_sibling(new_defender_spell)
 		new_defender_spell.spell_cast()

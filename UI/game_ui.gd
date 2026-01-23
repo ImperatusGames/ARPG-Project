@@ -6,6 +6,7 @@ class_name GameUI
 @onready var damage: Button = $DamageButton/Damage
 @onready var current_weapon = $CurrentWeapon
 @onready var current_spell = $CurrentSpell
+@onready var current_spell_icon = $CurrentSpellIcon
 var player = null
 
 func _ready():
@@ -28,6 +29,7 @@ func _ready():
 		mp_bar.max_value = player.stats_component.max_mp
 		mp_bar.value = player.stats_component.current_mp
 		current_spell.text = player.spell_manager.current_spell.spell_name
+		current_spell_icon.texture = player.spell_manager.current_spell.icon
 	else:
 		print("No Player found")
 	damage.button_down.connect(player_damage)
@@ -44,6 +46,7 @@ func _on_player_mp_changed(new_mp):
 
 func _on_player_spell_changed(new_spell):
 	current_spell.text = new_spell.name
+	current_spell_icon.texture = new_spell.icon
 
 func player_damage():
 	player.health_component.new_damage(1)

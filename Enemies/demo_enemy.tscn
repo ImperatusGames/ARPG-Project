@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cwalvlb0qn8ll"]
+[gd_scene load_steps=13 format=3 uid="uid://cwalvlb0qn8ll"]
 
 [ext_resource type="Script" uid="uid://bxn1bnqj1vyg4" path="res://Enemies/demo_enemy.gd" id="1_uwtlr"]
 [ext_resource type="Texture2D" uid="uid://c6xv8b8acgao0" path="res://icon.svg" id="2_4vmp6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://d0j4us0xeud10" path="res://Components/velocity_component.gd" id="4_ikuxl"]
 [ext_resource type="Script" uid="uid://dftmybkeosab2" path="res://Components/hurt_box_component.gd" id="5_vwoug"]
 [ext_resource type="PackedScene" uid="uid://cgka0xce4yub0" path="res://States/state_machine.tscn" id="7_n72wm"]
+[ext_resource type="PackedScene" uid="uid://cojl5y5l5d5il" path="res://Components/stats_component.tscn" id="8_i34o8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5nylp"]
 animations = [{
@@ -68,11 +69,12 @@ BASE_SPEED = 50.0
 current_speed = 50.0
 metadata/_custom_type_script = "uid://d0j4us0xeud10"
 
-[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component", "stats_component")]
 collision_layer = 25
 collision_mask = 9
 script = ExtResource("5_vwoug")
 health_component = NodePath("../HealthComponent")
+stats_component = NodePath("../StatsComponent")
 metadata/_custom_type_script = "uid://dftmybkeosab2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
@@ -85,3 +87,5 @@ shape = SubResource("CircleShape2D_vwoug")
 disabled = true
 
 [node name="State_Machine" parent="." instance=ExtResource("7_n72wm")]
+
+[node name="StatsComponent" parent="." instance=ExtResource("8_i34o8")]

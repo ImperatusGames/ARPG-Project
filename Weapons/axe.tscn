@@ -85,6 +85,7 @@ animations = [{
 size = Vector2(8, 18)
 
 [node name="Axe" type="AnimatedSprite2D"]
+modulate = Color(1, 0, 0, 0.811765)
 texture_filter = 1
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_6x0j6")

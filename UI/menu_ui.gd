@@ -4,6 +4,10 @@ extends Control
 @onready var description_text = $Description
 @onready var spell_ui = preload("res://UI/spell_selector.tscn")
 
+#TODO: Refactor Menu into a Pause_UI where all items are created in the same scene
+#This allows all items to be shown/hidden appropriately without worrying about things being stacked on top of another
+#To get an idea of what we want to avoid, open the menu, open Spells, and then select from the Menu again
+#Yeah, doesn't look so hot, does it?
 
 func _ready() -> void:
 	menu_items.item_activated.connect(select_menu_item)
