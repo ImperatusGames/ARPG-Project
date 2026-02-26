@@ -1,0 +1,87 @@
+[gd_scene load_steps=14 format=3 uid="uid://dmsg11axqi6w7"]
+
+[ext_resource type="Script" uid="uid://ch3rs2vc4i1mm" path="res://Enemies/enemy_wasp.gd" id="1_hcapa"]
+[ext_resource type="Texture2D" uid="uid://c6xv8b8acgao0" path="res://icon.svg" id="2_vdyb4"]
+[ext_resource type="Script" uid="uid://bpy1dv6s7e1jl" path="res://Components/health_component.gd" id="3_g2v76"]
+[ext_resource type="Script" uid="uid://d0j4us0xeud10" path="res://Components/velocity_component.gd" id="4_ugray"]
+[ext_resource type="Script" uid="uid://bn1fgwaje5oyp" path="res://Components/stats_component.gd" id="5_hdya7"]
+[ext_resource type="Script" uid="uid://blw0s8wb6kv3c" path="res://Components/drop_component.gd" id="6_5oo8v"]
+[ext_resource type="Script" uid="uid://dftmybkeosab2" path="res://Components/hurt_box_component.gd" id="7_3tgrr"]
+[ext_resource type="PackedScene" uid="uid://cgka0xce4yub0" path="res://States/state_machine.tscn" id="8_h8d2n"]
+[ext_resource type="Script" uid="uid://ck11ga7jf1pfs" path="res://Enemies/state_waiting_for_ambush.gd" id="10_g2v76"]
+[ext_resource type="Script" uid="uid://cvf4h73m5b3lm" path="res://Enemies/state_ambush.gd" id="10_vdyb4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ycq33"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vdyb4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uqnbq"]
+radius = 65.192
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0hlhe"]
+radius = 63.0079
+
+[node name="enemy_ambusher" type="CharacterBody2D"]
+z_index = -1
+scale = Vector2(0.5, 0.5)
+collision_layer = 24
+collision_mask = 9
+script = ExtResource("1_hcapa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_vdyb4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ycq33")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uqnbq")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("3_g2v76")
+max_health = 5
+metadata/_custom_type_script = "uid://bpy1dv6s7e1jl"
+
+[node name="VelocityComponent" type="Node2D" parent="."]
+script = ExtResource("4_ugray")
+BASE_SPEED = 50.0
+metadata/_custom_type_script = "uid://d0j4us0xeud10"
+
+[node name="StatsComponent" type="Node2D" parent="."]
+script = ExtResource("5_hdya7")
+metadata/_custom_type_script = "uid://bn1fgwaje5oyp"
+
+[node name="DropComponent" type="Node2D" parent="."]
+script = ExtResource("6_5oo8v")
+drop_chance = 0.0
+metadata/_custom_type_script = "uid://blw0s8wb6kv3c"
+
+[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component", "stats_component")]
+collision_layer = 25
+collision_mask = 9
+script = ExtResource("7_3tgrr")
+health_component = NodePath("../HealthComponent")
+stats_component = NodePath("../StatsComponent")
+metadata/_custom_type_script = "uid://dftmybkeosab2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+shape = SubResource("CircleShape2D_0hlhe")
+
+[node name="State_Machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("8_h8d2n")]
+starting_state = NodePath("State_WaitingForAmbush")
+
+[node name="State_Ambush" type="Node" parent="State_Machine" node_paths=PackedStringArray("waiting_state")]
+script = ExtResource("10_vdyb4")
+waiting_state = NodePath("../State_WaitingForAmbush")
+
+[node name="State_WaitingForAmbush" type="Node" parent="State_Machine" node_paths=PackedStringArray("ambush_state")]
+script = ExtResource("10_g2v76")
+ambush_state = NodePath("../State_Ambush")

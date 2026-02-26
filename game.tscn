@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d4dvkrat82wgt"]
+[gd_scene load_steps=11 format=3 uid="uid://d4dvkrat82wgt"]
 
 [ext_resource type="PackedScene" uid="uid://dr2ent0anvlpr" path="res://Player/player.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://dmsjil27cypuj" path="res://Enemies/zombie.tscn" id="2_e2o6t"]
@@ -6,9 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://cwalvlb0qn8ll" path="res://Enemies/demo_enemy.tscn" id="4_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://cqvsu8xbdvmbe" path="res://UI/game_ui.tscn" id="5_7jktm"]
 [ext_resource type="PackedScene" uid="uid://bwqsl1ssco62p" path="res://Enemies/enemy_template.tscn" id="6_ryrav"]
-[ext_resource type="PackedScene" uid="uid://b0j548y2pakp0" path="res://Enemies/enemy_test.tscn" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://b0j548y2pakp0" path="res://Enemies/enemy_wasp.tscn" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://dl5psaqewyj7" path="res://Resources/items/chest.tscn" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://yy2hn4ue0scr" path="res://Resources/plantwall_test.tscn" id="9_vef74"]
+[ext_resource type="PackedScene" uid="uid://dmsg11axqi6w7" path="res://Enemies/enemy_ambusher.tscn" id="10_hve3p"]
 
 [node name="Game" type="Node2D"]
 process_mode = 1
@@ -31,8 +32,11 @@ collision_layer = 280
 [node name="enemy_template" parent="." instance=ExtResource("6_ryrav")]
 position = Vector2(925, 547)
 
-[node name="enemy_test" parent="." instance=ExtResource("7_eow3j")]
+[node name="enemy_wasp" parent="." instance=ExtResource("7_eow3j")]
 position = Vector2(813, 323)
+
+[node name="enemy_wasp2" parent="." instance=ExtResource("7_eow3j")]
+position = Vector2(714, 479)
 
 [node name="Chest" parent="." instance=ExtResource("8_j5wjh")]
 position = Vector2(156, 312)
@@ -49,3 +53,6 @@ position = Vector2(287, 432)
 [node name="plantwall_test" parent="." instance=ExtResource("9_vef74")]
 position = Vector2(590, 387)
 scale = Vector2(2, 2)
+
+[node name="enemy_ambusher" parent="." instance=ExtResource("10_hve3p")]
+position = Vector2(431, 548)

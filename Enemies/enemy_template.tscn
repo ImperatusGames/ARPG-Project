@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bwqsl1ssco62p"]
 
-[ext_resource type="Script" uid="uid://ch3rs2vc4i1mm" path="res://Enemies/enemy_test.gd" id="1_tp5d7"]
+[ext_resource type="Script" uid="uid://ch3rs2vc4i1mm" path="res://Enemies/enemy_wasp.gd" id="1_tp5d7"]
 [ext_resource type="Texture2D" uid="uid://c6xv8b8acgao0" path="res://icon.svg" id="2_tp5d7"]
 [ext_resource type="Script" uid="uid://bpy1dv6s7e1jl" path="res://Components/health_component.gd" id="3_r0e1c"]
 [ext_resource type="Script" uid="uid://d0j4us0xeud10" path="res://Components/velocity_component.gd" id="4_rexnh"]
