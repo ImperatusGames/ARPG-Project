@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://di8v4b1ec3n1p"]
+[gd_scene load_steps=3 format=3 uid="uid://di8v4b1ec3n1p"]
 
 [ext_resource type="Script" uid="uid://8vvwnt240ipa" path="res://UI/menu_ui.gd" id="1_gaeo4"]
+[ext_resource type="PackedScene" uid="uid://d3ec0pxja7noq" path="res://UI/Inventory/inventory_ui.tscn" id="2_bh1w4"]
 
 [node name="MenuUI" type="Control"]
 process_mode = 3
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,3 +41,7 @@ offset_left = 1.0
 offset_top = 579.0
 offset_right = 1151.0
 offset_bottom = 646.0
+
+[node name="InventoryUI" parent="." instance=ExtResource("2_bh1w4")]
+visible = false
+layout_mode = 1

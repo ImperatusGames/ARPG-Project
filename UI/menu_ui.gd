@@ -3,6 +3,9 @@ extends Control
 @onready var menu_items = $ItemList
 @onready var description_text = $Description
 @onready var spell_ui = preload("res://UI/spell_selector.tscn")
+@onready var inventory_ui: InventoryUI = $InventoryUI
+
+var player: Player = null
 
 #TODO: Refactor Menu into a Pause_UI where all items are created in the same scene
 #This allows all items to be shown/hidden appropriately without worrying about things being stacked on top of another
@@ -12,6 +15,17 @@ extends Control
 func _ready() -> void:
 	menu_items.item_activated.connect(select_menu_item)
 	menu_items.item_selected.connect(updated_description_text)
+	
+	initialize_inventory()
+	
+	# Connect inventory UI signals
+	if inventory_ui:
+		inventory_ui.inventory_closed.connect(_on_inventory_closed)
+
+func initialize_inventory() -> void:
+	player = get_tree().get_first_node_in_group("Player")
+	if player and inventory_ui:
+		inventory_ui.initialize(player)
 
 func _input(event):
 	if event.is_action_pressed("menu"):
@@ -22,14 +36,7 @@ func select_menu_item(index):
 	description_text.text = ""
 	if menu_items.get_item_text(index) == "Items":
 		print("Items selected!")
-		#TODO: move to a inventory UI - printing inventory from menu selection
-		#START TEST
-		var player = get_tree().get_first_node_in_group("Player")
-		print(player.inventory_manager.get_all_items())
-		#if(player.inventory_manager.has_item(player.inventory_manager.get_item_at_slot(1).item)):
-		player.inventory_manager.remove_item(player.inventory_manager.get_item_at_slot(0).item,4)
-		print(player.inventory_manager.get_all_items())
-		#END TEST
+		open_inventory()
 	elif menu_items.get_item_text(index) == "Equipment":
 		print("Equipment selected!")
 	elif menu_items.get_item_text(index) == "Spells":
@@ -42,6 +49,20 @@ func select_menu_item(index):
 		print("Settings selected!")
 	else:
 		print("Invalid item selected!")
+
+func open_inventory() -> void:
+	if inventory_ui:
+		# Hide menu elements
+		menu_items.hide()
+		description_text.hide()
+		
+		# Show and open inventory
+		inventory_ui.open_inventory()
+
+func _on_inventory_closed() -> void:
+	# Show menu elements again
+	menu_items.show()
+	description_text.show()
 
 func close_menu():
 	print("Close menu func code")
