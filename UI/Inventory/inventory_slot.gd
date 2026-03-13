@@ -18,10 +18,35 @@ var selected_style: StyleBoxFlat
 
 func _ready() -> void:
 
+	setup_styles()
+
 	if button:
 		button.pressed.connect(_on_button_pressed)
 	
 	clear_slot()
+
+func setup_styles() -> void:
+	# Normal style - dark background with border
+	normal_style = StyleBoxFlat.new()
+	normal_style.bg_color = Color(0.2, 0.2, 0.2, 0.8)
+	normal_style.border_color = Color(0.4, 0.4, 0.4, 1.0)
+	normal_style.set_border_width_all(2)
+	normal_style.corner_radius_top_left = 4
+	normal_style.corner_radius_top_right = 4
+	normal_style.corner_radius_bottom_left = 4
+	normal_style.corner_radius_bottom_right = 4
+	
+	# Selected style - highlighted border
+	selected_style = StyleBoxFlat.new()
+	selected_style.bg_color = Color(0.3, 0.3, 0.3, 0.8)
+	selected_style.border_color = Color(0.8, 0.6, 0.2, 1.0)
+	selected_style.set_border_width_all(3)
+	selected_style.corner_radius_top_left = 4
+	selected_style.corner_radius_top_right = 4
+	selected_style.corner_radius_bottom_left = 4
+	selected_style.corner_radius_bottom_right = 4
+	
+	add_theme_stylebox_override("panel", normal_style)
 
 func set_item(slot_data: Dictionary) -> void:
 	if slot_data.has("item"):
