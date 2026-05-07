@@ -6,13 +6,24 @@ extends Node2D
 var is_open : bool = false
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var item_sprite: Sprite2D = $ItemSprite
 @onready var item_stack_label: Label = $ItemSprite/ItemStack
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var interact_area_2d: Area2D = $Area2D
 
 func _ready() -> void:
+	update_loot_preview()
 	interact_area_2d.body_entered.connect(_on_body_entered) 
 	interact_area_2d.body_exited.connect(_on_body_exited)
+
+func update_loot_preview() -> void:
+	if item_data != null and item_data.icon != null:
+		item_sprite.texture = item_data.icon
+
+	if quantity > 1:
+		item_stack_label.text = "x" + str(quantity)
+	else:
+		item_stack_label.text = ""
 
 #Player enters chest area
 func _on_body_entered(body: Node2D) -> void:

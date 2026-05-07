@@ -15,6 +15,14 @@ func _physics_process(delta: float) -> void:
 	velocity -= velocity * delta * 4	
 
 func _on_area_2d_body_entered(body):
-	print("PICKUP")
-	if body is Player: #and body.inventory.add_item(item_resource):
+	if not body is Player:
+		return
+
+	if item_resource == null:
+		print("Pickup has no item_resource")
+		return
+
+	if body.add_item_to_inventory(item_resource, 1):
 		queue_free()
+	else:
+		print("Inventory full, pickup stays in world")

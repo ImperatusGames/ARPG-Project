@@ -10,5 +10,5 @@ description = "Gold Piece"
 icon = ExtResource("1_e4w6t")
 value = 1
 type = "Misc"
-max_stack = 1
+max_stack = 10
 metadata/_custom_type_script = "uid://bdmiwf3a4x1j4"

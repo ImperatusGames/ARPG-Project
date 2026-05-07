@@ -2,13 +2,10 @@ extends Node2D
 class_name DropComponent
 
 @export var drop_chance: float = 0.95  # 0.0 to 1.0, chance to drop
-@export var item_resource: Item  # The item to drop (your Resource)
-@export var pickup_scene: PackedScene = preload("res://Resources/items/pickup.tscn")  # Your pickup scene
-##Pickup scene defaults dropping a gold piece unless overridden by item_resource, 
-##TBD if there will be other non gold "loose" pickups
-
-var can_move := true
-var direction = Vector2(.5,.5)
+@export var chest_scene: PackedScene = preload("res://Resources/items/chest.tscn")
+@export var loot_table: Array[ChestLootEntry] = []
+@export var fallback_item: Item
+@export_range(1, 999, 1) var fallback_max_quantity: int = 1
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -20,31 +17,59 @@ func trigger_drop() -> void:
 	if drop > drop_chance:
 		print(drop)
 		return
-	print("DROP")
-	var pickup = pickup_scene.instantiate()
-	if (item_resource):
-		print("item res")
-		pickup.item_resource = item_resource #item_resource ##TODO learn why setting export as gold causes issues
-	pickup.global_position = get_parent().global_position
-	
-	var enemy = get_parent()
-	var inherited_velocity: Vector2 = Vector2(15.0,15.0)
-	if owner.has_node("VelocityComponent"): #enemy is CharacterBody2D && enemy.velocity != Vector2(0,0):
-		inherited_velocity = enemy.velocity
-	print(inherited_velocity)
-	inherited_velocity = inherited_velocity.rotated( randf_range(-1.5, 1.5) ) * randf_range(10 , 20 )
-	
-	# Apply to pickup (assuming it has a 'velocity' property)
-	if "velocity" in pickup:
-		pickup.velocity = inherited_velocity
-	
-	# Add to the world (adjust to your main scene or a spawner node)
-	get_tree().current_scene.add_child.call_deferred(pickup)
-	
-	#var pickup = load("res://Resources/pickup.tscn").instantiate()
-	#pickup.item_resource = load("res://Resources/gold.tres")
-	#get_tree().current_scene.add_child.call_deferred(pickup)
-	#pickup.position = position
-	#var velocity = Vector2(15.0,15.0)
-	#pickup.velocity = velocity.rotated( randf_range(-1.5, 1.5) ) * randf_range(10 , 20 )
-	#inherited_velocity += Vector2(rng.randf_range(-50, 50), rng.randf_range(-50, 50))
+	print("DROP CHEST")
+
+	if chest_scene == null:
+		print("No chest scene configured for drop component")
+		return
+
+	var loot = roll_loot()
+	if loot.is_empty():
+		print("No loot configured for drop component")
+		return
+
+	var chest = chest_scene.instantiate()
+	chest.item_data = loot["item"]
+	chest.quantity = loot["quantity"]
+	chest.global_position = get_parent().global_position
+	get_tree().current_scene.add_child.call_deferred(chest)
+
+func roll_loot() -> Dictionary:
+	var valid_entries: Array[ChestLootEntry] = []
+
+	for entry in loot_table:
+		if entry != null and entry.item != null and entry.max_quantity > 0:
+			valid_entries.append(entry)
+
+	if valid_entries.is_empty():
+		if fallback_item == null or fallback_max_quantity <= 0:
+			return {}
+		return {
+			"item": fallback_item,
+			"quantity": roll_quantity(fallback_max_quantity)
+		}
+
+	var entry_index := rng.randi_range(0, valid_entries.size() - 1)
+	var selected_entry := valid_entries[entry_index]
+	return {
+		"item": selected_entry.item,
+		"quantity": roll_quantity(selected_entry.max_quantity)
+	}
+
+func roll_quantity(max_quantity: int) -> int:
+	if max_quantity <= 1:
+		return 1
+
+	var total_weight := 0
+	for amount in range(1, max_quantity + 1):
+		total_weight += (max_quantity - amount + 1)
+
+	var roll := rng.randi_range(1, total_weight)
+	var running_total := 0
+
+	for amount in range(1, max_quantity + 1):
+		running_total += (max_quantity - amount + 1)
+		if roll <= running_total:
+			return amount
+
+	return 1
