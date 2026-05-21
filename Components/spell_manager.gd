@@ -44,6 +44,8 @@ func cast_spell():
 					icicle()
 				"Explosion":
 					explosion_spell()
+				"Cleanse":
+					cleanse_spell()
 			if is_castable == true:
 				deduct_mp()
 			
@@ -115,6 +117,9 @@ func defender_spell():
 		new_defender_spell.stats_component = stats_component
 		add_sibling(new_defender_spell)
 		new_defender_spell.spell_cast()
+
+func cleanse_spell():
+	pass
 
 func check_mp():
 	if current_spell.mp_cost > stats_component.current_mp:

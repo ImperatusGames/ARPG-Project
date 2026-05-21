@@ -123,6 +123,14 @@ func set_magic_def_penalty_off():
 
 func spell_cast():
 	emit_signal("mp_changed", current_mp)
+
+func restore_mp(mp_recovered: int):
+	if current_mp + mp_recovered > max_mp:
+		current_mp = max_mp
+	else:
+		current_mp += mp_recovered
+	emit_signal("mp_changed", current_mp)
+	
 #####
 # Defense = ((base_def + equipment def) +/* positive_modifiers) -// negative_modifiers)
 #####

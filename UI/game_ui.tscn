@@ -15,7 +15,6 @@ offset_top = 30.0
 offset_bottom = -588.0
 
 [node name="DamageButton" parent="." instance=ExtResource("4_2oifk")]
-anchors_preset = 0
 offset_left = 1019.0
 offset_top = 7.0
 offset_right = 1019.0

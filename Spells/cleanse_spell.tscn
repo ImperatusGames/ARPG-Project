@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://k5vw6fp1eik0"]
+
+[ext_resource type="Script" uid="uid://owqictmf4wl3" path="res://Spells/cleanse_spell.gd" id="1_3vis1"]
+
+[node name="Cleanse" type="Area2D"]
+top_level = true
+script = ExtResource("1_3vis1")
+mp_cost = 2
+spell_name = "Cleanse"
+spell_description = "Removes negative status effects"

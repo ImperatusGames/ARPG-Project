@@ -22,7 +22,7 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[node name="Text" type="Label" parent="MPBar"]
+[node name="Label" type="Label" parent="MPBar"]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 3.0

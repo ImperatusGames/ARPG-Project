@@ -2,7 +2,9 @@ extends CanvasLayer
 class_name GameUI
 
 @onready var health_bar: ProgressBar = $HealthBar/HPBar
+@onready var health_label: Label = $HealthBar/HPBar/Label
 @onready var mp_bar: ProgressBar = $ManaBar/MPBar
+@onready var mp_label: Label = $ManaBar/MPBar/Label
 @onready var damage: Button = $DamageButton/Damage
 @onready var current_weapon = $CurrentWeapon
 @onready var current_spell = $CurrentSpell
@@ -26,8 +28,10 @@ func _ready():
 		#xp_bar.max_value = player.xp_to_level
 		health_bar.max_value = player.health_component.max_health
 		health_bar.value = player.health_component.current_health
+		health_label.text = str(player.health_component.current_health) + "/" + str(player.health_component.max_health)
 		mp_bar.max_value = player.stats_component.max_mp
 		mp_bar.value = player.stats_component.current_mp
+		mp_label.text = str(player.stats_component.current_mp) + "/" + str(player.stats_component.max_mp)
 		current_spell.text = player.spell_manager.current_spell.spell_name
 		current_spell_icon.texture = player.spell_manager.current_spell.icon
 	else:
@@ -36,6 +40,7 @@ func _ready():
 
 func _on_player_health_changed(new_health):
 	health_bar.value = new_health #player.health_component.current_health
+	health_label.text = str(player.health_component.current_health) + "/" + str(player.health_component.max_health)
 
 func _on_player_health_depleted():
 	# Optional: Show game over screen
@@ -43,13 +48,14 @@ func _on_player_health_depleted():
 
 func _on_player_mp_changed(new_mp):
 	mp_bar.value = new_mp
+	mp_label.text = str(player.stats_component.current_mp) + "/" + str(player.stats_component.max_mp)
 
 func _on_player_spell_changed(new_spell):
 	current_spell.text = new_spell.name
 	current_spell_icon.texture = new_spell.icon
 
 func player_damage():
-	player.health_component.new_damage(1)
+	player.health_component.new_damage(5)
 
 func game_paused():
 	hide()

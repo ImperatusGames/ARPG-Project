@@ -10,6 +10,8 @@ func _init(p_name: String = "", p_description: String = "", p_icon: Texture2D = 
 	effect_duration = p_effect_duration
 
 func use(player: Node) -> void:
-	if player.has_method("heal"):
-		player.heal(heal_amount)
+	if player.health_component.has_method("restore_health"):
+		Heal.heal_power = heal_amount
+		Heal.is_spell_heal = false
+		player.health_component.restore_health(Heal)
 	print(name, " used: Healed ", heal_amount, " HP")
