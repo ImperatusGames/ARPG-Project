@@ -17,8 +17,9 @@ func _ready() -> void:
 func impact(area):
 	if area is HurtBoxComponent:
 		var hurtBox: HurtBoxComponent = area
-		attack.attack_type = 1
-		attack.magical_power = magical_power 
+		attack.damage_type = damage_type
+		attack.element_type = element_type
+		attack.magical_power = magical_power * 2
 		#TODO Part 2: Create formula for spell damage
 		hurtBox.new_damage(attack)
 

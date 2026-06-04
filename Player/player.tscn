@@ -172,25 +172,31 @@ libraries = {
 }
 
 [node name="SpellManager" parent="." node_paths=PackedStringArray("spell_array") instance=ExtResource("9_00tjw")]
-spell_array = [NodePath("Fireball"), NodePath("Cure Spell"), NodePath("Defender Spell"), NodePath("Icicle"), NodePath("Explosion"), NodePath("Cleanse")]
+spell_array = [NodePath("Defender Spell"), NodePath("Fireball"), NodePath("Explosion"), NodePath("Cleanse"), NodePath("Icicle"), NodePath("Cure Spell")]
 
 [node name="Cure Spell" parent="SpellManager" instance=ExtResource("10_apopc")]
 visible = false
+is_known = true
 
 [node name="Fireball" parent="SpellManager" instance=ExtResource("11_5htga")]
 visible = false
+is_known = true
 
 [node name="Defender Spell" parent="SpellManager" instance=ExtResource("12_gu6f8")]
 visible = false
+is_known = true
 
 [node name="Icicle" parent="SpellManager" instance=ExtResource("13_lfmf2")]
 visible = false
+is_known = true
 
 [node name="Explosion" parent="SpellManager" instance=ExtResource("14_pisgm")]
 visible = false
+is_known = true
 
 [node name="Cleanse" parent="SpellManager" instance=ExtResource("15_o28un")]
 visible = false
+is_known = true
 
 [node name="WeaponManager" parent="." node_paths=PackedStringArray("weapon_array") instance=ExtResource("12_5htga")]
 weapon_array = [NodePath("Sword"), NodePath("Axe")]

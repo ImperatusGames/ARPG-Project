@@ -9,9 +9,9 @@ radius = 62.0322
 [node name="Explosion" type="Area2D"]
 top_level = true
 script = ExtResource("1_rc7i4")
-mp_cost = 5
 spell_name = "Explosion"
 spell_description = "Destroys objects and walls in an area around the caster"
+element_type = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ul2eo")

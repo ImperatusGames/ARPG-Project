@@ -166,7 +166,7 @@ func open_inventory() -> void:
 	refresh_inventory()
 	
 	# Pause game when inventory is open
-	get_tree().paused = true
+	#get_tree().paused = true
 
 func _input(event: InputEvent) -> void:
 	if visible and event.is_action_pressed("ui_cancel"):

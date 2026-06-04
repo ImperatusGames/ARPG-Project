@@ -1,0 +1,42 @@
+class_name Globals
+
+enum DAMAGE_TYPES {
+	PHYSICAL = 0,
+	MAGIC = 10
+}
+
+enum WEAPON_TYPES {
+	SLASHING = 0,
+	PIERCING = 1,
+	BLUDGEONING = 2
+}
+
+enum ELEMENT_TYPES {
+	NONE = 0,
+	EARTH = 10,
+	FIRE = 20,
+	WIND = 30,
+	WATER = 40,
+}
+
+enum STATUS_TYPES {
+	POISON = 0,
+	STUN = 1,
+	SLOW = 2,
+	FROZEN = 3,
+	SILENCE = 4,
+	KNOCK_BACK = 5
+}
+
+enum CHAR_STATS {
+	DEFENSE = 0,
+	STRENGTH = 1,
+	MAGIC = 2,
+	MAGIC_DEFENSE = 3,
+	CRIT_RATE = 4,
+	CRIT_DAMAGE = 5,
+	PHYSICAL_DODGE = 6,
+	MAGIC_DODGE = 7,
+	HP = 8,
+	MP = 9
+}

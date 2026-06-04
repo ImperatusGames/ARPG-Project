@@ -12,7 +12,7 @@ func _ready() -> void:
 func healing():
 	if get_parent().has_node("HealthComponent"):
 		var health_component : HealthComponent = get_node("../HealthComponent")
-		var stats_component : StatsComponent = get_node("../StatsComponent")
+		#var stats_component : StatsComponent = get_node("../StatsComponent")
 		if health_component.current_health == health_component.max_health:
 			pass
 			#Create error failover to prevent the heal from occurring

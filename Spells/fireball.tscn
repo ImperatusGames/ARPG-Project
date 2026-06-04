@@ -20,6 +20,7 @@ mp_cost = 2
 spell_name = "Fireball"
 spell_description = "Shoot a fireball!"
 icon = SubResource("AtlasTexture_bqbvj")
+element_type = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)

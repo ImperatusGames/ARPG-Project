@@ -15,13 +15,12 @@ func damage(attack: Attack):
 		health_component.damage(attack)
 
 func new_damage(attack: Attack):
-	print("Attack type: ", attack.attack_type)
 	if stats_component:
-		if attack.attack_type == 0:
+		if attack.damage_type == Globals.DAMAGE_TYPES.PHYSICAL:
 			var calculated_damage = attack.physical_power - stats_component.current_defense
 			health_component.new_damage(calculated_damage)
 			print(attack.physical_power)
-		elif attack.attack_type == 1:
+		elif attack.damage_type == Globals.DAMAGE_TYPES.MAGIC:
 			var calculated_damage = attack.magical_power - stats_component.current_magic_def
 			health_component.new_damage(calculated_damage)
 			print(attack.magical_power)

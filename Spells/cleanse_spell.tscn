@@ -8,3 +8,4 @@ script = ExtResource("1_3vis1")
 mp_cost = 2
 spell_name = "Cleanse"
 spell_description = "Removes negative status effects"
+element_type = 30

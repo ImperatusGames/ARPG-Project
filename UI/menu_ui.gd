@@ -2,7 +2,7 @@ extends Control
 
 @onready var menu_items = $ItemList
 @onready var description_text = $Description
-@onready var spell_ui = preload("res://UI/spell_selector.tscn")
+@onready var spell_ui: SpellUI = $SpellSelector
 @onready var inventory_ui: InventoryUI = $InventoryUI
 
 var player: Player = null
@@ -26,6 +26,11 @@ func initialize_inventory() -> void:
 	player = get_tree().get_first_node_in_group("Player")
 	if player and inventory_ui:
 		inventory_ui.initialize(player)
+
+#func initialize_spells() -> void:
+	#player = get_tree().get_first_node_in_group("Player")
+	#if player and spell_ui:
+		#spell_ui.initialize(player)
 
 func _input(event):
 	if event.is_action_pressed("menu"):
@@ -63,6 +68,13 @@ func _on_inventory_closed() -> void:
 	# Show menu elements again
 	menu_items.show()
 	description_text.show()
+
+#func open_spell() -> void:
+	#if spell_ui:
+		#menu_items.hide()
+		#description_text.hide()
+		#
+		#spell_ui.show()
 
 func close_menu():
 	print("Close menu func code")

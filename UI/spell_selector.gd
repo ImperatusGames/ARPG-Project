@@ -8,12 +8,11 @@ var player = null
 
 func _ready():
 	player = get_tree().get_first_node_in_group("Player")
-	spell_list.set_item_text(0, player.spell_manager.spell_array[0].spell_name)
-	spell_list.set_item_text(1, player.spell_manager.spell_array[1].spell_name)
-	spell_list.set_item_text(2, player.spell_manager.spell_array[2].spell_name)
-	spell_list.set_item_text(3, player.spell_manager.spell_array[3].spell_name)
-	spell_list.set_item_text(4, player.spell_manager.spell_array[4].spell_name)
-	spell_list.set_item_text(5, player.spell_manager.spell_array[5].spell_name)
+	for i in range(0, player.spell_manager.spell_array.size()):
+		if player.spell_manager.spell_array[i].is_known == true:
+			spell_list.set_item_text(i, player.spell_manager.spell_array[i].spell_name)
+			spell_list.set_item_selectable(i, true)
+			spell_list.set_item_disabled(i, false)
 	spell_list.item_activated.connect(new_current_spell)
 	spell_list.item_selected.connect(update_spell_description)
 

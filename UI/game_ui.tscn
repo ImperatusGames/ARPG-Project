@@ -42,3 +42,10 @@ offset_top = 5.0
 offset_right = 300.0
 offset_bottom = 37.0
 expand_mode = 3
+
+[node name="CurrentWeaponIcon" type="TextureRect" parent="."]
+offset_left = 431.0
+offset_top = 5.0
+offset_right = 463.0
+offset_bottom = 37.0
+expand_mode = 3
