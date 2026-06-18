@@ -22,6 +22,8 @@ func check_enemies(area):
 	if area is HurtBoxComponent:
 		print("Hurt Box detected!")
 		var hurtBox: HurtBoxComponent = area
+		attack.weapon_type = weapon_type
+		attack.damage_type = damage_type
 		attack.physical_power = physical_power #TODO: Need to modify to be based on the caster's Strength stat
 		#TODO Part 2: Create formula for spell damage
 		hurtBox.new_damage(attack)

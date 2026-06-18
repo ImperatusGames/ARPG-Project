@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://b38a6f3r8dvdk"]
+
+[ext_resource type="Script" uid="uid://bjt3y5ov5wngt" path="res://UI/status_ui.gd" id="1_ijltn"]
+
+[node name="StatusUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ijltn")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 49.0
+offset_right = 1052.0
+offset_bottom = 594.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 930.0
+offset_bottom = 543.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Status"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Labels" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer/Labels"]
+layout_mode = 2
+text = "Strength"
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer/Labels"]
+layout_mode = 2
+text = "Defense"
+
+[node name="BaseStats" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer/BaseStats"]
+layout_mode = 2
+text = "5"
+
+[node name="CurrentStats" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer/CurrentStats"]
+layout_mode = 2
+text = "5"
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Close"

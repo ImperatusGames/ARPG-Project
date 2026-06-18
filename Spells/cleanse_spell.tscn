@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://k5vw6fp1eik0"]
+[gd_scene load_steps=4 format=3 uid="uid://k5vw6fp1eik0"]
 
 [ext_resource type="Script" uid="uid://owqictmf4wl3" path="res://Spells/cleanse_spell.gd" id="1_3vis1"]
+[ext_resource type="Texture2D" uid="uid://b3ud3b6evnhaw" path="res://Assets/RA_Item_Icons03_2.png" id="2_jp7b2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2r8s"]
+atlas = ExtResource("2_jp7b2")
+region = Rect2(1440, 1104, 48, 48)
 
 [node name="Cleanse" type="Area2D"]
 top_level = true
@@ -8,4 +13,5 @@ script = ExtResource("1_3vis1")
 mp_cost = 2
 spell_name = "Cleanse"
 spell_description = "Removes negative status effects"
+icon = SubResource("AtlasTexture_y2r8s")
 element_type = 30

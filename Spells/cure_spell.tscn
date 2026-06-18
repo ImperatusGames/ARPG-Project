@@ -1,12 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://veny71hspg3j"]
+[gd_scene load_steps=4 format=3 uid="uid://veny71hspg3j"]
 
 [ext_resource type="Script" uid="uid://8ppgv5sxiibi" path="res://Spells/cure_spell.gd" id="1_4akqx"]
+[ext_resource type="Texture2D" uid="uid://b3ud3b6evnhaw" path="res://Assets/RA_Item_Icons03_2.png" id="2_lxyvc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jww2k"]
+atlas = ExtResource("2_lxyvc")
+region = Rect2(1248, 1152, 48, 48)
 
 [node name="Cure Spell" type="Area2D"]
 script = ExtResource("1_4akqx")
 mp_cost = 5
 spell_name = "Cure"
 spell_description = "Restores some HP"
+icon = SubResource("AtlasTexture_jww2k")
 element_type = 40
 
 [node name="Timer" type="Timer" parent="."]

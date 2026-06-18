@@ -46,6 +46,10 @@ func cast_spell():
 					explosion_spell()
 				"Cleanse":
 					cleanse_spell()
+				"Quake":
+					quake_spell()
+				"Lightning Bolt":
+					lightning_spell()
 			if is_castable == true:
 				deduct_mp()
 			
@@ -118,7 +122,24 @@ func defender_spell():
 		add_sibling(new_defender_spell)
 		new_defender_spell.spell_cast()
 
+func quake_spell():
+	const QUAKE = preload("res://Spells/quake_spell.tscn")
+	var new_quake = QUAKE.instantiate()
+	new_quake.global_position = get_parent().global_position
+	new_quake.global_rotation = get_parent().global_rotation
+	new_quake.aug_state = augment_state
+	new_quake.magical_power = stats_component.current_magic
+	new_quake.set_collision_mask_value(5, true)
+	new_quake.set_collision_layer_value(4, true)
+	#Need to adjust mask and layer based on the entity that spawns the object
+	#Player will have one set of values, Enemy will have a different set
+	print("Quake MPow: ", new_quake.magical_power)
+	add_sibling(new_quake)
+
 func cleanse_spell():
+	pass
+
+func lightning_spell():
 	pass
 
 func check_mp():

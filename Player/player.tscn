@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dr2ent0anvlpr"]
+[gd_scene load_steps=29 format=3 uid="uid://dr2ent0anvlpr"]
 
 [ext_resource type="Script" uid="uid://cloou2v6s6b3r" path="res://Player/player.gd" id="1_lwtpo"]
 [ext_resource type="Texture2D" uid="uid://dk5lk5uu5jrit" path="res://Assets/Prototype_Character.png" id="2_lwtpo"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://wqdca067j6nd" path="res://Spells/explosion_spell.tscn" id="14_pisgm"]
 [ext_resource type="PackedScene" uid="uid://dboaik3jgxyhy" path="res://Components/inventory_manager.tscn" id="15_dkpta"]
 [ext_resource type="PackedScene" uid="uid://k5vw6fp1eik0" path="res://Spells/cleanse_spell.tscn" id="15_o28un"]
+[ext_resource type="PackedScene" uid="uid://dq25flcihv20i" path="res://Spells/quake_spell.tscn" id="16_n471f"]
 [ext_resource type="PackedScene" uid="uid://d1swxgtjuis7b" path="res://Weapons/axe.tscn" id="17_b1ygp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lwtpo"]
@@ -145,7 +146,7 @@ base_strength = 5
 base_magic = 5
 base_magic_def = 5
 base_crit_rate = 5.0
-max_mp = 10
+max_mp = 999
 
 [node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component", "stats_component") instance=ExtResource("6_x1lg7")]
 collision_layer = 1
@@ -172,7 +173,7 @@ libraries = {
 }
 
 [node name="SpellManager" parent="." node_paths=PackedStringArray("spell_array") instance=ExtResource("9_00tjw")]
-spell_array = [NodePath("Defender Spell"), NodePath("Fireball"), NodePath("Explosion"), NodePath("Cleanse"), NodePath("Icicle"), NodePath("Cure Spell")]
+spell_array = [NodePath("Quake"), NodePath("Defender Spell"), NodePath("Explosion"), NodePath("Fireball"), NodePath("Cleanse"), NodePath("Icicle"), NodePath("Cure Spell")]
 
 [node name="Cure Spell" parent="SpellManager" instance=ExtResource("10_apopc")]
 visible = false
@@ -195,6 +196,10 @@ visible = false
 is_known = true
 
 [node name="Cleanse" parent="SpellManager" instance=ExtResource("15_o28un")]
+visible = false
+is_known = true
+
+[node name="Quake" parent="SpellManager" instance=ExtResource("16_n471f")]
 visible = false
 is_known = true
 

@@ -4,6 +4,7 @@ extends Control
 @onready var description_text = $Description
 @onready var spell_ui: SpellUI = $SpellSelector
 @onready var inventory_ui: InventoryUI = $InventoryUI
+@onready var status_ui: StatusUI = $StatusUI
 
 var player: Player = null
 
@@ -21,6 +22,12 @@ func _ready() -> void:
 	# Connect inventory UI signals
 	if inventory_ui:
 		inventory_ui.inventory_closed.connect(_on_inventory_closed)
+	
+	if spell_ui:
+		spell_ui.spell_menu_closed.connect(_on_spell_menu_closed)
+	
+	if status_ui:
+		status_ui.status_menu_closed.connect(_on_status_menu_closed)
 
 func initialize_inventory() -> void:
 	player = get_tree().get_first_node_in_group("Player")
@@ -45,11 +52,14 @@ func select_menu_item(index):
 	elif menu_items.get_item_text(index) == "Equipment":
 		print("Equipment selected!")
 	elif menu_items.get_item_text(index) == "Spells":
-		const SPELL_UI = preload("res://UI/spell_selector.tscn")
-		var new_spell_ui = SPELL_UI.instantiate()
-		add_child(new_spell_ui)
+		#const SPELL_UI = preload("res://UI/spell_selector.tscn")
+		#var new_spell_ui = SPELL_UI.instantiate()
+		#add_child(new_spell_ui)
+		print("Spells selected!")
+		open_spell()
 	elif menu_items.get_item_text(index) == "Status":
 		print("Status selected!")
+		open_status()
 	elif menu_items.get_item_text(index) == "Settings":
 		print("Settings selected!")
 	else:
@@ -69,12 +79,27 @@ func _on_inventory_closed() -> void:
 	menu_items.show()
 	description_text.show()
 
-#func open_spell() -> void:
-	#if spell_ui:
-		#menu_items.hide()
-		#description_text.hide()
-		#
-		#spell_ui.show()
+func open_spell() -> void:
+	if spell_ui:
+		menu_items.hide()
+		description_text.hide()
+		
+		spell_ui.show()
+
+func open_status() -> void:
+	if status_ui:
+		menu_items.hide()
+		description_text.hide()
+		
+		status_ui.show()
+
+func _on_spell_menu_closed() -> void:
+	menu_items.show()
+	description_text.show()
+
+func _on_status_menu_closed() -> void:
+	menu_items.show()
+	description_text.show()
 
 func close_menu():
 	print("Close menu func code")

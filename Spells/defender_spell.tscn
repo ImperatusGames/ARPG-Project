@@ -1,12 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bisksj668mnne"]
+[gd_scene load_steps=4 format=3 uid="uid://bisksj668mnne"]
 
 [ext_resource type="Script" uid="uid://cqh4ivrjmvsr1" path="res://Spells/defender_spell.gd" id="1_85vao"]
+[ext_resource type="Texture2D" uid="uid://b3ud3b6evnhaw" path="res://Assets/RA_Item_Icons03_2.png" id="2_5nv6d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtsw1"]
+atlas = ExtResource("2_5nv6d")
+region = Rect2(1104, 96, 48, 48)
 
 [node name="Defender Spell" type="Area2D"]
 script = ExtResource("1_85vao")
 mp_cost = 4
 spell_name = "Defender"
 spell_description = "Temporarily increase Defense"
+icon = SubResource("AtlasTexture_vtsw1")
 element_type = 10
 
 [node name="Timer" type="Timer" parent="."]

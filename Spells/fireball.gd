@@ -42,7 +42,7 @@ func _physics_process(delta: float) -> void:
 func impact(area):
 	if area is HurtBoxComponent:
 		var hurtBox: HurtBoxComponent = area
-		attack.attack_type = Globals.DAMAGE_TYPES.MAGIC
+		attack.damage_type = Globals.DAMAGE_TYPES.MAGIC
 		attack.element_type = Globals.ELEMENT_TYPES.FIRE
 		attack.magical_power = magical_power 
 		#TODO Part 2: Create formula for spell damage
