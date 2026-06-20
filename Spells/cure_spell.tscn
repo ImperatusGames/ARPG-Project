@@ -8,6 +8,8 @@ atlas = ExtResource("2_lxyvc")
 region = Rect2(1248, 1152, 48, 48)
 
 [node name="Cure Spell" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_4akqx")
 mp_cost = 5
 spell_name = "Cure"

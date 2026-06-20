@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqvsu8xbdvmbe"]
+[gd_scene load_steps=7 format=3 uid="uid://cqvsu8xbdvmbe"]
 
 [ext_resource type="Script" uid="uid://bowhhj4j26nwb" path="res://UI/game_ui.gd" id="1_h0rig"]
 [ext_resource type="PackedScene" uid="uid://l4s1c30tqidj" path="res://UI/health_bar.tscn" id="1_kfjql"]
 [ext_resource type="PackedScene" uid="uid://bx7hdp61tplyj" path="res://UI/mp_bar.tscn" id="2_h0rig"]
 [ext_resource type="PackedScene" uid="uid://gokvhqda7w7k" path="res://UI/debug_damage.tscn" id="4_2oifk"]
+[ext_resource type="Texture2D" uid="uid://b3ud3b6evnhaw" path="res://Assets/RA_Item_Icons03_2.png" id="5_dbpsm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy64h"]
+atlas = ExtResource("5_dbpsm")
+region = Rect2(1296, 1392, 48, 48)
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_h0rig")
@@ -49,3 +54,11 @@ offset_top = 5.0
 offset_right = 463.0
 offset_bottom = 37.0
 expand_mode = 3
+
+[node name="AugmentIcon" type="TextureRect" parent="."]
+visible = false
+offset_left = 342.0
+offset_top = 8.0
+offset_right = 390.0
+offset_bottom = 56.0
+texture = SubResource("AtlasTexture_fy64h")

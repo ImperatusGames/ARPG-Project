@@ -9,6 +9,8 @@ region = Rect2(1440, 1104, 48, 48)
 
 [node name="Cleanse" type="Area2D"]
 top_level = true
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_3vis1")
 mp_cost = 2
 spell_name = "Cleanse"

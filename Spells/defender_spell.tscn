@@ -8,6 +8,8 @@ atlas = ExtResource("2_5nv6d")
 region = Rect2(1104, 96, 48, 48)
 
 [node name="Defender Spell" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_85vao")
 mp_cost = 4
 spell_name = "Defender"

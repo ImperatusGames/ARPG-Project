@@ -1,5 +1,7 @@
 class_name Player extends Entity
 
+signal augment_state(bool)
+
 @onready var sprite_player = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var health_component: HealthComponent = $HealthComponent
@@ -106,6 +108,7 @@ func _input(event):
 		else:
 			player_augment_state = true
 			print("Augment State went from False to: ", player_augment_state)
+		augment_state.emit(player_augment_state)
 	elif event.is_action_pressed("run_toggle"):
 		if is_running == true:
 			velocity_component.set_walk_speed()
