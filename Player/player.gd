@@ -10,6 +10,7 @@ signal augment_state(bool)
 @onready var spell_manager: SpellManager = $SpellManager
 @onready var weapon_manager: WeaponManager = $WeaponManager
 @onready var inventory_manager: InventoryManager = $InventoryManager
+@onready var status_manager: StatusManager = $StatusManager
 
 var collider
 var last_direction : String
@@ -43,6 +44,9 @@ func _ready() -> void:
 	if inventory_manager:
 		inventory_manager.item_added.connect(_on_item_added)
 		inventory_manager.item_removed.connect(_on_item_removed)
+	if status_manager:
+		status_manager.stunned_state.connect(_on_stunned_state)
+		status_manager.silence_state.connect(_on_silenced_state)
 	
 func _physics_process(_delta: float) -> void:
 	if can_move == true:
@@ -144,3 +148,19 @@ func _on_item_added(item: Item, quantity: int) -> void:
 
 func _on_item_removed(item: Item, quantity: int) -> void:
 	print("Removed from inventory: ", item.name, " x", quantity)
+
+func _on_stunned_state(stun_state: bool):
+	if stun_state == true:
+		can_attack = false
+		can_cast = false
+		can_move = false
+	else:
+		can_attack = true
+		can_cast = true
+		can_move = true
+
+func _on_silenced_state(silence_state: bool):
+	if silence_state == true:
+		can_cast = false
+	else:
+		can_cast = true

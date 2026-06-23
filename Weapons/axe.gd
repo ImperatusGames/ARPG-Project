@@ -8,6 +8,7 @@ var physical_power: int
 func _ready() -> void:
 	animation_finished.connect(hide_axe)
 	$Area2D.area_entered.connect(check_enemies)
+	collider = $Area2D/CollisionShape2D
 	play("swing")
 	#collider = $Area2D
 

@@ -2,6 +2,7 @@ extends Spell
 class_name Defender_Spell
 
 var stats_component : StatsComponent
+var status_manger : StatusManager
 
 var timer
 

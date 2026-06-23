@@ -6,6 +6,9 @@ class_name GameUI
 @onready var mp_bar: ProgressBar = $ManaBar/MPBar
 @onready var mp_label: Label = $ManaBar/MPBar/Label
 @onready var damage: Button = $DamageButton/Damage
+@onready var silence: Button = $SilenceButton/Silence
+@onready var stun: Button = $StunButton/Stun
+@onready var mp_restore: Button = $RestoreMPButton/RestoreMP
 @onready var current_weapon = $CurrentWeapon
 @onready var current_spell = $CurrentSpell
 @onready var current_spell_icon = $CurrentSpellIcon
@@ -43,6 +46,9 @@ func _ready():
 	else:
 		print("No Player found")
 	damage.button_down.connect(player_damage)
+	silence.button_down.connect(player_silence)
+	stun.button_down.connect(player_stun)
+	mp_restore.button_down.connect(player_mp_restore)
 
 func _on_player_health_changed(new_health):
 	health_bar.value = new_health #player.health_component.current_health
@@ -68,6 +74,15 @@ func _on_player_augment_state_changed(state):
 
 func player_damage():
 	player.health_component.new_damage(5)
+
+func player_silence():
+	player.status_manager.silence_start()
+	
+func player_stun():
+	player.status_manager.stun_start()
+
+func player_mp_restore():
+	player.stats_component.restore_mp(5)
 
 func game_paused():
 	hide()

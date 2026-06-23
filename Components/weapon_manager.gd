@@ -12,7 +12,7 @@ var current_weapon : Weapon
 var last_direction : String
 
 func _ready() -> void:
-	current_weapon = weapon_array[0]
+	current_weapon = weapon_array[1]
 
 func weapon_attack():
 	match current_weapon.weapon_name:
@@ -21,10 +21,16 @@ func weapon_attack():
 		"Axe":
 			axe_attack()
 
+#TODO: Fix weapons
+# They are completely broken because they are not on layers right now
+# However layers are handled differently for weapons than spells because they are AnimatedSprite2Ds instead of Area2Ds
+
 func sword_attack():
 	const SWORD = preload("res://Weapons/sword.tscn")
 	var new_sword = SWORD.instantiate()
 	new_sword.physical_power = stats_component.current_strength
+	#new_sword.collider.set_collision_mask_value(5, true)
+	#new_sword.collider.set_collision_layer_value(4, true)
 	if last_direction == "right":
 		new_sword.global_position.x += 60
 	elif last_direction == "left":
@@ -43,6 +49,8 @@ func axe_attack():
 	const AXE = preload("res://Weapons/axe.tscn")
 	var new_axe = AXE.instantiate()
 	new_axe.physical_power = stats_component.current_strength
+	#new_axe.collider.set_collision_mask_value(5, true)
+	#new_axe.collider.set_collision_layer_value(4, true)
 	if last_direction == "right":
 		new_axe.global_position.x += 60
 	elif last_direction == "left":

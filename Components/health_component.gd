@@ -51,4 +51,13 @@ func restore_health(heal: HealEffect):
 			current_health += round(heal.heal_power * heal.heal_factor)
 		emit_signal("health_changed", current_health)
 			
+func static_restore():
+	if ((max_health * 0.05) + current_health) > max_health:
+		current_health = max_health
+		print("Healed for: ", max_health - current_health)
+		print("Overhealed for: ", str(((max_health * 0.05) + current_health) - (max_health - current_health)))
+	else:
+		current_health = current_health + round(max_health * 0.05)
+		print("Healed for: " + str(current_health + (max_health * 0.05)))
+		
 #If a Heal comes from an item, it will not utilize spell_power or factor, which modify the base heal amount

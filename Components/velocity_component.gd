@@ -4,28 +4,30 @@ class_name VelocityComponent
 @export var BASE_SPEED : float
 @export var current_speed : float
 @export var speed_mod : float
-@export var slowable : bool
-@export var freezeable : bool
+
+@onready var stats_component : StatsComponent = get_node("../StatsComponent")
+@onready var health_component : HealthComponent = get_node("../HealthComponent")
+@onready var status_manager : StatusManager = get_node("../StatusManager")
 
 func _ready():
 	calculate_speed()
 
-func can_be_slowed():
-	if slowable == true:
-		return true
-	else:
-		return false
+#func can_be_slowed():
+	#if slowable == true:
+		#return true
+	#else:
+		#return false
 
 func slowed():
 	current_speed = BASE_SPEED / 2
 	
-func can_be_frozen():
-	if freezeable == true:
-		return true
-	else:
-		return false
+#func can_be_frozen():
+	#if freezeable == true:
+		#return true
+	#else:
+		#return false
 
-func frozen():
+func immobile():
 	current_speed = 0
 	
 func restore_speed():
