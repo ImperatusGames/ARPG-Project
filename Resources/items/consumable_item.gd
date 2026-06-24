@@ -11,7 +11,11 @@ func _init(p_name: String = "", p_description: String = "", p_icon: Texture2D = 
 	heal_amount = p_heal_amount
 	effect_duration = p_effect_duration
 
-func use(player: Node) -> void:
+func use(player: Node) -> bool:
+	if not can_use(player):
+		print(name, " had no effect")
+		return false
+
 	match restore_target:
 		"Health":
 			restore_health(player)
@@ -21,6 +25,23 @@ func use(player: Node) -> void:
 			##TODO: Determine max health and mana to restore
 			restore_health(player)
 			restore_mp(player)
+	return true
+
+func can_use(player: Node) -> bool:
+	if player == null:
+		return false
+
+	match restore_target:
+		"Health":
+			return heal_amount > 0 and player.health_component.current_health < player.health_component.max_health
+		"MP":
+			return mp_restore_amount > 0 and player.stats_component.current_mp < player.stats_component.max_mp
+		"Full Restore":
+			var can_restore_health = heal_amount > 0 and player.health_component.current_health < player.health_component.max_health
+			var can_restore_mp = mp_restore_amount > 0 and player.stats_component.current_mp < player.stats_component.max_mp
+			return can_restore_health or can_restore_mp
+
+	return false
 
 func restore_health(player: Node) -> void:
 	if player.health_component.has_method("restore_health"):

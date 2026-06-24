@@ -139,7 +139,8 @@ func _on_use_pressed() -> void:
 		var item = slot_data["item"]
 		
 		# Use the item
-		item.use(player)
+		if not item.use(player):
+			return
 		
 		# Remove one from inventory
 		inventory_manager.remove_item(item, 1)

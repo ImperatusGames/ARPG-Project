@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d4dvkrat82wgt"]
+[gd_scene load_steps=12 format=3 uid="uid://d4dvkrat82wgt"]
 
 [ext_resource type="PackedScene" uid="uid://dr2ent0anvlpr" path="res://Player/player.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://dmsjil27cypuj" path="res://Enemies/zombie.tscn" id="2_e2o6t"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bwqsl1ssco62p" path="res://Enemies/enemy_template.tscn" id="6_ryrav"]
 [ext_resource type="PackedScene" uid="uid://b0j548y2pakp0" path="res://Enemies/enemy_wasp.tscn" id="7_eow3j"]
 [ext_resource type="PackedScene" uid="uid://dl5psaqewyj7" path="res://Resources/items/chest.tscn" id="8_j5wjh"]
+[ext_resource type="Resource" uid="uid://c5gabmpsinuww" path="res://Resources/items/mana_potion.tres" id="9_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://yy2hn4ue0scr" path="res://Resources/plantwall_test.tscn" id="9_vef74"]
 [ext_resource type="PackedScene" uid="uid://dmsg11axqi6w7" path="res://Enemies/enemy_ambusher.tscn" id="10_hve3p"]
 
@@ -40,6 +41,7 @@ position = Vector2(714, 479)
 
 [node name="Chest" parent="." instance=ExtResource("8_j5wjh")]
 position = Vector2(156, 312)
+item_data = ExtResource("9_mfdv2")
 
 [node name="Chest2" parent="." instance=ExtResource("8_j5wjh")]
 position = Vector2(285, 312)
