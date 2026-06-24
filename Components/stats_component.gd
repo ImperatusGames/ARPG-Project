@@ -126,11 +126,21 @@ func spell_cast():
 
 func restore_mp(mp_recovered: int):
 	if current_mp + mp_recovered > max_mp:
+		print("Excess MP restored!")
+		print("Restored MP: ", (max_mp - current_mp))
+		print("Excess MP restored: ", (mp_recovered - (max_mp - current_mp)))
 		current_mp = max_mp
 	else:
+		print("MP Restored: ", mp_recovered)
 		current_mp += mp_recovered
 	emit_signal("mp_changed", current_mp)
-	
+
+func needs_mp():
+	if current_mp == max_mp:
+		return false
+	else:
+		return true
+
 #####
 # Defense = ((base_def + equipment def) +/* positive_modifiers) -// negative_modifiers)
 #####

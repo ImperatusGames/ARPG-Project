@@ -112,7 +112,6 @@ func regen_start():
 	regen_end()
 
 func regen_end():
-	status_dictionary["Protected"] = false
 	status_dictionary["Regen"] = false
 	print("Regen ended")
 

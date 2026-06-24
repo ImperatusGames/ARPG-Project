@@ -13,7 +13,7 @@ func _init(p_name: String = "", p_description: String = "", p_icon: Texture2D = 
 
 func use(player: Node) -> bool:
 	if not can_use(player):
-		print(name, " had no effect")
+		print(name, " not used!")
 		return false
 
 	match restore_target:
@@ -33,12 +33,17 @@ func can_use(player: Node) -> bool:
 
 	match restore_target:
 		"Health":
-			return heal_amount > 0 and player.health_component.current_health < player.health_component.max_health
+			#return heal_amount > 0 and player.health_component.current_health < player.health_component.max_health
+			return heal_amount > 0 and player.health_component.needs_healing()
+			
 		"MP":
-			return mp_restore_amount > 0 and player.stats_component.current_mp < player.stats_component.max_mp
+			#return mp_restore_amount > 0 and player.stats_component.current_mp < player.stats_component.max_mp
+			return mp_restore_amount > 0 and player.stats_component.needs_mp()
 		"Full Restore":
-			var can_restore_health = heal_amount > 0 and player.health_component.current_health < player.health_component.max_health
-			var can_restore_mp = mp_restore_amount > 0 and player.stats_component.current_mp < player.stats_component.max_mp
+			#var can_restore_health = heal_amount > 0 and player.health_component.current_health < player.health_component.max_health
+			#var can_restore_mp = mp_restore_amount > 0 and player.stats_component.current_mp < player.stats_component.max_mp
+			var can_restore_health = heal_amount > 0 and player.health_component.needs_healing()
+			var can_restore_mp = mp_restore_amount > 0 and player.stats_component.needs_mp()
 			return can_restore_health or can_restore_mp
 
 	return false

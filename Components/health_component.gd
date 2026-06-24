@@ -31,9 +31,9 @@ func restore_health(heal: HealEffect):
 	if heal.is_spell_heal == false:
 		print("Non-spell Heal!")
 		if (heal.heal_power + current_health) > (max_health - current_health):
-			current_health = max_health
-			print("Healed for: ", max_health - current_health)
+			print("Healed for: ", (max_health - current_health))
 			print("Overhealed for: ", (heal.heal_power - (max_health - current_health)))
+			current_health = max_health
 		else:
 			current_health += heal.heal_power
 			print("Healed for: ", heal.heal_power)
@@ -61,3 +61,9 @@ func static_restore():
 		print("Healed for: " + str(current_health + (max_health * 0.05)))
 		
 #If a Heal comes from an item, it will not utilize spell_power or factor, which modify the base heal amount
+
+func needs_healing():
+	if current_health == max_health:
+		return false
+	else:
+		return true
