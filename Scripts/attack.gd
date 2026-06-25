@@ -4,6 +4,7 @@ class_name Attack
 
 var attack_damage: int
 var attack_position: Vector2
+var attack_direction: Vector2
 #var status: Array[Statuses]
 var damage_type: Globals.DAMAGE_TYPES
 var element_type: Globals.ELEMENT_TYPES

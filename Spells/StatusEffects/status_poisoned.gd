@@ -4,21 +4,31 @@
 ## Unclear on draw order.  Could be in front or behind character object.
 #########################
 
-extends AnimatedSprite2D
+extends StatusEffect
+class_name PoisonStatus
 
-var is_poisoned : bool
-var poison_timer : int
-var time_elapsed := 0.0
+signal poison_damage
+
+#var is_poisoned : bool
+#var poison_timer : int
+#var time_elapsed := 0.0
+@onready var main_timer : Timer = $MainTimer
+@onready var tick_timer : Timer = $TickTimer
+@onready var status_manager : StatusManager = get_node("../StatusManager")
+
 var target_character : Entity
+var potency : int = 0
 
 func _ready() -> void:
 	#var timer = $Timer
-	$Timer.timeout.connect(poison_ended)
+	main_timer.timeout.connect(poison_ended)
+	tick_timer.timeout.connect(poison_tick)
+	
 	play("overhead")
-	time_elapsed = 0.0
+	#time_elapsed = 0.0
 	#TO DO.  THIS IS A HARDCODED 10 SECOND TIMER. SHOULD BE 0 AND SET ELSEWHERE
-	poison_timer = 10
-	is_poisoned = false
+	#poison_timer = 10
+	#is_poisoned = false
 	self.global_position = get_parent().global_position
 	#TO DO.  THIS IS A HARDCODED INT AND SHOULD BE SCALED
 	self.position.y -= 80
@@ -42,4 +52,9 @@ func poisoned(target : Entity):
 		
 func poison_ended():
 	print("No more poison!")
-	queue_free()
+	#queue_free()
+	call_deferred("queue_free")
+
+func poison_tick():
+	print("Dealing Poison damage!")
+	poison_damage.emit(potency)

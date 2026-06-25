@@ -29,6 +29,8 @@ func _ready() -> void:
 	if use_button:
 		use_button.pressed.connect(_on_use_pressed)
 		use_button.disabled = true
+	
+	grab_focus()
 
 func initialize(p_player: Player) -> void:
 	player = p_player

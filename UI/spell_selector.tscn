@@ -10,6 +10,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("ItemList")
+focus_neighbor_top = NodePath("ItemList")
+focus_neighbor_right = NodePath("ItemList")
+focus_neighbor_bottom = NodePath("ItemList")
+focus_mode = 2
 script = ExtResource("1_owpsr")
 
 [node name="ItemList" type="ItemList" parent="."]
@@ -19,6 +24,10 @@ offset_left = 43.0
 offset_top = 92.0
 offset_right = 461.0
 offset_bottom = 360.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 theme_override_colors/guide_color = Color(0, 0, 0, 0)
 allow_search = false
 auto_width = true

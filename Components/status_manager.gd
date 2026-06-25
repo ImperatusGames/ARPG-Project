@@ -18,6 +18,8 @@ signal silence_state
 #func _ready() -> void:
 	#print(status_dictionary)
 
+#var active_statuses : Array[StatusEffect]
+
 var status_dictionary = {
 	"Poison": 0,
 	"Frozen": false,
@@ -29,7 +31,20 @@ var status_dictionary = {
 	"Regen": false
 }
 
+#Create an array of Statuses
+#When a new status is applied, append the new status object to the array
+#When the status effect ends, it is deleted from the array
+#If the effect is cleansed, it is deleted from the array as well
+
 func poison_check(potency: int):
+	#if active_statuses.has(PoisonStatus):
+		#pass
+	#else:
+		#const POISON = preload("res://Spells/StatusEffects/status_poisoned.tscn")
+		#var poison_status = POISON.instantiate()
+		#poison_status.potency = potency
+		#add_child(poison_status)
+		#active_statuses.append(poison_status)
 	if potency > status_dictionary["Poison"]:
 		print("New Poison applied!")
 		status_dictionary["Poison"] = potency
@@ -38,6 +53,8 @@ func poison_check(potency: int):
 		# Also needs to be able to be broken/ended on a cleanse/antidote
 		# This goes for Regen as well
 		poison_end()
+	elif potency == status_dictionary["Poison"]:
+		print("Refreshed Poison duration!")
 	else:
 		print("New poison is weaker")
 		

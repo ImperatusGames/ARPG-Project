@@ -11,6 +11,8 @@ func _ready():
 	player = get_tree().get_first_node_in_group("Player")
 	
 	close_button.pressed.connect(close)
+	
+	grab_focus()
 
 func close():
 	hide()

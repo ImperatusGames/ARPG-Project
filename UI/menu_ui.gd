@@ -7,6 +7,7 @@ extends Control
 @onready var status_ui: StatusUI = $StatusUI
 
 var player: Player = null
+var select_index: int
 
 #TODO: Refactor Menu into a Pause_UI where all items are created in the same scene
 #This allows all items to be shown/hidden appropriately without worrying about things being stacked on top of another
@@ -16,6 +17,7 @@ var player: Player = null
 func _ready() -> void:
 	menu_items.item_activated.connect(select_menu_item)
 	menu_items.item_selected.connect(updated_description_text)
+	
 	
 	initialize_inventory()
 	
@@ -28,6 +30,8 @@ func _ready() -> void:
 	
 	if status_ui:
 		status_ui.status_menu_closed.connect(_on_status_menu_closed)
+	
+	menu_items.grab_focus()
 
 func initialize_inventory() -> void:
 	player = get_tree().get_first_node_in_group("Player")
@@ -43,9 +47,12 @@ func _input(event):
 	if event.is_action_pressed("menu"):
 		print("close menu code")
 		close_menu()
+	elif event.is_action_pressed("attack"):
+		select_menu_item(select_index)
 
 func select_menu_item(index):
 	description_text.text = ""
+
 	if menu_items.get_item_text(index) == "Items":
 		print("Items selected!")
 		open_inventory()
@@ -78,6 +85,7 @@ func _on_inventory_closed() -> void:
 	# Show menu elements again
 	menu_items.show()
 	description_text.show()
+	menu_items.grab_focus()
 
 func open_spell() -> void:
 	if spell_ui:
@@ -85,6 +93,7 @@ func open_spell() -> void:
 		description_text.hide()
 		
 		spell_ui.show()
+		spell_ui.grab_focus()
 
 func open_status() -> void:
 	if status_ui:
@@ -96,10 +105,12 @@ func open_status() -> void:
 func _on_spell_menu_closed() -> void:
 	menu_items.show()
 	description_text.show()
+	menu_items.grab_focus()
 
 func _on_status_menu_closed() -> void:
 	menu_items.show()
 	description_text.show()
+	menu_items.grab_focus()
 
 func close_menu():
 	print("Close menu func code")
@@ -108,6 +119,7 @@ func close_menu():
 	call_deferred("queue_free")
 
 func updated_description_text(index):
+	select_index = index
 	match index:
 		0:
 			description_text.text = "View the items in your inventory"
