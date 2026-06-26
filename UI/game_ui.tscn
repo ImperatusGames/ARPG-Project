@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqvsu8xbdvmbe"]
+[gd_scene load_steps=11 format=3 uid="uid://cqvsu8xbdvmbe"]
 
 [ext_resource type="Script" uid="uid://bowhhj4j26nwb" path="res://UI/game_ui.gd" id="1_h0rig"]
 [ext_resource type="PackedScene" uid="uid://l4s1c30tqidj" path="res://UI/health_bar.tscn" id="1_kfjql"]
 [ext_resource type="PackedScene" uid="uid://bx7hdp61tplyj" path="res://UI/mp_bar.tscn" id="2_h0rig"]
 [ext_resource type="PackedScene" uid="uid://gokvhqda7w7k" path="res://UI/debug_damage.tscn" id="4_2oifk"]
-[ext_resource type="Texture2D" uid="uid://b3ud3b6evnhaw" path="res://Assets/RA_Item_Icons03_2.png" id="5_dbpsm"]
+[ext_resource type="Texture2D" uid="uid://q7hvcolmeq7e" path="res://Assets/RA_Item_Icons03_2.png" id="5_dbpsm"]
 [ext_resource type="PackedScene" uid="uid://choeho0ol6jrw" path="res://UI/debug_silence.tscn" id="6_fy64h"]
 [ext_resource type="PackedScene" uid="uid://ddyn73y4ps7nb" path="res://UI/debug_stun.tscn" id="7_v6n52"]
 [ext_resource type="PackedScene" uid="uid://cq72s6016ag1o" path="res://UI/debug_restore_mp.tscn" id="8_ywmy4"]
+[ext_resource type="PackedScene" uid="uid://c3bru0ypeim3g" path="res://UI/debug_poison.tscn" id="9_jd38o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fy64h"]
 atlas = ExtResource("5_dbpsm")
@@ -87,5 +88,13 @@ offset_left = 1027.0
 offset_top = 77.0
 offset_right = 1027.0
 offset_bottom = 77.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="PoisonButton" parent="." instance=ExtResource("9_jd38o")]
+offset_left = 1047.0
+offset_top = 111.0
+offset_right = 1047.0
+offset_bottom = 111.0
 grow_horizontal = 1
 grow_vertical = 1

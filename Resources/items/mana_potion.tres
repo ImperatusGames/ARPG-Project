@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ConsumableItem" load_steps=4 format=3 uid="uid://c5gabmpsinuww"]
 
 [ext_resource type="Script" uid="uid://lovp0pp0ew8e" path="res://Resources/items/consumable_item.gd" id="1_6vg04"]
-[ext_resource type="Texture2D" uid="uid://dl4tsok2pg5ay" path="res://Assets/Rogue_Adventure_Item_Icons02_2.png" id="2_qc0mc"]
+[ext_resource type="Texture2D" uid="uid://bsxrvbg3wtm40" path="res://Assets/Rogue_Adventure_Item_Icons02_2.png" id="2_qc0mc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_potion"]
 atlas = ExtResource("2_qc0mc")

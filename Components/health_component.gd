@@ -27,6 +27,11 @@ func new_damage(total: int):
 	if current_health <= 0:
 		emit_signal("health_depleted")
 
+func poison_damage(potency: int):
+	current_health -= potency
+	print("Current Health: ", current_health)
+	emit_signal("health_changed", current_health)
+	
 func restore_health(heal: HealEffect):
 	if heal.is_spell_heal == false:
 		print("Non-spell Heal!")

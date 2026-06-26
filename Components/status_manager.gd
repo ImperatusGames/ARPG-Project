@@ -14,9 +14,12 @@ signal silence_state
 @onready var stats_component : StatsComponent = get_node("../StatsComponent")
 @onready var health_component : HealthComponent = get_node("../HealthComponent")
 @onready var velocity_component : VelocityComponent = get_node("../VelocityComponent")
+@onready var poison_timer : Timer = $PoisonTimer
+@onready var regen_timer : Timer = $RegenTimer
 
-#func _ready() -> void:
-	#print(status_dictionary)
+func _ready() -> void:
+	poison_timer.timeout.connect(poison_end)
+	regen_timer.timeout.connect(regen_end)
 
 #var active_statuses : Array[StatusEffect]
 
@@ -46,14 +49,20 @@ func poison_check(potency: int):
 		#add_child(poison_status)
 		#active_statuses.append(poison_status)
 	if potency > status_dictionary["Poison"]:
+
 		print("New Poison applied!")
 		status_dictionary["Poison"] = potency
-		await get_tree().create_timer(10.0).timeout
+		const POISON = preload("res://Spells/StatusEffects/status_poisoned.tscn")
+		var poison_scene = POISON.instantiate()
+		poison_scene.potency = potency
+		add_child(poison_scene)
+		poison_scene.connect("poison_damage", poison_damage)
+		poison_timer.start()
 		#TODO: Find the best way to manage the individual poison ticks
 		# Also needs to be able to be broken/ended on a cleanse/antidote
 		# This goes for Regen as well
-		poison_end()
 	elif potency == status_dictionary["Poison"]:
+		poison_timer.start()
 		print("Refreshed Poison duration!")
 	else:
 		print("New poison is weaker")
@@ -63,6 +72,9 @@ func poison_check(potency: int):
 
 func poison_end():
 	status_dictionary["Poison"] = 0
+	var poison_node = get_node("Status_Poisoned")
+	poison_node.disconnect("poison_damage", poison_damage)
+	poison_node.poison_ended()
 
 func freeze_start():
 	status_dictionary["Frozen"] = true
@@ -173,3 +185,13 @@ func can_be_poisoned():
 		return false
 	else:
 		return true
+
+func poison_damage(potency: int):
+	#print("Poison damage: ", potency)
+	health_component.poison_damage(potency)
+
+func poison_exists():
+	if has_node("Status_Poisoned") == true:
+		return true
+	else:
+		return false

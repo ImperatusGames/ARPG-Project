@@ -9,6 +9,7 @@ class_name GameUI
 @onready var silence: Button = $SilenceButton/Silence
 @onready var stun: Button = $StunButton/Stun
 @onready var mp_restore: Button = $RestoreMPButton/RestoreMP
+@onready var poison: Button = $PoisonButton/Poison
 @onready var current_weapon = $CurrentWeapon
 @onready var current_spell = $CurrentSpell
 @onready var current_spell_icon = $CurrentSpellIcon
@@ -49,6 +50,7 @@ func _ready():
 	silence.button_down.connect(player_silence)
 	stun.button_down.connect(player_stun)
 	mp_restore.button_down.connect(player_mp_restore)
+	poison.button_down.connect(player_poison)
 
 func _on_player_health_changed(new_health):
 	health_bar.value = new_health #player.health_component.current_health
@@ -83,6 +85,9 @@ func player_stun():
 
 func player_mp_restore():
 	player.stats_component.restore_mp(5)
+
+func player_poison():
+	player.status_manager.poison_check(1)
 
 func game_paused():
 	hide()

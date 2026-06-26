@@ -54,14 +54,11 @@ offset_bottom = 646.0
 [node name="InventoryUI" parent="." instance=ExtResource("2_bh1w4")]
 visible = false
 layout_mode = 1
-focus_mode = 2
 
 [node name="SpellSelector" parent="." instance=ExtResource("3_rfjxj")]
 visible = false
 layout_mode = 1
-focus_mode = 2
 
 [node name="StatusUI" parent="." instance=ExtResource("4_jjnuu")]
 visible = false
 layout_mode = 1
-focus_mode = 2

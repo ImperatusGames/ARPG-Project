@@ -12,7 +12,6 @@ signal poison_damage
 #var is_poisoned : bool
 #var poison_timer : int
 #var time_elapsed := 0.0
-@onready var main_timer : Timer = $MainTimer
 @onready var tick_timer : Timer = $TickTimer
 @onready var status_manager : StatusManager = get_node("../StatusManager")
 
@@ -21,7 +20,6 @@ var potency : int = 0
 
 func _ready() -> void:
 	#var timer = $Timer
-	main_timer.timeout.connect(poison_ended)
 	tick_timer.timeout.connect(poison_tick)
 	
 	play("overhead")
