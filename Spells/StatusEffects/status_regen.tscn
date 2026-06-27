@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl05egm5o180g"]
+
+[ext_resource type="Texture2D" uid="uid://bdlqnffswnsjm" path="res://Assets/poisonbubbles1.png" id="1_aejr8"]
+[ext_resource type="Texture2D" uid="uid://bvbq5vsganodo" path="res://Assets/poisonbubbles2.png" id="2_uyop1"]
+[ext_resource type="Script" uid="uid://bx3a0c6ph8avq" path="res://Spells/StatusEffects/status_regen.gd" id="3_aejr8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e2o6t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_aejr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_uyop1")
+}],
+"loop": true,
+"name": &"overhead",
+"speed": 3.0
+}]
+
+[node name="Status_Regen" type="AnimatedSprite2D"]
+self_modulate = Color(0, 1, 0, 1)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_e2o6t")
+animation = &"overhead"
+frame_progress = 0.501494
+script = ExtResource("3_aejr8")
+
+[node name="TickTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true

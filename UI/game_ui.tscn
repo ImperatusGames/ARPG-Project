@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://l4s1c30tqidj" path="res://UI/health_bar.tscn" id="1_kfjql"]
 [ext_resource type="PackedScene" uid="uid://bx7hdp61tplyj" path="res://UI/mp_bar.tscn" id="2_h0rig"]
 [ext_resource type="PackedScene" uid="uid://gokvhqda7w7k" path="res://UI/debug_damage.tscn" id="4_2oifk"]
-[ext_resource type="Texture2D" uid="uid://q7hvcolmeq7e" path="res://Assets/RA_Item_Icons03_2.png" id="5_dbpsm"]
+[ext_resource type="Texture2D" uid="uid://b3ud3b6evnhaw" path="res://Assets/RA_Item_Icons03_2.png" id="5_dbpsm"]
 [ext_resource type="PackedScene" uid="uid://choeho0ol6jrw" path="res://UI/debug_silence.tscn" id="6_fy64h"]
 [ext_resource type="PackedScene" uid="uid://ddyn73y4ps7nb" path="res://UI/debug_stun.tscn" id="7_v6n52"]
 [ext_resource type="PackedScene" uid="uid://cq72s6016ag1o" path="res://UI/debug_restore_mp.tscn" id="8_ywmy4"]

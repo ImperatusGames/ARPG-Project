@@ -40,16 +40,7 @@ var status_dictionary = {
 #If the effect is cleansed, it is deleted from the array as well
 
 func poison_check(potency: int):
-	#if active_statuses.has(PoisonStatus):
-		#pass
-	#else:
-		#const POISON = preload("res://Spells/StatusEffects/status_poisoned.tscn")
-		#var poison_status = POISON.instantiate()
-		#poison_status.potency = potency
-		#add_child(poison_status)
-		#active_statuses.append(poison_status)
 	if potency > status_dictionary["Poison"]:
-
 		print("New Poison applied!")
 		status_dictionary["Poison"] = potency
 		const POISON = preload("res://Spells/StatusEffects/status_poisoned.tscn")
@@ -58,9 +49,6 @@ func poison_check(potency: int):
 		add_child(poison_scene)
 		poison_scene.connect("poison_damage", poison_damage)
 		poison_timer.start()
-		#TODO: Find the best way to manage the individual poison ticks
-		# Also needs to be able to be broken/ended on a cleanse/antidote
-		# This goes for Regen as well
 	elif potency == status_dictionary["Poison"]:
 		poison_timer.start()
 		print("Refreshed Poison duration!")
@@ -135,13 +123,22 @@ func magic_guard_end():
 	status_dictionary["Magic Guard"] = false
 
 func regen_start():
-	status_dictionary["Regen"] = true
-	print("Regen status active!")
-	await get_tree().create_timer(10.0).timeout
-	regen_end()
+	if status_dictionary["Regen"] == false:
+		print("Regen applied!")
+		const REGEN = preload("res://Spells/StatusEffects/status_regen.tscn")
+		var regen_scene = REGEN.instantiate()
+		add_child(regen_scene)
+		regen_scene.connect("regen", regen_heal)
+		regen_timer.start()
+	else:
+		regen_timer.start()
+		print("Regen refreshed!")
 
 func regen_end():
 	status_dictionary["Regen"] = false
+	var regen_node = get_node("Status_Regen")
+	regen_node.disconnect("regen", regen_heal)
+	regen_node.regen_ended()
 	print("Regen ended")
 
 func cleanse():
@@ -192,6 +189,15 @@ func poison_damage(potency: int):
 
 func poison_exists():
 	if has_node("Status_Poisoned") == true:
+		return true
+	else:
+		return false
+
+func regen_heal():
+	health_component.static_restore()
+
+func regen_exists():
+	if has_node("Status_Regen"):
 		return true
 	else:
 		return false

@@ -5,9 +5,9 @@
 #########################
 
 extends StatusEffect
-class_name PoisonStatus
+class_name RegenStatus
 
-signal poison_damage
+signal regen
 
 #var is_poisoned : bool
 #var poison_timer : int
@@ -20,7 +20,7 @@ var potency : int = 0
 
 func _ready() -> void:
 	#var timer = $Timer
-	tick_timer.timeout.connect(poison_tick)
+	tick_timer.timeout.connect(regen_tick)
 	
 	play("overhead")
 	#time_elapsed = 0.0
@@ -48,11 +48,11 @@ func poisoned(target : Entity):
 	#else:
 		#poison_timer += time
 		
-func poison_ended():
-	print("No more poison!")
+func regen_ended():
+	print("No more regen!")
 	#queue_free()
 	call_deferred("queue_free")
 
-func poison_tick():
-	print("Dealing Poison damage!")
-	poison_damage.emit(potency)
+func regen_tick():
+	print("Regen heal!")
+	regen.emit()
