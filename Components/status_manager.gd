@@ -154,50 +154,29 @@ func dispel():
 	regen_end()
 
 func can_be_frozen():
-	if frozen_immune == true:
-		return false
-	else:
-		return true
+	return not frozen_immune
 
 func can_be_slowed():
-	if slowed_immune == true:
-		return false
-	else:
-		return true
+	return not slowed_immune
 
 func can_be_stunned():
-	if stunned_immune == true:
-		return false
-	else:
-		return true
+	return not stunned_immune
 
 func can_be_silenced():
-	if silence_immune == true:
-		return false
-	else:
-		return true
+	return not silence_immune
 
 func can_be_poisoned():
-	if poisoned_immune == true:
-		return false
-	else:
-		return true
+	return not poisoned_immune
 
 func poison_damage(potency: int):
 	#print("Poison damage: ", potency)
 	health_component.poison_damage(potency)
 
 func poison_exists():
-	if has_node("Status_Poisoned") == true:
-		return true
-	else:
-		return false
+	return has_node("Status_Poisoned")
 
 func regen_heal():
 	health_component.static_restore()
 
 func regen_exists():
-	if has_node("Status_Regen"):
-		return true
-	else:
-		return false
+	return has_node("Status_Regen")

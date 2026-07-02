@@ -47,6 +47,8 @@ func _ready() -> void:
 	if status_manager:
 		status_manager.stunned_state.connect(_on_stunned_state)
 		status_manager.silence_state.connect(_on_silenced_state)
+	if weapon_manager:
+		weapon_manager.attack_finished.connect(attack_over)
 	
 func _physics_process(_delta: float) -> void:
 	if can_move == true:
@@ -164,3 +166,7 @@ func _on_silenced_state(silence_state: bool):
 		can_cast = false
 	else:
 		can_cast = true
+
+func attack_over():
+	#print("Player sees attack ended!")
+	pass

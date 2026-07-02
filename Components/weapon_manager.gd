@@ -2,17 +2,19 @@ extends Node
 class_name WeaponManager
 
 signal weapon_changed(new_weapon)
+signal attack_finished
 
 @export var weapon_array : Array[Weapon]
-var current_weapon : Weapon
 
 @onready var stats_component : StatsComponent = get_node("../StatsComponent")
 @onready var health_component : HealthComponent = get_node("../HealthComponent")
 @onready var velocity_component : VelocityComponent = get_node("../VelocityComponent")
+
 var last_direction : String
+var current_weapon : Weapon
 
 func _ready() -> void:
-	current_weapon = weapon_array[1]
+	current_weapon = weapon_array[0]
 
 func weapon_attack():
 	match current_weapon.weapon_name:
@@ -29,8 +31,8 @@ func sword_attack():
 	const SWORD = preload("res://Weapons/sword.tscn")
 	var new_sword = SWORD.instantiate()
 	new_sword.physical_power = stats_component.current_strength
-	#new_sword.collider.set_collision_mask_value(5, true)
-	#new_sword.collider.set_collision_layer_value(4, true)
+	new_sword.set_collision_mask_value(5, true)
+	new_sword.set_collision_layer_value(2, true)
 	if last_direction == "right":
 		new_sword.global_position.x += 60
 	elif last_direction == "left":
@@ -43,14 +45,15 @@ func sword_attack():
 		new_sword.global_position.y += 75
 		new_sword.rotation_degrees = 90
 	add_sibling(new_sword)
-	await new_sword.animation_finished
+	await new_sword.animation.animation_finished
+	emit_signal("attack_finished")
 
 func axe_attack():
 	const AXE = preload("res://Weapons/axe.tscn")
 	var new_axe = AXE.instantiate()
 	new_axe.physical_power = stats_component.current_strength
-	#new_axe.collider.set_collision_mask_value(5, true)
-	#new_axe.collider.set_collision_layer_value(4, true)
+	new_axe.set_collision_mask_value(5, true)
+	new_axe.set_collision_layer_value(2, true)
 	if last_direction == "right":
 		new_axe.global_position.x += 60
 	elif last_direction == "left":
@@ -63,7 +66,8 @@ func axe_attack():
 		new_axe.global_position.y += 75
 		new_axe.rotation_degrees = 90
 	add_sibling(new_axe)
-	await new_axe.animation_finished
+	await new_axe.animation.animation_finished
+	emit_signal("attack_finished")
 
 func set_weapon(index):
 	current_weapon = weapon_array[index]

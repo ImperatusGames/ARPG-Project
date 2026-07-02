@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://itub7nei8hpy"]
+
+[node name="DebugWeapon" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 20.0
+selected = 0
+item_count = 2
+popup/item_0/text = "Sword"
+popup/item_0/id = 0
+popup/item_1/text = "Axe"
+popup/item_1/id = 1

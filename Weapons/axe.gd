@@ -1,22 +1,19 @@
 extends Weapon
 class_name Axe_Weapon
 
-var collider
-var damage: int
-var physical_power: int
-
 func _ready() -> void:
-	animation_finished.connect(hide_axe)
-	$Area2D.area_entered.connect(check_enemies)
-	collider = $Area2D/CollisionShape2D
-	play("swing")
-	#collider = $Area2D
-
+	animation = $AnimatedSprite2D
+	#collider = $CollisionShape2D
+	animation.animation_finished.connect(hide_axe)
+	area_entered.connect(check_enemies)
+	animation.play("swing")
+	
 func _process(_delta: float) -> void:
 	pass
 
 func hide_axe():
 	print("Attack finished")
+	#emit_signal("has_finished")
 	call_deferred("queue_free")
 
 func check_enemies(area):

@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://dpr1iwjmrixuq" path="res://Assets/Master Sword.png" id="1_iekfp"]
 [ext_resource type="Script" uid="uid://ba7gdpkxsmjr4" path="res://Weapons/sword.gd" id="2_p5cha"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5cha"]
+size = Vector2(8, 18)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_p5cha"]
 atlas = ExtResource("1_iekfp")
 region = Rect2(0, 0, 16, 18)
@@ -78,25 +81,20 @@ animations = [{
 }],
 "loop": false,
 "name": &"swing",
-"speed": 27.0
+"speed": 20.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5cha"]
-size = Vector2(8, 18)
-
-[node name="Sword" type="AnimatedSprite2D"]
+[node name="Sword" type="Area2D"]
 texture_filter = 1
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_6x0j6")
-animation = &"swing"
-frame = 9
-frame_progress = 1.0
-script = ExtResource("2_p5cha")
-
-[node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 0
+script = ExtResource("2_p5cha")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 0)
 shape = SubResource("RectangleShape2D_p5cha")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6x0j6")
+animation = &"swing"

@@ -16,7 +16,6 @@ signal regen
 @onready var status_manager : StatusManager = get_node("../StatusManager")
 
 var target_character : Entity
-var potency : int = 0
 
 func _ready() -> void:
 	#var timer = $Timer

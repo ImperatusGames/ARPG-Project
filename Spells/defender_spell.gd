@@ -3,7 +3,6 @@ class_name Defender_Spell
 
 var stats_component : StatsComponent
 var status_manger : StatusManager
-
 var timer
 
 func _ready() -> void:
@@ -12,13 +11,16 @@ func _ready() -> void:
 	#spell_cast()
 
 func spell_cast():
-	if stats_component.protect_status == true:
-		timer.start()
-		print("Defend Timer Refreshed!")
+	if aug_state == false:
+		if stats_component.protect_status == true:
+			timer.start()
+			print("Defend Timer Refreshed!")
+		else:
+			defense_boost()
+			timer.start()
+			print("Defend Timer Started!")
 	else:
-		defense_boost()
-		timer.start()
-		print("Defend Timer Started!")
+		pass
 
 func timer_expired():
 	defense_restore()
