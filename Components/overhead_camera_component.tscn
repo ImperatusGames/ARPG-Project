@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh157xm8hdx3c"]
+
+[ext_resource type="Script" uid="uid://b6kcwbqxx8kgm" path="res://Components/overhead_camera_component.gd" id="1_prq12"]
+
+[node name="OverheadCameraComponent" type="Camera2D"]
+script = ExtResource("1_prq12")
