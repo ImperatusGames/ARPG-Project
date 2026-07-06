@@ -21,6 +21,7 @@ func _input(event):
 			game_pause.emit()
 			get_tree().paused = true
 			print("Menu button pressed!")
+			get_viewport().set_input_as_handled()
 		else:
 			game_unpause.emit()
 			menu_active = false
