@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @onready var menu_items = $ItemList
 @onready var description_text = $Description
