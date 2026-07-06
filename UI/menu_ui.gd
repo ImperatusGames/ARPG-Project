@@ -8,6 +8,7 @@ extends CanvasLayer
 
 var player: Player = null
 var select_index: int
+const DEFAULT_MENU_INDEX := 0
 
 #TODO: Refactor Menu into a Pause_UI where all items are created in the same scene
 #This allows all items to be shown/hidden appropriately without worrying about things being stacked on top of another
@@ -31,7 +32,7 @@ func _ready() -> void:
 	if status_ui:
 		status_ui.status_menu_closed.connect(_on_status_menu_closed)
 	
-	menu_items.grab_focus()
+	focus_menu_item(DEFAULT_MENU_INDEX)
 
 func initialize_inventory() -> void:
 	player = get_tree().get_first_node_in_group("Player")
@@ -82,10 +83,7 @@ func open_inventory() -> void:
 		inventory_ui.open_inventory()
 
 func _on_inventory_closed() -> void:
-	# Show menu elements again
-	menu_items.show()
-	description_text.show()
-	menu_items.grab_focus()
+	focus_menu_item(select_index)
 
 func open_spell() -> void:
 	if spell_ui:
@@ -103,13 +101,18 @@ func open_status() -> void:
 		status_ui.show()
 
 func _on_spell_menu_closed() -> void:
-	menu_items.show()
-	description_text.show()
-	menu_items.grab_focus()
+	focus_menu_item(select_index)
 
 func _on_status_menu_closed() -> void:
+	focus_menu_item(select_index)
+
+func focus_menu_item(index: int) -> void:
+	# Show menu elements again
 	menu_items.show()
 	description_text.show()
+	select_index = index
+	menu_items.select(select_index)
+	updated_description_text(select_index)
 	menu_items.grab_focus()
 
 func close_menu():
