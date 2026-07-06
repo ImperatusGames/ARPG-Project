@@ -207,7 +207,7 @@ visible = false
 is_known = true
 
 [node name="WeaponManager" parent="." node_paths=PackedStringArray("weapon_array") instance=ExtResource("12_5htga")]
-weapon_array = [NodePath("Sword"), null]
+weapon_array = [NodePath("Sword"), NodePath("Axe")]
 
 [node name="Sword" parent="WeaponManager" instance=ExtResource("13_p5o4e")]
 visible = false
