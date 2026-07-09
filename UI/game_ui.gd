@@ -15,7 +15,9 @@ class_name GameUI
 @onready var current_spell = $CurrentSpell
 @onready var current_spell_icon = $CurrentSpellIcon
 @onready var aug_icon = $AugmentIcon
+@onready var spawn_button = $SpawnButton/Spawn
 var player = null
+var enemy_spawner = null
 
 func _ready():
 	# Find player and connect signals
@@ -23,6 +25,7 @@ func _ready():
 	GameManager.game_pause.connect(game_paused)
 	GameManager.game_unpause.connect(game_unpaused)
 	player = get_tree().get_first_node_in_group("Player")
+	enemy_spawner = get_tree().get_first_node_in_group("EnemySpawner")
 	if player:
 		##player.health.connect("health_changed", _on_player_health_changed)
 		player.health_component.connect("health_changed", _on_player_health_changed)
@@ -53,6 +56,7 @@ func _ready():
 	mp_restore.button_down.connect(player_mp_restore)
 	poison.button_down.connect(player_poison)
 	weapon_button.item_selected.connect(weapon_change)
+	spawn_button.button_down.connect(spawn_enemy)
 
 func _on_player_health_changed(new_health):
 	health_bar.value = new_health #player.health_component.current_health
@@ -93,6 +97,9 @@ func player_poison():
 
 func weapon_change(index):
 	player.weapon_manager.set_weapon(index)
+
+func spawn_enemy():
+	enemy_spawner._spawn_enemy()
 
 func game_paused():
 	hide()

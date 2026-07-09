@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cqvsu8xbdvmbe"]
+[gd_scene load_steps=13 format=3 uid="uid://cqvsu8xbdvmbe"]
 
 [ext_resource type="Script" uid="uid://bowhhj4j26nwb" path="res://UI/game_ui.gd" id="1_h0rig"]
 [ext_resource type="PackedScene" uid="uid://l4s1c30tqidj" path="res://UI/health_bar.tscn" id="1_kfjql"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cq72s6016ag1o" path="res://UI/Debug Scenes/debug_restore_mp.tscn" id="8_ywmy4"]
 [ext_resource type="PackedScene" uid="uid://c3bru0ypeim3g" path="res://UI/Debug Scenes/debug_poison.tscn" id="9_jd38o"]
 [ext_resource type="PackedScene" uid="uid://itub7nei8hpy" path="res://UI/Debug Scenes/debug_weapon.tscn" id="10_bjx7l"]
+[ext_resource type="PackedScene" uid="uid://ey3jitc05rd" path="res://UI/Debug Scenes/debug_spawn.tscn" id="11_oohqu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fy64h"]
 atlas = ExtResource("5_dbpsm")
@@ -105,3 +106,9 @@ offset_left = 886.0
 offset_top = 7.0
 offset_right = 886.0
 offset_bottom = 7.0
+
+[node name="SpawnButton" parent="." instance=ExtResource("11_oohqu")]
+offset_left = 1026.0
+offset_top = 145.0
+offset_right = 1026.0
+offset_bottom = 145.0

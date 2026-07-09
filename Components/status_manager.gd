@@ -78,6 +78,9 @@ func stun_start():
 	status_dictionary["Stunned"] = true
 	velocity_component.immobile()
 	stunned_state.emit(true)
+	const STUN = preload("res://Spells/StatusEffects/status_stunned.tscn")
+	var stun_scene = STUN.instantiate()
+	add_child(stun_scene)
 	await get_tree().create_timer(3.0).timeout
 	stun_end()
 
@@ -85,6 +88,8 @@ func stun_end():
 	status_dictionary["Stunned"] = false
 	stunned_state.emit(false)
 	velocity_component.calculate_speed()
+	var stun_node = get_node("Status_Stunned")
+	stun_node.stun_ended()
 
 func silence_start():
 	status_dictionary["Silenced"] = true

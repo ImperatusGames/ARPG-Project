@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch627l2txiyf8"]
+
+[ext_resource type="Script" uid="uid://pstso4c7w5ex" path="res://Enemies/enemy_spawner.gd" id="1_mu1kv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_stncb"]
+radius = 60.0
+
+[node name="EnemySpawner" type="Area2D" groups=["EnemySpawner"]]
+visible = false
+collision_layer = 0
+collision_mask = 0
+input_pickable = false
+monitoring = false
+monitorable = false
+script = ExtResource("1_mu1kv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_stncb")

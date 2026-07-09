@@ -8,6 +8,7 @@ signal spell_menu_closed
 @onready var close_button = $Button
 
 var player = null
+var spell_index := 0
 
 func _ready():
 	player = get_tree().get_first_node_in_group("Player")
@@ -16,18 +17,35 @@ func _ready():
 			spell_list.set_item_text(i, player.spell_manager.spell_array[i].spell_name)
 			spell_list.set_item_selectable(i, true)
 			spell_list.set_item_disabled(i, false)
-	spell_list.item_activated.connect(new_current_spell)
+	#spell_list.item_activated.connect(new_current_spell)
 	spell_list.item_selected.connect(update_spell_description)
-	close_button.pressed.connect(close)
+	close_button.pressed.connect(_on_close_pressed)
+	spell_list.grab_focus()
 
 func new_current_spell(index):
 	player.spell_manager.set_spell(index)
 	print(spell_list.get_item_text(index))
-	close()
+	_on_close_pressed()
 
 func update_spell_description(index):
 	spell_description.text = player.spell_manager.spell_array[index].spell_description
+	spell_index = index
 
-func close():
+#func close():
+	#hide()
+	#emit_signal("spell_menu_closed")
+
+func _input(event: InputEvent) -> void:
+	if visible and event.is_action_pressed("ui_cancel"):
+		_on_close_pressed()
+		accept_event()
+	elif visible and event.is_action_pressed("ui_select"):
+		_on_action_pressed()
+		accept_event()
+
+func _on_close_pressed() -> void:
 	hide()
 	emit_signal("spell_menu_closed")
+	
+func _on_action_pressed() -> void:
+	new_current_spell(spell_index)

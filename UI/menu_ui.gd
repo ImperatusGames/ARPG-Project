@@ -44,11 +44,16 @@ func initialize_inventory() -> void:
 	#if player and spell_ui:
 		#spell_ui.initialize(player)
 
-func _input(event):
+func _input(event: InputEvent):
 	if event.is_action_pressed("menu"):
-		print("close menu code")
+		print("menu close menu code")
 		close_menu()
-	elif event.is_action_pressed("attack"):
+		
+	elif event.is_action_pressed("ui_cancel") and menu_items.is_visible() == true:
+		print("other close menu code")
+		GameManager._menu_close()
+		close_menu()
+	elif event.is_action_pressed("attack") and menu_items.is_visible() == true:
 		select_menu_item(select_index)
 
 func select_menu_item(index):
@@ -99,6 +104,7 @@ func open_status() -> void:
 		description_text.hide()
 		
 		status_ui.show()
+		status_ui.grab_focus()
 
 func _on_spell_menu_closed() -> void:
 	focus_menu_item(select_index)
@@ -119,7 +125,9 @@ func close_menu():
 	print("Close menu func code")
 	get_tree().paused = false
 	hide()
+	#GameManager._menu_close()
 	call_deferred("queue_free")
+
 
 func updated_description_text(index):
 	select_index = index

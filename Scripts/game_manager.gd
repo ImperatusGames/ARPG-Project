@@ -11,7 +11,7 @@ var menu_active := false
 #func menu_button_pressed():
 	#pass
 
-func _input(event):
+func _input(event: InputEvent):
 	if event.is_action_pressed("menu"):
 		if menu_active == false:
 			const MENU_UI = preload("res://UI/menu_ui.tscn")
@@ -23,5 +23,21 @@ func _input(event):
 			print("Menu button pressed!")
 			get_viewport().set_input_as_handled()
 		else:
-			game_unpause.emit()
-			menu_active = false
+			print("Menu button unpause pressed!")
+			#get_tree().paused = false
+			#game_unpause.emit()
+			#menu_active = false
+			#get_viewport().set_input_as_handled()
+			_cleanup()
+
+func _cleanup() -> void:
+	print("Cleanup function")
+	menu_active = false
+	game_unpause.emit()
+	get_tree().paused = false
+	
+	
+func _menu_close() -> void:
+	print("Menu close function")
+	_cleanup()
+	
