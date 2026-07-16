@@ -3,7 +3,8 @@ class_name Spell
 
 signal has_finished
 
-@export var mp_cost : int
+@export var base_mp_cost : int
+@export var augment_mp_cost : int
 @export var is_known := false
 @export var spell_name : String
 @export var spell_description : String

@@ -1,10 +1,11 @@
 #########################
-## This is a defaulr script for an enemy.
+## This is a default script for an enemy.
 ## Edit this comment block to add more description.
 ## Code for how the enemy behaves is to be written in state machine nodes.
 #########################
 
 extends Entity
+class_name WaspEnemy
 #class_name #add_your_new_enemy_name
 
 var can_move := true

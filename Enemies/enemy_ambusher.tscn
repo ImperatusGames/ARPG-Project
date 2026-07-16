@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmsg11axqi6w7"]
+[gd_scene load_steps=15 format=3 uid="uid://dmsg11axqi6w7"]
 
 [ext_resource type="Script" uid="uid://ch3rs2vc4i1mm" path="res://Enemies/enemy_wasp.gd" id="1_hcapa"]
 [ext_resource type="Texture2D" uid="uid://c6xv8b8acgao0" path="res://icon.svg" id="2_vdyb4"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cgka0xce4yub0" path="res://States/state_machine.tscn" id="8_h8d2n"]
 [ext_resource type="Script" uid="uid://ck11ga7jf1pfs" path="res://Enemies/state_waiting_for_ambush.gd" id="10_g2v76"]
 [ext_resource type="Script" uid="uid://cvf4h73m5b3lm" path="res://Enemies/state_ambush.gd" id="10_vdyb4"]
+[ext_resource type="PackedScene" uid="uid://i2xhgmpq85jb" path="res://Components/status_manager.tscn" id="11_g2v76"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ycq33"]
 animations = [{
@@ -85,3 +86,5 @@ waiting_state = NodePath("../State_WaitingForAmbush")
 [node name="State_WaitingForAmbush" type="Node" parent="State_Machine" node_paths=PackedStringArray("ambush_state")]
 script = ExtResource("10_g2v76")
 ambush_state = NodePath("../State_Ambush")
+
+[node name="StatusManager" parent="." instance=ExtResource("11_g2v76")]

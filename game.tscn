@@ -57,4 +57,5 @@ scale = Vector2(2, 2)
 position = Vector2(431, 548)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("11_mfdv2")]
-position = Vector2(916, 365)
+position = Vector2(997, 330)
+enemy = Array[PackedScene]([ExtResource("7_eow3j")])

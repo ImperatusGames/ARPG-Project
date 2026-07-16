@@ -138,22 +138,38 @@ func quake_spell():
 	add_sibling(new_quake)
 
 func cleanse_spell():
-	pass
+	const CLEANSE = preload("res://Spells/cleanse_spell.tscn")
+	var new_cleanse = CLEANSE.instantiate()
+	new_cleanse.aug_state = augment_state
+	new_cleanse.global_position = get_parent().global_position
+	new_cleanse.global_rotation = get_parent().global_rotation
+	add_sibling(new_cleanse)
 
 func lightning_spell():
 	pass
 
 func check_mp():
-	if current_spell.mp_cost > stats_component.current_mp:
-		return false
+	if augment_state == true:
+		if current_spell.augment_mp_cost > stats_component.current_mp:
+			return false
+		else:
+			return true
 	else:
-		return true
+		if current_spell.base_mp_cost > stats_component.current_mp:
+			return false
+		else:
+			return true
 		#Create error failover for lack of MP
 
 func deduct_mp():
-	stats_component.current_mp -= current_spell.mp_cost
+	if augment_state == true:
+		stats_component.current_mp -= current_spell.augment_mp_cost
+		print("Spent MP: ", current_spell.augment_mp_cost)
+	else:
+		stats_component.current_mp -= current_spell.base_mp_cost
+		print("Spent MP: ", current_spell.base_mp_cost)
 	stats_component.spell_cast()
-	print("Spent MP: ", current_spell.mp_cost)
+
 
 func set_spell(index):
 	current_spell = spell_array[index]

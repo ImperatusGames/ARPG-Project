@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwalvlb0qn8ll"]
+[gd_scene load_steps=14 format=3 uid="uid://cwalvlb0qn8ll"]
 
 [ext_resource type="Script" uid="uid://bxn1bnqj1vyg4" path="res://Enemies/demo_enemy.gd" id="1_uwtlr"]
 [ext_resource type="Texture2D" uid="uid://c6xv8b8acgao0" path="res://icon.svg" id="2_4vmp6"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dftmybkeosab2" path="res://Components/hurt_box_component.gd" id="5_vwoug"]
 [ext_resource type="PackedScene" uid="uid://cgka0xce4yub0" path="res://States/state_machine.tscn" id="7_n72wm"]
 [ext_resource type="PackedScene" uid="uid://cojl5y5l5d5il" path="res://Components/stats_component.tscn" id="8_i34o8"]
+[ext_resource type="PackedScene" uid="uid://i2xhgmpq85jb" path="res://Components/status_manager.tscn" id="9_8rv2h"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5nylp"]
 animations = [{
@@ -89,3 +90,5 @@ disabled = true
 [node name="State_Machine" parent="." instance=ExtResource("7_n72wm")]
 
 [node name="StatsComponent" parent="." instance=ExtResource("8_i34o8")]
+
+[node name="StatusManager" parent="." instance=ExtResource("9_8rv2h")]

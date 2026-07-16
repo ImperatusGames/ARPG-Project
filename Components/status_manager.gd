@@ -59,10 +59,11 @@ func poison_check(potency: int):
 	# Then let the initiating target know so the duration can be refreshed
 
 func poison_end():
-	status_dictionary["Poison"] = 0
-	var poison_node = get_node("Status_Poisoned")
-	poison_node.disconnect("poison_damage", poison_damage)
-	poison_node.poison_ended()
+	if status_dictionary["Poison"] > 0:
+		status_dictionary["Poison"] = 0
+		var poison_node = get_node("Status_Poisoned")
+		poison_node.disconnect("poison_damage", poison_damage)
+		poison_node.poison_ended()
 
 func freeze_start():
 	status_dictionary["Frozen"] = true
@@ -71,8 +72,9 @@ func freeze_start():
 	freeze_end()
 
 func freeze_end():
-	status_dictionary["Frozen"] = false
-	velocity_component.calculate_speed()
+	if status_dictionary["Frozen"] == true:
+		status_dictionary["Frozen"] = false
+		velocity_component.calculate_speed()
 
 func stun_start():
 	status_dictionary["Stunned"] = true
@@ -85,11 +87,12 @@ func stun_start():
 	stun_end()
 
 func stun_end():
-	status_dictionary["Stunned"] = false
-	stunned_state.emit(false)
-	velocity_component.calculate_speed()
-	var stun_node = get_node("Status_Stunned")
-	stun_node.stun_ended()
+	if status_dictionary["Stunned"] == true:
+		status_dictionary["Stunned"] = false
+		stunned_state.emit(false)
+		velocity_component.calculate_speed()
+		var stun_node = get_node("Status_Stunned")
+		stun_node.stun_ended()
 
 func silence_start():
 	status_dictionary["Silenced"] = true
@@ -99,9 +102,10 @@ func silence_start():
 	silence_end()
 
 func silence_end():
-	status_dictionary["Silenced"] = false
-	print("Player silence ended!")
-	silence_state.emit(false)
+	if status_dictionary["Silenced"] == true:
+		status_dictionary["Silenced"] = false
+		print("Player silence ended!")
+		silence_state.emit(false)
 
 func slow_start():
 	status_dictionary["Slowed"] = true
@@ -109,7 +113,8 @@ func slow_start():
 	slow_end()
 
 func slow_end():
-	status_dictionary["Slowed"] = false
+	if status_dictionary["Slowed"] == true:
+		status_dictionary["Slowed"] = false
 
 func protect_start():
 	status_dictionary["Protected"] = true
@@ -117,7 +122,8 @@ func protect_start():
 	protect_end()
 
 func protect_end():
-	status_dictionary["Protected"] = false
+	if status_dictionary["Protected"] == true:
+		status_dictionary["Protected"] = false
 
 func magic_guard_start():
 	status_dictionary["Magic Guard"] = true
@@ -125,7 +131,8 @@ func magic_guard_start():
 	magic_guard_end()
 
 func magic_guard_end():
-	status_dictionary["Magic Guard"] = false
+	if status_dictionary["Magic Guard"] == true:
+		status_dictionary["Magic Guard"] = false
 
 func regen_start():
 	if status_dictionary["Regen"] == false:
@@ -140,11 +147,12 @@ func regen_start():
 		print("Regen refreshed!")
 
 func regen_end():
-	status_dictionary["Regen"] = false
-	var regen_node = get_node("Status_Regen")
-	regen_node.disconnect("regen", regen_heal)
-	regen_node.regen_ended()
-	print("Regen ended")
+	if status_dictionary["Regen"] == true:
+		status_dictionary["Regen"] = false
+		var regen_node = get_node("Status_Regen")
+		regen_node.disconnect("regen", regen_heal)
+		regen_node.regen_ended()
+		print("Regen ended")
 
 func cleanse():
 	poison_end()

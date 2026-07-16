@@ -1,5 +1,5 @@
 #########################
-## This is a defaulr script for an enemy.
+## This is a default script for an enemy.
 ## Edit this comment block to add more description.
 ## Code for how the enemy behaves is to be written in state machine nodes.
 #########################

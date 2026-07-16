@@ -1,6 +1,7 @@
+## Script code for any attack that is performed
+
 extends Node
 class_name Attack
-
 
 var attack_damage: int
 var attack_position: Vector2

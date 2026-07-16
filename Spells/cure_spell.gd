@@ -36,3 +36,4 @@ func healing():
 			print("Current health: ", health_component.current_health)
 			print("Max health: ", health_component.max_health)
 			print("Augment State: ", aug_state)
+	call_deferred("queue_free")

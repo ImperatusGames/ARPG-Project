@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwqsl1ssco62p"]
+[gd_scene load_steps=14 format=3 uid="uid://bwqsl1ssco62p"]
 
 [ext_resource type="Script" uid="uid://ch3rs2vc4i1mm" path="res://Enemies/enemy_wasp.gd" id="1_tp5d7"]
 [ext_resource type="Texture2D" uid="uid://c6xv8b8acgao0" path="res://icon.svg" id="2_tp5d7"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cgka0xce4yub0" path="res://States/state_machine.tscn" id="6_iqhfw"]
 [ext_resource type="Script" uid="uid://blw0s8wb6kv3c" path="res://Components/drop_component.gd" id="6_r0e1c"]
 [ext_resource type="PackedScene" uid="uid://1i45qhs08bo8" path="res://States/standing.tscn" id="7_46xrd"]
+[ext_resource type="PackedScene" uid="uid://i2xhgmpq85jb" path="res://Components/status_manager.tscn" id="10_r0e1c"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ycq33"]
 animations = [{
@@ -76,3 +77,5 @@ shape = SubResource("CircleShape2D_0hlhe")
 starting_state = NodePath("State_Standing")
 
 [node name="State_Standing" parent="State_Machine" instance=ExtResource("7_46xrd")]
+
+[node name="StatusManager" parent="." instance=ExtResource("10_r0e1c")]
