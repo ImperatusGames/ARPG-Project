@@ -42,7 +42,7 @@ radius = 63.0317
 radius = 134.06
 
 [node name="demo_enemy" type="CharacterBody2D"]
-z_index = -1
+motion_mode = 1
 scale = Vector2(0.5, 0.5)
 collision_layer = 24
 collision_mask = 9

@@ -29,9 +29,9 @@ radius = 65.192
 radius = 63.0079
 
 [node name="enemy_template" type="CharacterBody2D"]
-z_index = -1
 collision_layer = 24
 collision_mask = 9
+motion_mode = 1
 script = ExtResource("1_tp5d7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

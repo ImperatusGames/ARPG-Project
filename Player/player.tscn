@@ -124,6 +124,7 @@ _data = {
 
 [node name="Hero" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 400
+motion_mode = 1
 script = ExtResource("1_lwtpo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

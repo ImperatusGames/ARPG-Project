@@ -30,10 +30,10 @@ radius = 65.192
 radius = 63.0079
 
 [node name="enemy_ambusher" type="CharacterBody2D"]
-z_index = -1
 scale = Vector2(0.5, 0.5)
 collision_layer = 24
 collision_mask = 9
+motion_mode = 1
 script = ExtResource("1_hcapa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
